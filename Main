@@ -3,10 +3,6 @@ local Player = game.Players.LocalPlayer
 local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
 
-local SprintEnabled = false
-
-local SprintingSpeed = 50
-
 Player.Chatted:Connect(function(msg)
 	if msg == "!playagain" then
 		game.ReplicatedStorage.Bricks.PlayAgain:FireServer()
