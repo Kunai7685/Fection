@@ -1,0 +1,84 @@
+local Player = game.Players.LocalPlayer
+
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+
+local SprintEnabled = false
+
+local SprintingSpeed = 50
+
+Player.Chatted:Connect(function(msg)
+	if msg == "!playagain" then
+		game.ReplicatedStorage.Bricks.PlayAgain:FireServer()
+		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Cheat's", Text = ("Playing Again."), Duration = 5})
+	elseif msg == "!lobby" then
+		game.ReplicatedStorage.Bricks.Lobby:FireServer()
+		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Cheat's", Text = ("Lobby."), Duration = 5})
+	elseif msg == "!revive" then
+		game.ReplicatedStorage.Bricks.Revive:FireServer()
+		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Cheat's", Text = ("Revive."), Duration = 5})
+	end
+end)
+
+UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
+	if not gameProcessedEvent then
+		if input.KeyCode == Enum.KeyCode.RightShift then
+			SprintEnabled = not SprintEnabled
+			game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Cheat's", Text = ("Sprinting switch to "..SprintEnabled), Duration = 5})
+		end
+	end
+end)
+
+RunService.RenderStepped:Connect(function()
+	if SprintEnabled == true then
+		Player.Character.Humanoid.WalkSpeed = SprintingSpeed
+		game:GetService("TweenService"):Create(Player.Character.Humanoid, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
+			WalkSpeed = SprintingSpeed
+		}):Play()
+	end
+end)
+
+while true do wait(0.5)
+	for i,v in pairs(workspace.CurrentRooms:GetDescendants()) do
+		if v.Name == "ToUnanchor" then
+			if v:FindFirstChild("BoxHandleAdornment") then
+			else
+				local boxEsp = Instance.new("BoxHandleAdornment", v)
+				boxEsp.Adornee = v
+				boxEsp.Color3 = Color3.fromRGB(255,255,255)
+				boxEsp.Transparency = 0.5
+				boxEsp.AlwaysOnTop = true
+				boxEsp.Size = v.Size
+				boxEsp.Visible = true
+				boxEsp.ZIndex = 5
+			end
+		elseif v.Name == "Hitbox" then
+			if v:FindFirstChild("BoxHandleAdornment") then
+			else
+				local boxEsp = Instance.new("BoxHandleAdornment", v)
+				boxEsp.Adornee = v
+				boxEsp.Color3 = Color3.fromRGB(255,255,255)
+				boxEsp.Transparency = 0.5
+				boxEsp.AlwaysOnTop = true
+				boxEsp.Size = v.Size
+				boxEsp.Visible = true
+				boxEsp.ZIndex = 5
+			end
+		elseif v.Name == "Hintbook" then
+			if v:FindFirstChild("BoxHandleAdornment") then
+			else
+				local boxEsp = Instance.new("BoxHandleAdornment", v)
+				boxEsp.Adornee = v
+				boxEsp.Color3 = Color3.fromRGB(255,255,255)
+				boxEsp.Transparency = 0.5
+				boxEsp.AlwaysOnTop = true
+				boxEsp.Size = v.Size
+				boxEsp.Visible = true
+				boxEsp.ZIndex = 5
+			end
+		elseif v:IsA("ProximityPrompt") then
+			v.HoldDuration = 0
+			v.MaxActivationDistance = 15
+		end
+	end
+end
