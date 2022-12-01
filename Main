@@ -1,7 +1,7 @@
 if _G.SettingsFection then
 else
 	return
-end; if _G.FectionExecuted == true then
+end; if _G.FectionExecuted then
 	warn("You've already executed Fection.")
 	return
 end
@@ -59,7 +59,7 @@ RunService.RenderStepped:Connect(function()
 	end
 end)
 
-print("Fection Success.")
+print("Fection Success.".." 1334")
 while true do wait(0.5)
 	for i,v in pairs(workspace.CurrentRooms:GetDescendants()) do
 		if v.Name == "ToUnanchor" then
