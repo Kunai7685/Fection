@@ -1,7 +1,12 @@
 if _G.SettingsFection then
 else
 	return
+end; if _G.FectionExecuted == true then
+	warn("You've already executed Fection.")
+	return
 end
+
+_G.FectionExecuted = true
 
 function fromHex(str)return (str:gsub('..', function (cc)return string.char(tonumber(cc, 16))end))end
 
@@ -11,8 +16,6 @@ local Player = game.Players.LocalPlayer
 
 local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
-
-
 
 local Settings = {
 	SprintEnabled = _G.SettingsFection.SprintEnabled;
@@ -30,6 +33,11 @@ Player.Chatted:Connect(function(msg)
 	elseif msg == "!revive" then
 		game.ReplicatedStorage.Bricks.Revive:FireServer()
 		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Cheat's", Text = ("Revive."), Duration = 5})
+	elseif msg == "!rejoin" then
+		local TeleportService = game:GetService("TeleportService")
+		TeleportService:Teleport(game.PlaceId, Player)
+	elseif msg == "!iy" then
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
 	end
 end)
 
