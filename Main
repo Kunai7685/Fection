@@ -1,13 +1,18 @@
-FectionVer = 1.0
 if _G.SettingsFection then
 else
 	return
 end
-print("Fection Running.")
+
+function fromHex(str)return (str:gsub('..', function (cc)return string.char(tonumber(cc, 16))end))end
+
+game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection"; Text = "Running.", Duration = 5, Icon = tostring(fromHex("726278617373657469643a2f2f3131373130393833333033"))})
+
 local Player = game.Players.LocalPlayer
 
 local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
+
+
 
 local Settings = {
 	SprintEnabled = _G.SettingsFection.SprintEnabled;
@@ -46,6 +51,7 @@ RunService.RenderStepped:Connect(function()
 	end
 end)
 
+print("Fection Success.")
 while true do wait(0.5)
 	for i,v in pairs(workspace.CurrentRooms:GetDescendants()) do
 		if v.Name == "ToUnanchor" then
