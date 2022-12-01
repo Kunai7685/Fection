@@ -16,6 +16,7 @@ local Settings = {
 	SprintingSpeed = _G.SettingsFection.SprintingSpeed;
 	ProximityPromptMaxActivationDistance = _G.SettingsFection.ProximityPromptMaxActivationDistance;
 }
+SpEnabled = false
 Player.Chatted:Connect(function(msg)
 	if msg == "!playagain" then
 		game.ReplicatedStorage.Bricks.PlayAgain:FireServer()
@@ -36,17 +37,18 @@ end)
 UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
 	if not gameProcessedEvent then
 		if input.KeyCode == Enum.KeyCode.RightShift then
-			if Settings.SprintEnabled == true then
-				Settings.SprintEnabled = false
+			if SpEnabled == true then
+				SpEnabled = false
 			else
-				Settings.SprintEnabled = true
+				SpEnabled = true
 			end
-			print(Settings.SprintingSpeed)
+			print(SpEnabled)
 			game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Cheat's", Text = ("Sprinting switch to "..Settings.SprintEnabled), Duration = 5})
 		end
 	end
 end)
 RunService.RenderStepped:Connect(function()
+	Settings.SprintEnabled = SpEnabled
 	if Settings.SprintEnabled == true then
 		Player.Character.Humanoid.WalkSpeed = Settings.SprintingSpeed
 		game:GetService("TweenService"):Create(Player.Character.Humanoid, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
@@ -54,7 +56,7 @@ RunService.RenderStepped:Connect(function()
 		}):Play()
 	end
 end)
---[[ ---. .--- ]]--[[ -- -- - -- ------- ------- - - - -- .Success Printer. --]] print("Fection Success.".." 1334")
+--[[ ---. .--- ]]--[[ -- -- - -- ------- ------- - - - -- .Success Printer. --]] print("Fection Success.".." 1554")
 while true do wait(0.5)
 	for i,v in pairs(workspace.CurrentRooms:GetDescendants()) do
 		if v.Name == "ToUnanchor" then
