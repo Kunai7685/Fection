@@ -77,17 +77,19 @@ while true do wait(0.5)
 				boxEsp.Visible = true
 				boxEsp.ZIndex = 5
 			end
-		elseif v.Name == "Hintbook" then
-			if v:FindFirstChild("BoxHandleAdornment") then
-			else
-				local boxEsp = Instance.new("BoxHandleAdornment", v)
-				boxEsp.Adornee = v
-				boxEsp.Color3 = Color3.fromRGB(255,255,255)
-				boxEsp.Transparency = 0.5
-				boxEsp.AlwaysOnTop = true
-				boxEsp.Size = v.Size
-				boxEsp.Visible = true
-				boxEsp.ZIndex = 5
+		elseif v.Name == "Base" then
+			if v.Parent.Name == "LiveHintBook" then
+				if v:FindFirstChild("BoxHandleAdornment") then
+				else
+					local boxEsp = Instance.new("BoxHandleAdornment", v)
+					boxEsp.Adornee = v
+					boxEsp.Color3 = Color3.fromRGB(255,255,255)
+					boxEsp.Transparency = 0.5
+					boxEsp.AlwaysOnTop = true
+					boxEsp.Size = v.Size
+					boxEsp.Visible = true
+					boxEsp.ZIndex = 5
+				end
 			end
 		elseif v:IsA("ProximityPrompt") then
 			v.HoldDuration = 0
