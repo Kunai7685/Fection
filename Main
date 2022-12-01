@@ -48,7 +48,7 @@ UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
 	end
 end)
 RunService.RenderStepped:Connect(function()
-	Settings.SprintEnabled = SpEnabled
+	Settings.SprintEnabled = tostring(SpEnabled)
 	if Settings.SprintEnabled == true then
 		Player.Character.Humanoid.WalkSpeed = Settings.SprintingSpeed
 		game:GetService("TweenService"):Create(Player.Character.Humanoid, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
