@@ -1,3 +1,4 @@
+FectionVer = 1.0
 if _G.SettingsFection then
 else
 	return
