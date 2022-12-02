@@ -210,12 +210,12 @@ coroutine.resume(coroutine.create(function()
 	PlaySound(11718056021, 1, 1, false)
 end))
 --[[ ---. .--- ]]--[[ -- -- - -- ------- ------- - - - -- .Success Printer. --]] print("Fection Success.".." 1") --[[ Hi Fucker, trying to see my Work? ]]
-while true do wait(0.1)
+while true do wait(0.5)
 	coroutine.resume(coroutine.create(function()
 		for i,v in pairs(workspace.CurrentRooms:GetDescendants()) do
-			local randomNum = math.random(2,8) 
-			if randomNum == 5 then 
-				game:GetService("RunService").RenderStepped:Wait() 
+			local randomNum = math.random(2, 8)
+			if randomNum == 5 then
+				RunService.RenderStepped:Wait()
 			end
 			coroutine.resume(coroutine.create(function()
 				coroutine.resume(coroutine.create(function()
