@@ -34,7 +34,7 @@ local Settings = {
 	SprintingSpeed = _G.SettingsFection.SprintingSpeed;
 	ProximityPromptMaxActivationDistance = _G.SettingsFection.ProximityPromptMaxActivationDistance;
 }
-local canESP = false
+canESP = false
 SpEnabled = false
 CodeNumsData = {}
 Player.Chatted:Connect(function(msg)
@@ -58,8 +58,11 @@ end)
 UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
 	if not gameProcessedEvent then
 		if input.KeyCode == Enum.KeyCode.RightShift then
-			SpEnabled = not SpEnabled
-			game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection", Text = ("Sprinting switch to "..Settings.SprintEnabled), Duration = 5})
+			if SpEnabled == false then
+				SpEnabled = true
+			else
+				SpEnabled = false
+			end
 		elseif input.KeyCode == Enum.KeyCode.LeftBracket then
 			coroutine.resume(coroutine.create(function()
 				local last
@@ -74,8 +77,11 @@ UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
 				weld:Destroy()
 			end))
 		elseif input.KeyCode == Enum.KeyCode.RightBracket then
-			canESP = not canESP
-			game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection", Text = tostring("ESP "..canESP), Duration = 5})
+			if canESP == false then
+				canESP = true
+			else
+				canESP = false
+			end
 		end
 	end
 end)
