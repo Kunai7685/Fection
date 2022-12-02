@@ -106,8 +106,8 @@ Player.Chatted:Connect(function(msg)
 			Atmostphere.Offset = 0.15
 			Atmostphere.Color = Color3.fromRGB(0, 0, 0)
 			Atmostphere.Decay = Color3.fromRGB(50, 50, 50)
-			Atmostphere.Glare = 0.15
-			Atmostphere.Haze = 0.15
+			Atmostphere.Glare = 2.5
+			Atmostphere.Haze = 5
 			Sky.CelestialBodiesShown = true
 			Sky.MoonAngularSize = 11
 			Sky.MoonTextureId = "rbxassetid://6444320592"
