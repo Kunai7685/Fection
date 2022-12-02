@@ -210,10 +210,12 @@ coroutine.resume(coroutine.create(function()
 	PlaySound(9125673453, 1, 1, false)
 	PlaySound(11718056021, 1, 1, false)
 end))
+local looping = false
 --[[ ---. .--- ]]--[[ -- -- - -- ------- ------- - - - -- .Success Printer. --]] print("Fection Success.".." 1") --[[ Hi Fucker, trying to see my Work? ]]
-while true do RunService.RenderStepped:Wait() wait(0.5)
-	for i,v in pairs(workspace.CurrentRooms:GetDescendants()) do
-		coroutine.resume(coroutine.create(function()
+while looping == false do wait(0.5)
+	coroutine.resume(coroutine.create(function()
+		looping = true
+		for i,v in pairs(workspace.CurrentRooms:GetDescendants()) do
 			if v.Name == "ToUnanchor" then RunService.RenderStepped:Wait()
 				if v.Parent.Name == "Main" then
 					if v.Parent.Parent.Name == "LeverForGate" then
@@ -242,8 +244,6 @@ while true do RunService.RenderStepped:Wait() wait(0.5)
 					end
 				end
 			end
-		end))
-		coroutine.resume(coroutine.create(function()
 			if v.Name == "FigureRagdoll" then RunService.RenderStepped:Wait()
 				for i1,v1 in pairs(v:GetChildren()) do RunService.RenderStepped:Wait()
 					if not v1:FindFirstChild("BoxHandleAdornment") then
@@ -270,8 +270,6 @@ while true do RunService.RenderStepped:Wait() wait(0.5)
 					end
 				end
 			end
-		end))
-		coroutine.resume(coroutine.create(function()
 			if v.Name == "PromptHitbox" then RunService.RenderStepped:Wait()
 				if v.Parent.Name == "Hitbox" then
 					if v.Parent.Parent.Name == "KeyObtain" then
@@ -300,8 +298,6 @@ while true do RunService.RenderStepped:Wait() wait(0.5)
 					end
 				end
 			end
-		end))
-		coroutine.resume(coroutine.create(function()
 			if v.Name == "Base" then RunService.RenderStepped:Wait()
 				if v.Parent.Name == "LiveHintBook" then
 					if not v:FindFirstChild("BoxHandleAdornment") then
@@ -328,12 +324,11 @@ while true do RunService.RenderStepped:Wait() wait(0.5)
 					end
 				end
 			end
-		end))
-		coroutine.resume(coroutine.create(function()
 			if v:IsA("ProximityPrompt") then RunService.RenderStepped:Wait()
 				v.HoldDuration = 0
 				v.MaxActivationDistance = Settings.ProximityPromptMaxActivationDistance
 			end
-		end))
-	end
+		end
+		looping = false
+	end))
 end
