@@ -40,37 +40,36 @@ CodeNumsData = {}
 Player.Chatted:Connect(function(msg)
 	if msg == "!playagain" then
 		game.ReplicatedStorage.Bricks.PlayAgain:FireServer()
-		PlayBeep()
 		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection", Text = ("Playing Again."), Duration = 5})
+		PlayBeep()	
 	elseif msg == "!lobby" then
 		game.ReplicatedStorage.Bricks.Lobby:FireServer()
-		PlayBeep()
 		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection", Text = ("Lobby."), Duration = 5})
+		PlayBeep()	
 	elseif msg == "!revive" then
 		game.ReplicatedStorage.Bricks.Revive:FireServer()
-		PlayBeep()
 		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection", Text = ("Revive."), Duration = 5})
+		PlayBeep()	
 	elseif msg == "!rejoin" then
-		PlayBeep()
 		local TeleportService = game:GetService("TeleportService")
 		TeleportService:Teleport(game.PlaceId, Player)
-	elseif msg == "!iy" then
 		PlayBeep()
+	elseif msg == "!iy" then
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
 		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection", Text = ("Infinite Yield Executed."), Duration = 5})
+		PlayBeep()
 	elseif msg == "!beat-up" then
 		PlayBeep()
 		coroutine.resume(coroutine.create(function()
-			wait(1)
 			PlaySound(9116795681, 0.65, 1, false)
 		end))
 	elseif msg:match("!playsound") then
-		PlayBeep()
 		coroutine.resume(coroutine.create(function()
-			wait(1)
 			local id = string.sub(msg, 11, msg:len())
+			print(id)
 			PlaySound(id, 1, 1, false)
 		end))
+		PlayBeep()
 	end;
 end)
 UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
