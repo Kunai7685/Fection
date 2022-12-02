@@ -61,14 +61,14 @@ UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
 		elseif input.KeyCode == Enum.KeyCode.LeftBracket then
 			coroutine.resume(coroutine.create(function()
 				local last
-				for i,v in pairs(workspace.CurrentRooms:GetChildren()) do game:GetService("RunService").RenderStepped:Wait()
+				for i,v in pairs(workspace.CurrentRooms:GetChildren()) do wait()
 					last = v
 				end
 				local weld = Instance.new("Weld", Player.Character.PrimaryPart)
 				weld.Part0 = Player.Character.PrimaryPart
 				weld.Part1 = last:FindFirstChild("Door").Door
 				weld.Enabled = true
-				wait(0.05)
+				wait(0.03)
 				weld:Destroy()
 			end))
 		end
@@ -210,7 +210,7 @@ coroutine.resume(coroutine.create(function()
 	PlaySound(11718056021, 1, 1, false)
 end))
 --[[ ---. .--- ]]--[[ -- -- - -- ------- ------- - - - -- .Success Printer. --]] print("Fection Success.".." 1") --[[ Hi Fucker, trying to see my Work? ]]
-workspace.CurrentRooms.ChildAdded:Connect(function()
+while true do wait(0.5)
 	for i,v in pairs(workspace.CurrentRooms:GetDescendants()) do
 		coroutine.resume(coroutine.create(function()
 			if v.Name == "ToUnanchor" then
@@ -243,7 +243,7 @@ workspace.CurrentRooms.ChildAdded:Connect(function()
 				end
 			end
 			if v.Name == "FigureRagdoll" then
-				for i1,v1 in pairs(v:GetChildren()) do RunService.RenderStepped:Wait()
+				for i1,v1 in pairs(v:GetChildren()) do wait()
 					if v1:FindFirstChild("BoxHandleAdornment") then
 					else
 						local bodyESPbro = Instance.new("BoxHandleAdornment", v1)
@@ -331,4 +331,4 @@ workspace.CurrentRooms.ChildAdded:Connect(function()
 			end
 		end))
 	end
-end)
+end
