@@ -116,6 +116,7 @@ workspace.ChildAdded:Connect(function(child)
 			RushNew.Attachment.ParticleEmitter.Texture = "rbxassetid://4200490194"
 			RushNew.Attachment.BlackTrail.Color = Color3.fromRGB(255,255,255)
 			RushNew.Attachment.BlackTrail.Texture = "rbxassetid://4511014399"
+			game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Warning (Rus-)", Text = ("Holy boi, Rus- wait a minute why it sounded different?"), Duration = 5})
 		end
 		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Warning (Rush)", Text = ("Holy Sh*t, Rush is coming."), Duration = 5})
 	elseif child.Name == "SeekMoving" then
