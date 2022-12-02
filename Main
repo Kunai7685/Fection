@@ -59,42 +59,42 @@ end)
 
 workspace.ChildAdded:Connect(function(child)
 	if child.Name == "RushMoving" then
-		if child.RushNew:FindFirstChild("BoxHandleAdornment") then
+		if child:WaitForChild("RushNew"):FindFirstChild("BoxHandleAdornment") then
 		else
-			local boxEsp = Instance.new("BoxHandleAdornment", child.RushNew)
-			boxEsp.Adornee = child.RushNew
+			local boxEsp = Instance.new("BoxHandleAdornment", child:WaitForChild("RushNew"))
+			boxEsp.Adornee = child:WaitForChild("RushNew")
 			boxEsp.Color3 = Color3.fromRGB(0, 0, 0)
 			boxEsp.Transparency = 0.5
 			boxEsp.AlwaysOnTop = true
-			boxEsp.Size = child.RushNew.Size
+			boxEsp.Size = child:WaitForChild("RushNew").Size
 			boxEsp.Visible = true
 			boxEsp.ZIndex = 5
 		end
 		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Warning", Text = ("Holy Sh*t, Rush is coming."), Duration = 5})
 	elseif child.Name == "SeekMoving" then
-		if child.Figure then
-			if child.RushNew:FindFirstChild("BoxHandleAdornment") then
+		if child:WaitForChild("Figure") then
+			if child:WaitForChild("Figure"):FindFirstChild("BoxHandleAdornment") then
 			else
-				local boxEsp = Instance.new("BoxHandleAdornment", child.Figure)
-				boxEsp.Adornee = child.Figure
+				local boxEsp = Instance.new("BoxHandleAdornment", child:WaitForChild("Figure"))
+				boxEsp.Adornee = child:WaitForChild("Figure")
 				boxEsp.Color3 = Color3.fromRGB(255, 0, 4)
 				boxEsp.Transparency = 0.5
 				boxEsp.AlwaysOnTop = true
-				boxEsp.Size = child.Figure.Size
+				boxEsp.Size = child:WaitForChild("Figure").Size
 				boxEsp.Visible = true
 				boxEsp.ZIndex = 5
 			end
 		end
 	elseif child.Name == "Lookman" then
-		if child.Core then
+		if child:WaitForChild("Core") then
 			if child.RushNew:FindFirstChild("BoxHandleAdornment") then
 			else
-				local boxEsp = Instance.new("BoxHandleAdornment", child.Core)
-				boxEsp.Adornee = child.Core
+				local boxEsp = Instance.new("BoxHandleAdornment", child:WaitForChild("Core"))
+				boxEsp.Adornee = child:WaitForChild("Core")
 				boxEsp.Color3 = Color3.fromRGB(0, 242, 255)
 				boxEsp.Transparency = 0.5
 				boxEsp.AlwaysOnTop = true
-				boxEsp.Size = child.Core.Size
+				boxEsp.Size = child:WaitForChild("Core").Size
 				boxEsp.Visible = true
 				boxEsp.ZIndex = 5
 			end
@@ -155,53 +155,6 @@ while true do wait(0.5)
 					local boxEsp = Instance.new("BoxHandleAdornment", v)
 					boxEsp.Adornee = v
 					boxEsp.Color3 = Color3.fromRGB(147, 255, 130)
-					boxEsp.Transparency = 0.5
-					boxEsp.AlwaysOnTop = true
-					boxEsp.Size = v.Size
-					boxEsp.Visible = true
-					boxEsp.ZIndex = 5
-				end
-			end
-		elseif v.Name == "Lock" then
-			if v.Parent.Name == "Door" then
-				if v:FindFirstChild("BoxHandleAdornment") then
-				else
-					local boxEsp = Instance.new("BoxHandleAdornment", v)
-					boxEsp.Adornee = v
-					boxEsp.Color3 = Color3.fromRGB(255, 255, 255)
-					boxEsp.Transparency = 0.5
-					boxEsp.AlwaysOnTop = true
-					boxEsp.Size = v.Size
-					boxEsp.Visible = true
-					boxEsp.ZIndex = 5
-				end
-				if v:FindFirstChild("BoxHandleAdornment") then
-				else
-					local boxEsp = Instance.new("BoxHandleAdornment", v)
-					boxEsp.Adornee = v.Hole
-					boxEsp.Color3 = Color3.fromRGB(255, 255, 255)
-					boxEsp.Transparency = 0.5
-					boxEsp.AlwaysOnTop = true
-					boxEsp.Size = v.Size
-					boxEsp.Visible = true
-					boxEsp.ZIndex = 5
-				end
-				if v:FindFirstChild("BoxHandleAdornment") then
-				else
-					local boxEsp = Instance.new("BoxHandleAdornment", v)
-					boxEsp.Adornee = v.Metal
-					boxEsp.Color3 = Color3.fromRGB(255, 255, 255)
-					boxEsp.Transparency = 0.5
-					boxEsp.AlwaysOnTop = true
-					boxEsp.Size = v.Size
-					boxEsp.Visible = true
-					boxEsp.ZIndex = 5
-				end
-				if v:FindFirstChild("BoxHandleAdornment") then
-				else
-					local boxEsp = Instance.new("BoxHandleAdornment", v)
-					boxEsp.Adornee = v.Thing
-					boxEsp.Color3 = Color3.fromRGB(255, 255, 255)
 					boxEsp.Transparency = 0.5
 					boxEsp.AlwaysOnTop = true
 					boxEsp.Size = v.Size
