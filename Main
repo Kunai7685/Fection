@@ -340,7 +340,10 @@ while true do wait(0.5)
 					v2.MaxActivationDistance = Settings.ProximityPromptMaxActivationDistance
 				end
 			end))
-			for i, v in pairs(v2:GetDescendants()) do RunService.RenderStepped:Wait()
+			for i, v in pairs(v2:GetDescendants()) do local mathmathrandom = math.random(2,9)
+				if mathmathrandom == 5 then
+					RunService.RenderStepped:Wait()
+				end
 				coroutine.resume(coroutine.create(function()
 					if v.Name == "ToUnanchor" then
 						if v.Parent.Name == "Main" then
