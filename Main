@@ -232,9 +232,9 @@ coroutine.resume(coroutine.create(function()
 end))
 --[[ ---. .--- ]]--[[ -- -- - -- ------- ------- - - - -- .Success Printer. --]] print("Fection Success.".." 1") --[[ Hi Fucker, trying to see my Work? ]]
 while true do wait(0.5)
-	if canESP == true then
-		coroutine.resume(coroutine.create(function()
-			for i,v in pairs(workspace.CurrentRooms:GetDescendants()) do
+	coroutine.resume(coroutine.create(function()
+		for i,v in pairs(workspace.CurrentRooms:GetDescendants()) do
+			if canESP == true then
 				if v.Name == "ToUnanchor" then
 					if v.Parent.Name == "Main" then
 						if v.Parent.Parent.Name == "LeverForGate" then
@@ -350,6 +350,6 @@ while true do wait(0.5)
 					v.MaxActivationDistance = Settings.ProximityPromptMaxActivationDistance
 				end
 			end
-		end))
-	end
+		end
+	end))
 end
