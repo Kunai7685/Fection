@@ -50,6 +50,13 @@ Player.Chatted:Connect(function(msg)
 	elseif msg == "!iy" then
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
 		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Cheat's", Text = ("Infinite Yield Executed."), Duration = 5})
+	end;
+	if msg == "pH" then
+		PlaySound(7154560946, 1, 1, false)
+	elseif msg == "PH" then
+		PlaySound(11718123284, 1, 1, false)
+	elseif msg == "Ph" then
+		PlaySound(11718123284, 1, 1, false)
 	end
 end)
 UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
@@ -197,19 +204,6 @@ coroutine.resume(coroutine.create(function()
 end))
 --[[ ---. .--- ]]--[[ -- -- - -- ------- ------- - - - -- .Success Printer. --]] print("Fection Success.".." 1554")
 while true do wait(0.5)
-	coroutine.resume(coroutine.create(function()
-		for i,v in pairs(game.Players:GetPlayers()) do
-			v.Chatted:Connect(function(msg)
-				if msg == "pH" then
-					PlaySound(7154560946, 1, 1, false)
-				elseif msg == "PH" then
-					PlaySound(11718123284, 1, 1, false)
-				elseif msg == "Ph" then
-					PlaySound(11718123284, 1, 1, false)
-				end
-			end)
-		end
-	end))
 	for i,v in pairs(workspace.CurrentRooms:GetDescendants()) do
 		if v.Name == "ToUnanchor" then
 			if v.Parent.Name == "Main" then
