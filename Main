@@ -2,10 +2,10 @@ if _G.SettingsFection then else return end;if _G.FectionExecuted then warn("You'
 function fromHex(str)return (str:gsub('..', function (cc)return string.char(tonumber(cc, 16))end))end
 function PlayBeep()
 	local Sound = Instance.new("Sound", workspace);
-	Sound.SoundId = "rbxassetid://6098419898";
+	Sound.SoundId = "http://www.roblox.com/asset/?id=8458408918";
 	Sound.Volume = 1;
 	Sound.PlaybackSpeed = 1;
-	Sound.Looped = true;
+	Sound.Looped = false;
 	Sound:Play()
 	coroutine.resume(coroutine.create(function()
 		wait(2)
@@ -14,7 +14,7 @@ function PlayBeep()
 end
 function PlaySound(id, volume, playbackspeed, looped)
 	local Sound = Instance.new("Sound", workspace);
-	Sound.SoundId = "rbxassetid://"..id;
+	Sound.SoundId = "http://www.roblox.com/asset/?id="..id;
 	Sound.Volume = volume;
 	Sound.PlaybackSpeed = playbackspeed;
 	Sound.Looped = looped;
@@ -40,19 +40,30 @@ CodeNumsData = {}
 Player.Chatted:Connect(function(msg)
 	if msg == "!playagain" then
 		game.ReplicatedStorage.Bricks.PlayAgain:FireServer()
+		PlayBeep()
 		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection", Text = ("Playing Again."), Duration = 5})
 	elseif msg == "!lobby" then
 		game.ReplicatedStorage.Bricks.Lobby:FireServer()
+		PlayBeep()
 		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection", Text = ("Lobby."), Duration = 5})
 	elseif msg == "!revive" then
 		game.ReplicatedStorage.Bricks.Revive:FireServer()
+		PlayBeep()
 		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection", Text = ("Revive."), Duration = 5})
 	elseif msg == "!rejoin" then
+		PlayBeep()
 		local TeleportService = game:GetService("TeleportService")
 		TeleportService:Teleport(game.PlaceId, Player)
 	elseif msg == "!iy" then
+		PlayBeep()
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
 		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection", Text = ("Infinite Yield Executed."), Duration = 5})
+	elseif msg == "!beat-up" then
+		PlayBeep()
+		coroutine.resume(coroutine.create(function()
+			wait(1)
+			PlaySound(7154560946, 0.65, 1, false)
+		end))
 	end;
 end)
 UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
@@ -208,24 +219,21 @@ end)
 Player.Character:WaitForChild("Humanoid").Died:Connect(function()
 	local randomnum = math.random(1,3)
 	if randomnum == 1 then
-		PlaySound(9074548977, 0.5, 1, false)
+		PlaySound(9074548977, 1, 1, false)
 	elseif randomnum == 2 then
-		PlaySound(2084860044, 0.5, 1, false)
+		PlaySound(2084860044, 1, 1, false)
 	elseif randomnum == 3 then
-		PlaySound(9059013830, 0.5, 1, false)
+		PlaySound(9059013830, 1, 1, false)
 	end
 end)
 coroutine.resume(coroutine.create(function()
 	wait(2)
-	PlaySound(9125673453, 1, 1, false)
-	PlaySound(11718056021, 1, 1, false)
+	PlaySound(9085027122, 1, 1, false)
 end))
-local looping = false
 --[[ ---. .--- ]]--[[ -- -- - -- ------- ------- - - - -- .Success Printer. --]] print("Fection Success.".." 1") --[[ Hi Fucker, trying to see my Work? ]]
-while canESP == true do wait(0.5)
-	if looping == false then
+while true do wait(0.5)
+	if canESP == true then
 		coroutine.resume(coroutine.create(function()
-			looping = true
 			for i,v in pairs(workspace.CurrentRooms:GetDescendants()) do
 				if v.Name == "ToUnanchor" then
 					if v.Parent.Name == "Main" then
@@ -342,7 +350,6 @@ while canESP == true do wait(0.5)
 					v.MaxActivationDistance = Settings.ProximityPromptMaxActivationDistance
 				end
 			end
-			looping = false
 		end))
 	end
 end
