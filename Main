@@ -216,7 +216,7 @@ while looping == false do wait(0.5)
 	coroutine.resume(coroutine.create(function()
 		looping = true
 		for i,v in pairs(workspace.CurrentRooms:GetDescendants()) do
-			if v.Name == "ToUnanchor" then RunService.RenderStepped:Wait()
+			if v.Name == "ToUnanchor" then
 				if v.Parent.Name == "Main" then
 					if v.Parent.Parent.Name == "LeverForGate" then
 						if not v:FindFirstChild("BoxHandleAdornment") then
@@ -244,33 +244,35 @@ while looping == false do wait(0.5)
 					end
 				end
 			end
-			if v.Name == "FigureRagdoll" then RunService.RenderStepped:Wait()
-				for i1,v1 in pairs(v:GetChildren()) do RunService.RenderStepped:Wait()
-					if not v1:FindFirstChild("BoxHandleAdornment") then
-						local bodyESPbro = Instance.new("BoxHandleAdornment", v1)
-						bodyESPbro.Adornee = v1
-						bodyESPbro.Color3 = Color3.fromRGB(189, 131, 92)
-						bodyESPbro.Transparency = 0.5
-						bodyESPbro.AlwaysOnTop = true
-						bodyESPbro.Size = v1.Size
-						bodyESPbro.Visible = true
-						bodyESPbro.ZIndex = 5
-						coroutine.resume(coroutine.create(function()
-							while bodyESPbro do
-								TweenService:Create(bodyESPbro, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
-									Color3 = Color3.fromRGB(189, 162, 143)
-								}):Play()
-								wait(1)
-								TweenService:Create(bodyESPbro, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
-									Color3 = Color3.fromRGB(189, 131, 92)
-								}):Play()
-								wait(1)
-							end
-						end))
+			if v.Name == "FigureRagdoll" then
+				coroutine.resume(coroutine.create(function()
+					for i1,v1 in pairs(v:GetChildren()) do RunService.RenderStepped:Wait()
+						if not v1:FindFirstChild("BoxHandleAdornment") then
+							local bodyESPbro = Instance.new("BoxHandleAdornment", v1)
+							bodyESPbro.Adornee = v1
+							bodyESPbro.Color3 = Color3.fromRGB(189, 131, 92)
+							bodyESPbro.Transparency = 0.5
+							bodyESPbro.AlwaysOnTop = true
+							bodyESPbro.Size = v1.Size
+							bodyESPbro.Visible = true
+							bodyESPbro.ZIndex = 5
+							coroutine.resume(coroutine.create(function()
+								while bodyESPbro do
+									TweenService:Create(bodyESPbro, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
+										Color3 = Color3.fromRGB(189, 162, 143)
+									}):Play()
+									wait(1)
+									TweenService:Create(bodyESPbro, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
+										Color3 = Color3.fromRGB(189, 131, 92)
+									}):Play()
+									wait(1)
+								end
+							end))
+						end
 					end
-				end
+				end))
 			end
-			if v.Name == "PromptHitbox" then RunService.RenderStepped:Wait()
+			if v.Name == "PromptHitbox" then
 				if v.Parent.Name == "Hitbox" then
 					if v.Parent.Parent.Name == "KeyObtain" then
 						if not v:FindFirstChild("BoxHandleAdornment") then
@@ -298,7 +300,7 @@ while looping == false do wait(0.5)
 					end
 				end
 			end
-			if v.Name == "Base" then RunService.RenderStepped:Wait()
+			if v.Name == "Base" then
 				if v.Parent.Name == "LiveHintBook" then
 					if not v:FindFirstChild("BoxHandleAdornment") then
 						local boxEsp = Instance.new("BoxHandleAdornment", v)
@@ -324,7 +326,7 @@ while looping == false do wait(0.5)
 					end
 				end
 			end
-			if v:IsA("ProximityPrompt") then RunService.RenderStepped:Wait()
+			if v:IsA("ProximityPrompt") then
 				v.HoldDuration = 0
 				v.MaxActivationDistance = Settings.ProximityPromptMaxActivationDistance
 			end
