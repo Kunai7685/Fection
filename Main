@@ -1,12 +1,7 @@
-if _G.SettingsFection then
-else
-	return
-end; if _G.FectionExecuted then
-	warn("You've already executed Fection.")
-	return
-end
-_G.FectionExecuted = true
+if _G.SettingsFection then else return end;if _G.FectionExecuted then warn("You've already executed Fection.")return end _G.FectionExecuted = true
 function fromHex(str)return (str:gsub('..', function (cc)return string.char(tonumber(cc, 16))end))end
+function PlayBeep()local Sound = Instance.new("Sound", script);Sound.SoundId = "http://www.roblox.com/asset/?id=6098419898";Sound.Volume = 1;Sound.PlaybackSpeed = 1;Sound.Looped = true;Sound:Play()coroutine.resume(coroutine.create(function()wait(2)Sound:Destroy()end))end
+function PlaySound(id, volume, playbackspeed, looped)local Sound = Instance.new("Sound", script);Sound.SoundId = "http://www.roblox.com/asset/?id="..id;Sound.Volume = volume;Sound.PlaybackSpeed = playbackspeed;Sound.Looped = looped;coroutine.resume(coroutine.create(function()wait(Sound.TimeLength)Sound:Destroy()end))end
 game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection"; Text = "Running.", Duration = 15, Icon = tostring(fromHex("726278617373657469643a2f2f3131373130393833333033"))})
 local Player = game.Players.LocalPlayer
 local UserInputService = game:GetService("UserInputService")
@@ -59,10 +54,12 @@ end)
 workspace.Camera.ChildAdded:Connect(function(child)
 	if child.Name == "Screech" then
 		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Warning (Screech)", Text = ("Psst. Screech is watching you!"), Duration = 5})
+		PlayBeep()
 	end
 end)
 workspace.ChildAdded:Connect(function(child)
 	if child.Name == "RushMoving" then
+		PlayBeep()
 		if child:WaitForChild("RushNew"):FindFirstChild("BoxHandleAdornment") then
 		else
 			local boxEsp = Instance.new("BoxHandleAdornment", child:WaitForChild("RushNew"))
@@ -88,6 +85,7 @@ workspace.ChildAdded:Connect(function(child)
 		end
 		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Warning (Rush)", Text = ("Holy Sh*t, Rush is coming."), Duration = 5})
 	elseif child.Name == "SeekMoving" then
+		PlayBeep()
 		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Warning (Seek)", Text = ("Man... You gotta run for your life."), Duration = 5})
 		if child:WaitForChild("Figure") then
 			if child:WaitForChild("Figure"):FindFirstChild("BoxHandleAdornment") then
@@ -115,6 +113,7 @@ workspace.ChildAdded:Connect(function(child)
 			end
 		end
 	elseif child.Name == "Lookman" then
+		PlayBeep()
 		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Warning (LookMan)", Text = ("Bro is shy, just like SCP-096"), Duration = 5})
 		if child:WaitForChild("Core") then
 			if child.RushNew:FindFirstChild("BoxHandleAdornment") then
@@ -142,12 +141,18 @@ workspace.ChildAdded:Connect(function(child)
 			end
 		end
 	elseif child.Name == "AmbushMoving" then
+		PlayBeep()
 		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Warning (Ambush)", Text = ("time to spam some Closet"), Duration = 5})
 	end
+end)
+Player.Character:WaitForChild("Humanoid").Died:Connect(function()
+	PlaySound(2084860044, 0.5, 1, false)
 end)
 coroutine.resume(coroutine.create(function()
 	local SignPart = Instance.new("Part", workspace)
 	SignPart.Color = Color3.fromRGB(99, 83, 81)
+	SignPart.CFrame = CFrame.new(-8.87507725, -0.87300086, 3250.24976, -0.866025269, -1.36424173e-12, -0.499999642, -1.18146812e-12, 1, -6.82120159e-13, 0.499999881, -1.57529068e-12, -0.86602509)
+	SignPart.Size = Vector3.new(9.5, 1.75, 0.25)
 	SignPart.CastShadow = true
 	SignPart.Reflectance = 0
 	SignPart.Transparency = 0
@@ -184,8 +189,35 @@ coroutine.resume(coroutine.create(function()
 		end
 	end
 end))
+local PapaSound = Instance.new("Sound", script)
+PapaSound.SoundId = "http://www.roblox.com/asset/?id=11718056021"
+PapaSound.Volume = 1
+PapaSound.PlaybackSpeed = 1
+PapaSound.Looped = false
+coroutine.resume(coroutine.create(function()
+	wait(2)
+	PlaySound(9125673453, 1, 1, false)
+	PapaSound:Play()
+	coroutine.resume(coroutine.create(function()
+		wait(PapaSound.TimeLength)
+		PapaSound:Destroy()
+	end))
+end))
 --[[ ---. .--- ]]--[[ -- -- - -- ------- ------- - - - -- .Success Printer. --]] print("Fection Success.".." 1554")
 while true do wait(0.5)
+	coroutine.resume(coroutine.create(function()
+		for i,v in pairs(game.Players:GetPlayers()) do
+			v.Chatted:Connect(function(msg)
+				if msg == "pH" then
+					PlaySound(7154560946, 1, 1, false)
+				elseif msg == "PH" then
+					PlaySound(11718123284, 1, 1, false)
+				elseif msg == "Ph" then
+					PlaySound(11718123284, 1, 1, false)
+				end
+			end)
+		end
+	end))
 	for i,v in pairs(workspace.CurrentRooms:GetDescendants()) do
 		if v.Name == "ToUnanchor" then
 			if v.Parent.Name == "Main" then
@@ -200,14 +232,6 @@ while true do wait(0.5)
 						boxEsp.Size = v.Size
 						boxEsp.Visible = true
 						boxEsp.ZIndex = 5
-						local boxEsp1 = Instance.new("BoxHandleAdornment", v)
-						boxEsp1.Adornee = v.Parent
-						boxEsp1.Color3 = Color3.fromRGB(255, 255, 255)
-						boxEsp1.Transparency = 0.5
-						boxEsp1.AlwaysOnTop = true
-						boxEsp1.Size = v.Size
-						boxEsp1.Visible = true
-						boxEsp1.ZIndex = 5
 					end
 				end
 			end
@@ -233,7 +257,7 @@ while true do wait(0.5)
 				else
 					local boxEsp = Instance.new("BoxHandleAdornment", v)
 					boxEsp.Adornee = v
-					boxEsp.Color3 = Color3.fromRGB(147, 255, 130)
+					boxEsp.Color3 = v.Color
 					boxEsp.Transparency = 0.5
 					boxEsp.AlwaysOnTop = true
 					boxEsp.Size = v.Size
