@@ -110,7 +110,7 @@ workspace.ChildAdded:Connect(function(child)
 			local RushNew = child:WaitForChild("RushNew")
 			local PlaySound = RushNew.PlaySound
 			RushNew.Footsteps.Playing = false
-			PlaySound.SoundId = "rbxassetid://5263560566"
+			PlaySound.SoundId = "rbxassetid://4316136477"
 			PlaySound.PlaybackSpeed = 1
 			PlaySound.Volume = 1
 			RushNew.Attachment.ParticleEmitter.Texture = "rbxassetid://4200490194"
