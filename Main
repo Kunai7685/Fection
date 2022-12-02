@@ -34,31 +34,32 @@ local Settings = {
 	SprintingSpeed = _G.SettingsFection.SprintingSpeed;
 	ProximityPromptMaxActivationDistance = _G.SettingsFection.ProximityPromptMaxActivationDistance;
 }
+local canESP = false
 SpEnabled = false
 CodeNumsData = {}
 Player.Chatted:Connect(function(msg)
 	if msg == "!playagain" then
 		game.ReplicatedStorage.Bricks.PlayAgain:FireServer()
-		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Cheat's", Text = ("Playing Again."), Duration = 5})
+		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection", Text = ("Playing Again."), Duration = 5})
 	elseif msg == "!lobby" then
 		game.ReplicatedStorage.Bricks.Lobby:FireServer()
-		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Cheat's", Text = ("Lobby."), Duration = 5})
+		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection", Text = ("Lobby."), Duration = 5})
 	elseif msg == "!revive" then
 		game.ReplicatedStorage.Bricks.Revive:FireServer()
-		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Cheat's", Text = ("Revive."), Duration = 5})
+		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection", Text = ("Revive."), Duration = 5})
 	elseif msg == "!rejoin" then
 		local TeleportService = game:GetService("TeleportService")
 		TeleportService:Teleport(game.PlaceId, Player)
 	elseif msg == "!iy" then
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
-		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Cheat's", Text = ("Infinite Yield Executed."), Duration = 5})
+		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection", Text = ("Infinite Yield Executed."), Duration = 5})
 	end;
 end)
 UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
 	if not gameProcessedEvent then
 		if input.KeyCode == Enum.KeyCode.RightShift then
 			SpEnabled = not SpEnabled
-			game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Cheat's", Text = ("Sprinting switch to "..Settings.SprintEnabled), Duration = 5})
+			game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection", Text = ("Sprinting switch to "..Settings.SprintEnabled), Duration = 5})
 		elseif input.KeyCode == Enum.KeyCode.LeftBracket then
 			coroutine.resume(coroutine.create(function()
 				local last
@@ -72,6 +73,9 @@ UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
 				wait(0.03)
 				weld:Destroy()
 			end))
+		elseif input.KeyCode == Enum.KeyCode.RightBracket then
+			canESP = not canESP
+			game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection", Text = tostring("ESP "..canESP), Duration = 5})
 		end
 	end
 end)
@@ -212,125 +216,127 @@ coroutine.resume(coroutine.create(function()
 end))
 local looping = false
 --[[ ---. .--- ]]--[[ -- -- - -- ------- ------- - - - -- .Success Printer. --]] print("Fection Success.".." 1") --[[ Hi Fucker, trying to see my Work? ]]
-while looping == false do wait(0.5)
-	coroutine.resume(coroutine.create(function()
-		looping = true
-		for i,v in pairs(workspace.CurrentRooms:GetDescendants()) do
-			if v.Name == "ToUnanchor" then
-				if v.Parent.Name == "Main" then
-					if v.Parent.Parent.Name == "LeverForGate" then
-						if not v:FindFirstChild("BoxHandleAdornment") then
-							local boxEsp = Instance.new("BoxHandleAdornment", v)
-							boxEsp.Adornee = v
-							boxEsp.Color3 = Color3.fromRGB(255, 255, 128)
-							boxEsp.Transparency = 0.5
-							boxEsp.AlwaysOnTop = true
-							boxEsp.Size = v.Size
-							boxEsp.Visible = true
-							boxEsp.ZIndex = 5
-							coroutine.resume(coroutine.create(function()
-								while boxEsp do
-									TweenService:Create(boxEsp, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
-										Color3 = Color3.fromRGB(255, 255, 210)
-									}):Play()
-									wait(1)
-									TweenService:Create(boxEsp, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
-										Color3 = Color3.fromRGB(255, 255, 128)
-									}):Play()
-									wait(1)
-								end
-							end))
-						end
-					end
-				end
-			end
-			if v.Name == "FigureRagdoll" then
-				coroutine.resume(coroutine.create(function()
-					for i1,v1 in pairs(v:GetChildren()) do RunService.RenderStepped:Wait()
-						if not v1:FindFirstChild("BoxHandleAdornment") then
-							local bodyESPbro = Instance.new("BoxHandleAdornment", v1)
-							bodyESPbro.Adornee = v1
-							bodyESPbro.Color3 = Color3.fromRGB(189, 131, 92)
-							bodyESPbro.Transparency = 0.5
-							bodyESPbro.AlwaysOnTop = true
-							bodyESPbro.Size = v1.Size
-							bodyESPbro.Visible = true
-							bodyESPbro.ZIndex = 5
-							coroutine.resume(coroutine.create(function()
-								while bodyESPbro do
-									TweenService:Create(bodyESPbro, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
-										Color3 = Color3.fromRGB(189, 162, 143)
-									}):Play()
-									wait(1)
-									TweenService:Create(bodyESPbro, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
-										Color3 = Color3.fromRGB(189, 131, 92)
-									}):Play()
-									wait(1)
-								end
-							end))
-						end
-					end
-				end))
-			end
-			if v.Name == "PromptHitbox" then
-				if v.Parent.Name == "Hitbox" then
-					if v.Parent.Parent.Name == "KeyObtain" then
-						if not v:FindFirstChild("BoxHandleAdornment") then
-							local boxEsp = Instance.new("BoxHandleAdornment", v)
-							boxEsp.Adornee = v
-							boxEsp.Color3 = Color3.fromRGB(255, 255, 255)
-							boxEsp.Transparency = 0.5
-							boxEsp.AlwaysOnTop = true
-							boxEsp.Size = v.Size
-							boxEsp.Visible = true
-							boxEsp.ZIndex = 5
-							coroutine.resume(coroutine.create(function()
-								while boxEsp do
-									TweenService:Create(boxEsp, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
-										Color3 = Color3.fromRGB(255, 255, 143)
-									}):Play()
-									wait(1)
-									TweenService:Create(boxEsp, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
-										Color3 = Color3.fromRGB(255, 255, 255)
-									}):Play()
-									wait(1)
-								end
-							end))
-						end
-					end
-				end
-			end
-			if v.Name == "Base" then
-				if v.Parent.Name == "LiveHintBook" then
-					if not v:FindFirstChild("BoxHandleAdornment") then
-						local boxEsp = Instance.new("BoxHandleAdornment", v)
-						boxEsp.Adornee = v
-						boxEsp.Color3 = v.Color
-						boxEsp.Transparency = 0.5
-						boxEsp.AlwaysOnTop = true
-						boxEsp.Size = v.Size
-						boxEsp.Visible = true
-						boxEsp.ZIndex = 5
-						coroutine.resume(coroutine.create(function()
-							while boxEsp do
-								TweenService:Create(boxEsp, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
-									Color3 = Color3.fromRGB(150, 150, 150)
-								}):Play()
-								wait(1)
-								TweenService:Create(boxEsp, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
-									Color3 = v.Color
-								}):Play()
-								wait(1)
+while canESP == true do wait(0.5)
+	if looping == false then
+		coroutine.resume(coroutine.create(function()
+			looping = true
+			for i,v in pairs(workspace.CurrentRooms:GetDescendants()) do
+				if v.Name == "ToUnanchor" then
+					if v.Parent.Name == "Main" then
+						if v.Parent.Parent.Name == "LeverForGate" then
+							if not v:FindFirstChild("BoxHandleAdornment") then
+								local boxEsp = Instance.new("BoxHandleAdornment", v)
+								boxEsp.Adornee = v
+								boxEsp.Color3 = Color3.fromRGB(255, 255, 128)
+								boxEsp.Transparency = 0.5
+								boxEsp.AlwaysOnTop = true
+								boxEsp.Size = v.Size
+								boxEsp.Visible = true
+								boxEsp.ZIndex = 5
+								coroutine.resume(coroutine.create(function()
+									while boxEsp do
+										TweenService:Create(boxEsp, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
+											Color3 = Color3.fromRGB(255, 255, 210)
+										}):Play()
+										wait(1)
+										TweenService:Create(boxEsp, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
+											Color3 = Color3.fromRGB(255, 255, 128)
+										}):Play()
+										wait(1)
+									end
+								end))
 							end
-						end))
+						end
 					end
 				end
+				if v.Name == "FigureRagdoll" then
+					coroutine.resume(coroutine.create(function()
+						for i1,v1 in pairs(v:GetChildren()) do RunService.RenderStepped:Wait()
+							if not v1:FindFirstChild("BoxHandleAdornment") then
+								local bodyESPbro = Instance.new("BoxHandleAdornment", v1)
+								bodyESPbro.Adornee = v1
+								bodyESPbro.Color3 = Color3.fromRGB(189, 131, 92)
+								bodyESPbro.Transparency = 0.5
+								bodyESPbro.AlwaysOnTop = true
+								bodyESPbro.Size = v1.Size
+								bodyESPbro.Visible = true
+								bodyESPbro.ZIndex = 5
+								coroutine.resume(coroutine.create(function()
+									while bodyESPbro do
+										TweenService:Create(bodyESPbro, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
+											Color3 = Color3.fromRGB(189, 162, 143)
+										}):Play()
+										wait(1)
+										TweenService:Create(bodyESPbro, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
+											Color3 = Color3.fromRGB(189, 131, 92)
+										}):Play()
+										wait(1)
+									end
+								end))
+							end
+						end
+					end))
+				end
+				if v.Name == "PromptHitbox" then
+					if v.Parent.Name == "Hitbox" then
+						if v.Parent.Parent.Name == "KeyObtain" then
+							if not v:FindFirstChild("BoxHandleAdornment") then
+								local boxEsp = Instance.new("BoxHandleAdornment", v)
+								boxEsp.Adornee = v
+								boxEsp.Color3 = Color3.fromRGB(255, 255, 255)
+								boxEsp.Transparency = 0.5
+								boxEsp.AlwaysOnTop = true
+								boxEsp.Size = v.Size
+								boxEsp.Visible = true
+								boxEsp.ZIndex = 5
+								coroutine.resume(coroutine.create(function()
+									while boxEsp do
+										TweenService:Create(boxEsp, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
+											Color3 = Color3.fromRGB(255, 255, 143)
+										}):Play()
+										wait(1)
+										TweenService:Create(boxEsp, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
+											Color3 = Color3.fromRGB(255, 255, 255)
+										}):Play()
+										wait(1)
+									end
+								end))
+							end
+						end
+					end
+				end
+				if v.Name == "Base" then
+					if v.Parent.Name == "LiveHintBook" then
+						if not v:FindFirstChild("BoxHandleAdornment") then
+							local boxEsp = Instance.new("BoxHandleAdornment", v)
+							boxEsp.Adornee = v
+							boxEsp.Color3 = v.Color
+							boxEsp.Transparency = 0.5
+							boxEsp.AlwaysOnTop = true
+							boxEsp.Size = v.Size
+							boxEsp.Visible = true
+							boxEsp.ZIndex = 5
+							coroutine.resume(coroutine.create(function()
+								while boxEsp do
+									TweenService:Create(boxEsp, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
+										Color3 = Color3.fromRGB(150, 150, 150)
+									}):Play()
+									wait(1)
+									TweenService:Create(boxEsp, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
+										Color3 = v.Color
+									}):Play()
+									wait(1)
+								end
+							end))
+						end
+					end
+				end
+				if v:IsA("ProximityPrompt") then
+					v.HoldDuration = 0
+					v.MaxActivationDistance = Settings.ProximityPromptMaxActivationDistance
+				end
 			end
-			if v:IsA("ProximityPrompt") then
-				v.HoldDuration = 0
-				v.MaxActivationDistance = Settings.ProximityPromptMaxActivationDistance
-			end
-		end
-		looping = false
-	end))
+			looping = false
+		end))
+	end
 end
