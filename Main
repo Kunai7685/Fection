@@ -211,7 +211,7 @@ coroutine.resume(coroutine.create(function()
 end))
 --[[ ---. .--- ]]--[[ -- -- - -- ------- ------- - - - -- .Success Printer. --]] print("Fection Success.".." 1") --[[ Hi Fucker, trying to see my Work? ]]
 workspace.CurrentRooms.ChildAdded:Connect(function()
-	for i,v in pairs(workspace.CurrentRooms:GetDescendants()) do RunService.RenderStepped:Wait()
+	for i,v in pairs(workspace.CurrentRooms:GetDescendants()) do
 		coroutine.resume(coroutine.create(function()
 			if v.Name == "ToUnanchor" then
 				if v.Parent.Name == "Main" then
