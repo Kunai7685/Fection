@@ -34,6 +34,7 @@ local Settings = {
 	ProximityPromptMaxActivationDistance = _G.SettingsFection.ProximityPromptMaxActivationDistance;
 }
 SpEnabled = false
+CodeNumsData = {}
 Player.Chatted:Connect(function(msg)
 	if msg == "!playagain" then
 		game.ReplicatedStorage.Bricks.PlayAgain:FireServer()
@@ -85,6 +86,373 @@ RunService.RenderStepped:Connect(function()
 		if workspace:FindFirstChild("CurrentRooms"):FindFirstChild("0") then
 			workspace:FindFirstChild("CurrentRooms"):FindFirstChild("0").Assets.Desk_Bell.Base.InteractSound.SoundId = "rbxassetid://6832470734"
 		end
+	end
+end)
+workspace.CurrentRooms.ChildAdded:Connect(function(child)
+	if child.Name == "100" then
+		coroutine.resume(coroutine.create(function()
+			local Fection = Instance.new("ScreenGui")
+			local Frame = Instance.new("Frame")
+			local UICorner = Instance.new("UICorner")
+			local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
+			local Frame_2 = Instance.new("Frame")
+			local UICorner_2 = Instance.new("UICorner")
+			local TextLabel = Instance.new("TextLabel")
+			local TextLabel_2 = Instance.new("TextLabel")
+			local List = Instance.new("Frame")
+			local UICorner_3 = Instance.new("UICorner")
+			local UIListLayout = Instance.new("UIListLayout")
+			local Mane = Instance.new("TextLabel")
+			local UICorner_4 = Instance.new("UICorner")
+			local UIAspectRatioConstraint_2 = Instance.new("UIAspectRatioConstraint")
+			local UIPadding = Instance.new("UIPadding")
+			local Mane_2 = Instance.new("TextLabel")
+			local UICorner_5 = Instance.new("UICorner")
+			local UIAspectRatioConstraint_3 = Instance.new("UIAspectRatioConstraint")
+			local Mane_3 = Instance.new("TextLabel")
+			local UICorner_6 = Instance.new("UICorner")
+			local UIAspectRatioConstraint_4 = Instance.new("UIAspectRatioConstraint")
+			local Mane_4 = Instance.new("TextLabel")
+			local UICorner_7 = Instance.new("UICorner")
+			local UIAspectRatioConstraint_5 = Instance.new("UIAspectRatioConstraint")
+			local Mane_5 = Instance.new("TextLabel")
+			local UICorner_8 = Instance.new("UICorner")
+			local UIAspectRatioConstraint_6 = Instance.new("UIAspectRatioConstraint")
+			local Mane_6 = Instance.new("TextLabel")
+			local UICorner_9 = Instance.new("UICorner")
+			local UIAspectRatioConstraint_7 = Instance.new("UIAspectRatioConstraint")
+			local Mane_7 = Instance.new("TextLabel")
+			local UICorner_10 = Instance.new("UICorner")
+			local UIAspectRatioConstraint_8 = Instance.new("UIAspectRatioConstraint")
+			local Mane_8 = Instance.new("TextLabel")
+			local UICorner_11 = Instance.new("UICorner")
+			local UIAspectRatioConstraint_9 = Instance.new("UIAspectRatioConstraint")
+			local Mane_9 = Instance.new("TextLabel")
+			local UICorner_12 = Instance.new("UICorner")
+			local UIAspectRatioConstraint_10 = Instance.new("UIAspectRatioConstraint")
+			local Mane_10 = Instance.new("TextLabel")
+			local UICorner_13 = Instance.new("UICorner")
+			local UIAspectRatioConstraint_11 = Instance.new("UIAspectRatioConstraint")
+
+			Fection.Name = "Fection"
+			Fection.Parent = game.CoreGui
+			Fection.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+			Fection.DisplayOrder = 999999999
+			Fection.ResetOnSpawn = false
+
+			Frame.Parent = Fection
+			Frame.BackgroundColor3 = Color3.fromRGB(147, 121, 97)
+			Frame.Position = UDim2.new(0.011012977, 0, 0.0846422166, 0)
+			Frame.Size = UDim2.new(0.13660714, 0, 0.827814579, 0)
+
+			UICorner.CornerRadius = UDim.new(0, 4)
+			UICorner.Parent = Frame
+
+			UIAspectRatioConstraint.Parent = Frame
+			UIAspectRatioConstraint.AspectRatio = 0.306
+
+			Frame_2.Parent = Frame
+			Frame_2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+			Frame_2.BackgroundTransparency = 0.900
+			Frame_2.Position = UDim2.new(0.0653594807, 0, 0.0139999986, 0)
+			Frame_2.Size = UDim2.new(0.862745106, 0, 0.0900000036, 0)
+
+			UICorner_2.CornerRadius = UDim.new(0, 4)
+			UICorner_2.Parent = Frame_2
+
+			TextLabel.Parent = Frame
+			TextLabel.BackgroundColor3 = Color3.fromRGB(122, 100, 76)
+			TextLabel.BackgroundTransparency = 1.000
+			TextLabel.Position = UDim2.new(0, 0, 0.0139999995, 0)
+			TextLabel.Size = UDim2.new(1, 0, 0.0439999998, 0)
+			TextLabel.Font = Enum.Font.DenkOne
+			TextLabel.Text = "Switches"
+			TextLabel.TextColor3 = Color3.fromRGB(204, 167, 134)
+			TextLabel.TextScaled = true
+			TextLabel.TextSize = 14.000
+			TextLabel.TextWrapped = true
+
+			TextLabel_2.Parent = Frame
+			TextLabel_2.BackgroundColor3 = Color3.fromRGB(122, 100, 76)
+			TextLabel_2.BackgroundTransparency = 1.000
+			TextLabel_2.Position = UDim2.new(0, 0, 0.0579999983, 0)
+			TextLabel_2.Size = UDim2.new(1, 0, 0.0299999993, 0)
+			TextLabel_2.Font = Enum.Font.DenkOne
+			TextLabel_2.Text = "Wait for it to process"
+			TextLabel_2.TextColor3 = Color3.fromRGB(186, 163, 144)
+			TextLabel_2.TextScaled = true
+			TextLabel_2.TextSize = 14.000
+			TextLabel_2.TextWrapped = true
+
+			List.Name = "List"
+			List.Parent = Frame
+			List.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+			List.BackgroundTransparency = 0.900
+			List.Position = UDim2.new(0.0653594807, 0, 0.115999997, 0)
+			List.Size = UDim2.new(0.862745106, 0, 0.871999979, 0)
+
+			UICorner_3.CornerRadius = UDim.new(0, 4)
+			UICorner_3.Parent = List
+
+			UIListLayout.Parent = List
+			UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+			UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+			UIListLayout.Padding = UDim.new(0.063000001, 0)
+
+			Mane.Name = "Mane"
+			Mane.Parent = List
+			Mane.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+			Mane.BackgroundTransparency = 0.900
+			Mane.Position = UDim2.new(0.0606060624, 0, 0, 0)
+			Mane.Size = UDim2.new(0.878787875, 0, 0.0411247648, 0)
+			Mane.Font = Enum.Font.Jura
+			Mane.Text = "01 - ON"
+			Mane.TextColor3 = Color3.fromRGB(255, 202, 184)
+			Mane.TextScaled = true
+			Mane.TextSize = 14.000
+			Mane.TextTransparency = 0.500
+			Mane.TextWrapped = true
+
+			UICorner_4.CornerRadius = UDim.new(0, 4)
+			UICorner_4.Parent = Mane
+
+			UIAspectRatioConstraint_2.Parent = Mane
+			UIAspectRatioConstraint_2.AspectRatio = 4.889
+
+			UIPadding.Parent = List
+			UIPadding.PaddingTop = UDim.new(0, 5)
+
+			Mane_2.Name = "Mane"
+			Mane_2.Parent = List
+			Mane_2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+			Mane_2.BackgroundTransparency = 0.900
+			Mane_2.Position = UDim2.new(0.0606060624, 0, 0, 0)
+			Mane_2.Size = UDim2.new(0.878787875, 0, 0.0411247648, 0)
+			Mane_2.Font = Enum.Font.Jura
+			Mane_2.Text = "02 - ON"
+			Mane_2.TextColor3 = Color3.fromRGB(255, 202, 184)
+			Mane_2.TextScaled = true
+			Mane_2.TextSize = 14.000
+			Mane_2.TextTransparency = 0.500
+			Mane_2.TextWrapped = true
+
+			UICorner_5.CornerRadius = UDim.new(0, 4)
+			UICorner_5.Parent = Mane_2
+
+			UIAspectRatioConstraint_3.Parent = Mane_2
+			UIAspectRatioConstraint_3.AspectRatio = 4.889
+
+			Mane_3.Name = "Mane"
+			Mane_3.Parent = List
+			Mane_3.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+			Mane_3.BackgroundTransparency = 0.900
+			Mane_3.Position = UDim2.new(0.0606060624, 0, 0, 0)
+			Mane_3.Size = UDim2.new(0.878787875, 0, 0.0411247648, 0)
+			Mane_3.Font = Enum.Font.Jura
+			Mane_3.Text = "03 - ON"
+			Mane_3.TextColor3 = Color3.fromRGB(255, 202, 184)
+			Mane_3.TextScaled = true
+			Mane_3.TextSize = 14.000
+			Mane_3.TextTransparency = 0.500
+			Mane_3.TextWrapped = true
+
+			UICorner_6.CornerRadius = UDim.new(0, 4)
+			UICorner_6.Parent = Mane_3
+
+			UIAspectRatioConstraint_4.Parent = Mane_3
+			UIAspectRatioConstraint_4.AspectRatio = 4.889
+
+			Mane_4.Name = "Mane"
+			Mane_4.Parent = List
+			Mane_4.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+			Mane_4.BackgroundTransparency = 0.900
+			Mane_4.Position = UDim2.new(0.0606060624, 0, 0, 0)
+			Mane_4.Size = UDim2.new(0.878787875, 0, 0.0411247648, 0)
+			Mane_4.Font = Enum.Font.Jura
+			Mane_4.Text = "04 - ON"
+			Mane_4.TextColor3 = Color3.fromRGB(255, 202, 184)
+			Mane_4.TextScaled = true
+			Mane_4.TextSize = 14.000
+			Mane_4.TextTransparency = 0.500
+			Mane_4.TextWrapped = true
+
+			UICorner_7.CornerRadius = UDim.new(0, 4)
+			UICorner_7.Parent = Mane_4
+
+			UIAspectRatioConstraint_5.Parent = Mane_4
+			UIAspectRatioConstraint_5.AspectRatio = 4.889
+
+			Mane_5.Name = "Mane"
+			Mane_5.Parent = List
+			Mane_5.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+			Mane_5.BackgroundTransparency = 0.900
+			Mane_5.Position = UDim2.new(0.0606060624, 0, 0, 0)
+			Mane_5.Size = UDim2.new(0.878787875, 0, 0.0411247648, 0)
+			Mane_5.Font = Enum.Font.Jura
+			Mane_5.Text = "05 - ON"
+			Mane_5.TextColor3 = Color3.fromRGB(255, 202, 184)
+			Mane_5.TextScaled = true
+			Mane_5.TextSize = 14.000
+			Mane_5.TextTransparency = 0.500
+			Mane_5.TextWrapped = true
+
+			UICorner_8.CornerRadius = UDim.new(0, 4)
+			UICorner_8.Parent = Mane_5
+
+			UIAspectRatioConstraint_6.Parent = Mane_5
+			UIAspectRatioConstraint_6.AspectRatio = 4.889
+
+			Mane_6.Name = "Mane"
+			Mane_6.Parent = List
+			Mane_6.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+			Mane_6.BackgroundTransparency = 0.900
+			Mane_6.Position = UDim2.new(0.0606060624, 0, 0, 0)
+			Mane_6.Size = UDim2.new(0.878787875, 0, 0.0411247648, 0)
+			Mane_6.Font = Enum.Font.Jura
+			Mane_6.Text = "06 - ON"
+			Mane_6.TextColor3 = Color3.fromRGB(255, 202, 184)
+			Mane_6.TextScaled = true
+			Mane_6.TextSize = 14.000
+			Mane_6.TextTransparency = 0.500
+			Mane_6.TextWrapped = true
+
+			UICorner_9.CornerRadius = UDim.new(0, 4)
+			UICorner_9.Parent = Mane_6
+
+			UIAspectRatioConstraint_7.Parent = Mane_6
+			UIAspectRatioConstraint_7.AspectRatio = 4.889
+
+			Mane_7.Name = "Mane"
+			Mane_7.Parent = List
+			Mane_7.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+			Mane_7.BackgroundTransparency = 0.900
+			Mane_7.Position = UDim2.new(0.0606060624, 0, 0, 0)
+			Mane_7.Size = UDim2.new(0.878787875, 0, 0.0411247648, 0)
+			Mane_7.Font = Enum.Font.Jura
+			Mane_7.Text = "07 - ON"
+			Mane_7.TextColor3 = Color3.fromRGB(255, 202, 184)
+			Mane_7.TextScaled = true
+			Mane_7.TextSize = 14.000
+			Mane_7.TextTransparency = 0.500
+			Mane_7.TextWrapped = true
+
+			UICorner_10.CornerRadius = UDim.new(0, 4)
+			UICorner_10.Parent = Mane_7
+
+			UIAspectRatioConstraint_8.Parent = Mane_7
+			UIAspectRatioConstraint_8.AspectRatio = 4.889
+
+			Mane_8.Name = "Mane"
+			Mane_8.Parent = List
+			Mane_8.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+			Mane_8.BackgroundTransparency = 0.900
+			Mane_8.Position = UDim2.new(0.0606060624, 0, 0, 0)
+			Mane_8.Size = UDim2.new(0.878787875, 0, 0.0411247648, 0)
+			Mane_8.Font = Enum.Font.Jura
+			Mane_8.Text = "08 - ON"
+			Mane_8.TextColor3 = Color3.fromRGB(255, 202, 184)
+			Mane_8.TextScaled = true
+			Mane_8.TextSize = 14.000
+			Mane_8.TextTransparency = 0.500
+			Mane_8.TextWrapped = true
+
+			UICorner_11.CornerRadius = UDim.new(0, 4)
+			UICorner_11.Parent = Mane_8
+
+			UIAspectRatioConstraint_9.Parent = Mane_8
+			UIAspectRatioConstraint_9.AspectRatio = 4.889
+
+			Mane_9.Name = "Mane"
+			Mane_9.Parent = List
+			Mane_9.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+			Mane_9.BackgroundTransparency = 0.900
+			Mane_9.Position = UDim2.new(0.0606060624, 0, 0, 0)
+			Mane_9.Size = UDim2.new(0.878787875, 0, 0.0411247648, 0)
+			Mane_9.Font = Enum.Font.Jura
+			Mane_9.Text = "09 - ON"
+			Mane_9.TextColor3 = Color3.fromRGB(255, 202, 184)
+			Mane_9.TextScaled = true
+			Mane_9.TextSize = 14.000
+			Mane_9.TextTransparency = 0.500
+			Mane_9.TextWrapped = true
+
+			UICorner_12.CornerRadius = UDim.new(0, 4)
+			UICorner_12.Parent = Mane_9
+
+			UIAspectRatioConstraint_10.Parent = Mane_9
+			UIAspectRatioConstraint_10.AspectRatio = 4.889
+
+			Mane_10.Name = "Mane"
+			Mane_10.Parent = List
+			Mane_10.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+			Mane_10.BackgroundTransparency = 0.900
+			Mane_10.Position = UDim2.new(0.0606060624, 0, 0, 0)
+			Mane_10.Size = UDim2.new(0.878787875, 0, 0.0411247648, 0)
+			Mane_10.Font = Enum.Font.Jura
+			Mane_10.Text = "10 - ON"
+			Mane_10.TextColor3 = Color3.fromRGB(255, 202, 184)
+			Mane_10.TextScaled = true
+			Mane_10.TextSize = 14.000
+			Mane_10.TextTransparency = 0.500
+			Mane_10.TextWrapped = true
+
+			UICorner_13.CornerRadius = UDim.new(0, 4)
+			UICorner_13.Parent = Mane_10
+
+			UIAspectRatioConstraint_11.Parent = Mane_10
+			UIAspectRatioConstraint_11.AspectRatio = 4.889
+			
+			local Room = child
+			local Code = child:WaitForChild("SurfaceGui").Frame.Code
+			local Frame = Code.Frame
+			Frame:GetPropertyChangedSignal("BackgroundTransparency"):Connect(function()
+				if Frame.BackgroundTransparency == 0 then
+					if Code.Text == "01" then
+						Mane.Text = Code.Text.." - ON"
+					elseif Code.Text == "02" then
+						Mane_2.Text = Code.Text.." - ON"
+					elseif Code.Text == "03" then
+						Mane_3.Text = Code.Text.." - ON"
+					elseif Code.Text == "04" then
+						Mane_4.Text = Code.Text.." - ON"
+					elseif Code.Text == "05" then
+						Mane_5.Text = Code.Text.." - ON"
+					elseif Code.Text == "06" then
+						Mane_6.Text = Code.Text.." - ON"
+					elseif Code.Text == "07" then
+						Mane_7.Text = Code.Text.." - ON"
+					elseif Code.Text == "08" then
+						Mane_8.Text = Code.Text.." - ON"
+					elseif Code.Text == "09" then
+						Mane_9.Text = Code.Text.." - ON"
+					elseif Code.Text == "10" then
+						Mane_10.Text = Code.Text.." - ON"
+					end
+				elseif Frame.BackgroundTransparency == 1 then
+					if Code.Text == "01" then
+						Mane.Text = Code.Text.." - OFF"
+					elseif Code.Text == "02" then
+						Mane_2.Text = Code.Text.." - OFF"
+					elseif Code.Text == "03" then
+						Mane_3.Text = Code.Text.." - OFF"
+					elseif Code.Text == "04" then
+						Mane_4.Text = Code.Text.." - OFF"
+					elseif Code.Text == "05" then
+						Mane_5.Text = Code.Text.." - OFF"
+					elseif Code.Text == "06" then
+						Mane_6.Text = Code.Text.." - OFF"
+					elseif Code.Text == "07" then
+						Mane_7.Text = Code.Text.." - OFF"
+					elseif Code.Text == "08" then
+						Mane_8.Text = Code.Text.." - OFF"
+					elseif Code.Text == "09" then
+						Mane_9.Text = Code.Text.." - OFF"
+					elseif Code.Text == "10" then
+						Mane_10.Text = Code.Text.." - OFF"
+					end
+				end
+			end)
+		end))
 	end
 end)
 workspace.Camera.ChildAdded:Connect(function(child)
