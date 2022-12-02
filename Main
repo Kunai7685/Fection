@@ -51,19 +51,26 @@ Player.Chatted:Connect(function(msg)
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
 		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Cheat's", Text = ("Infinite Yield Executed."), Duration = 5})
 	end;
-	if msg == "pH" then
-		PlaySound(7154560946, 1, 1, false)
-	elseif msg == "PH" then
-		PlaySound(11718123284, 1, 1, false)
-	elseif msg == "Ph" then
-		PlaySound(11718123284, 1, 1, false)
-	end
 end)
 UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
 	if not gameProcessedEvent then
 		if input.KeyCode == Enum.KeyCode.RightShift then
 			SpEnabled = not SpEnabled
 			game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Cheat's", Text = ("Sprinting switch to "..Settings.SprintEnabled), Duration = 5})
+		elseif input.KeyCode == Enum.KeyCode.LeftBracket then
+			coroutine.resume(coroutine.create(function()
+				local last
+				for i,v in pairs(workspace.CurrentRooms:GetChildren()) do
+					print(i)
+					last = v
+				end
+				local weld = Instance.new("Weld", Player.Character.PrimaryPart)
+				weld.Part0 = Player.Character.PrimaryPart
+				weld.Part1 = last:FindFirstChild("Door").Door
+				weld.Enabled = true
+				wait(0.05)
+				weld:Destroy()
+			end))
 		end
 	end
 end)
