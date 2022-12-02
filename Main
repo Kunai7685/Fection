@@ -149,59 +149,9 @@ Player.Character:WaitForChild("Humanoid").Died:Connect(function()
 	PlaySound(2084860044, 0.5, 1, false)
 end)
 coroutine.resume(coroutine.create(function()
-	local SignPart = Instance.new("Part", workspace)
-	SignPart.Color = Color3.fromRGB(99, 83, 81)
-	SignPart.CFrame = CFrame.new(-8.87507725, -0.87300086, 3250.24976, -0.866025269, -1.36424173e-12, -0.499999642, -1.18146812e-12, 1, -6.82120159e-13, 0.499999881, -1.57529068e-12, -0.86602509)
-	SignPart.Size = Vector3.new(9.5, 1.75, 0.25)
-	SignPart.CastShadow = true
-	SignPart.Reflectance = 0
-	SignPart.Transparency = 0
-	SignPart.CanCollide = false
-	SignPart.CanQuery = false
-	SignPart.CanTouch = false
-	SignPart.Anchored = true
-	local SurfaceGui = Instance.new("SurfaceGui")
-	local TextLabel = Instance.new("TextLabel")
-	SurfaceGui.Parent = SignPart
-	SurfaceGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-	SurfaceGui.Adornee = game.Workspace.Sign
-	SurfaceGui.CanvasSize = Vector2.new(1000, 200)
-	TextLabel.Parent = SurfaceGui
-	TextLabel.BackgroundColor3 = Color3.fromRGB(38, 25, 25)
-	TextLabel.BackgroundTransparency = 1.000
-	TextLabel.Size = UDim2.new(1, 0, 1, 0)
-	TextLabel.Font = Enum.Font.DenkOne
-	TextLabel.Text = "Thank you for using Fection"
-	TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-	TextLabel.TextSize = 84.000
-	TextLabel.TextWrapped = true
-	if workspace.CurrentRooms:FindFirstChild("0") then
-		if workspace.CurrentRooms:FindFirstChild("0").Assets:FindFirstChild("Luggage") then
-			local Luggage = workspace.CurrentRooms:FindFirstChild("0").Assets:FindFirstChild("Luggage"):Clone()
-			Luggage.Parent = workspace
-			Luggage.PrimaryPart.CFrame = CFrame.new(-11.4029207, 0.906315804, 3251.67993, 0.866025388, -0.500000119, -1.36424151e-12, 3.93822507e-13, -2.04636265e-12, 0.999999762, -0.500000119, -0.866025388, -1.57529025e-12)
-			for i,v in pairs(Luggage:GetChildren()) do
-				v.CanCollide = false
-				v.CanQuery = false
-				v.CanTouch = false
-				v.Anchored = true
-			end
-		end
-	end
-end))
-local PapaSound = Instance.new("Sound", script)
-PapaSound.SoundId = "http://www.roblox.com/asset/?id=11718056021"
-PapaSound.Volume = 1
-PapaSound.PlaybackSpeed = 1
-PapaSound.Looped = false
-coroutine.resume(coroutine.create(function()
 	wait(2)
 	PlaySound(9125673453, 1, 1, false)
-	PapaSound:Play()
-	coroutine.resume(coroutine.create(function()
-		wait(PapaSound.TimeLength)
-		PapaSound:Destroy()
-	end))
+	PlaySound(11718056021, 1, 1, false)
 end))
 --[[ ---. .--- ]]--[[ -- -- - -- ------- ------- - - - -- .Success Printer. --]] print("Fection Success.".." 1554")
 while true do wait(0.5)
