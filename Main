@@ -61,7 +61,7 @@ Player.Chatted:Connect(function(msg)
 	elseif msg == "!beat-up" then
 		PlayBeep()
 		coroutine.resume(coroutine.create(function()
-			PlaySound(9116795681, 0.65, 1, false)
+			PlaySound(9116795681, 1, 1, false)
 		end))
 	elseif msg:match("!playsound") then
 		coroutine.resume(coroutine.create(function()
@@ -70,6 +70,72 @@ Player.Chatted:Connect(function(msg)
 			PlaySound(id, 1, 1, false)
 		end))
 		PlayBeep()
+	elseif msg == "!betterlighting" then
+		coroutine.resume(coroutine.create(function()
+			local Lighting = game:GetService("Lighting")
+			game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Better Light v1.0"; Text = "Clearing Lighting"; Duration = 2})
+			Lighting:ClearAllChildren()
+			Lighting.Ambient = Color3.fromRGB(70, 70, 70)
+			Lighting.Brightness = 3
+			Lighting.ColorShift_Bottom = Color3.fromRGB(0, 0, 0)
+			Lighting.ColorShift_Top = Color3.fromRGB(0, 0, 0)
+			Lighting.EnvironmentDiffuseScale = 1
+			Lighting.EnvironmentSpecularScale = 1
+			Lighting.GlobalShadows = true
+			Lighting.OutdoorAmbient = Color3.fromRGB(70, 70, 70)
+			Lighting.ShadowSoftness = 0.2
+			Lighting.FogColor = Color3.fromRGB(255, 255, 255)
+			Lighting.FogEnd = 10000000
+			Lighting.FogStart = 15
+			wait(0.1)
+			local Atmostphere = Instance.new("Atmosphere")
+			local Sky = Instance.new("Sky")
+			local Bloom = Instance.new("BloomEffect")
+			local Blur = Instance.new("BlurEffect")
+			local ColorCorrection = Instance.new("ColorCorrectionEffect")
+			local DepthOfField = Instance.new("DepthOfFieldEffect")
+			local SunRays = Instance.new("SunRaysEffect")
+			Atmostphere.Parent = Lighting
+			Sky.Parent = Lighting
+			Bloom.Parent = Lighting
+			Blur.Parent = Lighting
+			ColorCorrection.Parent = Lighting
+			DepthOfField.Parent = Lighting
+			SunRays.Parent = Lighting
+			Atmostphere.Density = 0.5
+			Atmostphere.Offset = 0.15
+			Atmostphere.Color = Color3.fromRGB(0, 0, 0)
+			Atmostphere.Decay = Color3.fromRGB(50, 50, 50)
+			Atmostphere.Glare = 0.15
+			Atmostphere.Haze = 0.15
+			Sky.CelestialBodiesShown = true
+			Sky.MoonAngularSize = 11
+			Sky.MoonTextureId = "rbxassetid://6444320592"
+			Sky.SkyboxBk = "rbxassetid://6444884337"
+			Sky.SkyboxDn = "rbxassetid://6444884785"
+			Sky.SkyboxFt = "rbxassetid://6444884337"
+			Sky.SkyboxLf = "rbxassetid://6444884337"
+			Sky.SkyboxRt = "rbxassetid://6444884337"
+			Sky.SkyboxUp = "rbxassetid://6412503613"
+			Sky.StarCount = 3000
+			Sky.SunAngularSize = 11
+			Sky.SunTextureId = "rbxassetid://6196665106"
+			Bloom.Intensity = 0.75
+			Bloom.Size = 56
+			Bloom.Threshold = 3.446
+			Blur.Size = 2.9
+			ColorCorrection.Brightness = 0
+			ColorCorrection.Contrast = .15
+			ColorCorrection.Saturation = -0.15
+			ColorCorrection.TintColor = Color3.fromRGB(255, 255 ,255)
+			DepthOfField.FarIntensity = 0.54
+			DepthOfField.FocusDistance = 14.7
+			DepthOfField.InFocusRadius = 12.5
+			DepthOfField.NearIntensity = 0.485
+			SunRays.Intensity = 0.053
+			SunRays.Spread = 0.827
+			game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Better Light v1.0"; Text = "All done. Enjoy!"; Duration = 5})
+		end))
 	end;
 end)
 UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
