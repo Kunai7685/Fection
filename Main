@@ -10,6 +10,7 @@ function fromHex(str)return (str:gsub('..', function (cc)return string.char(tonu
 game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection"; Text = "Running.", Duration = 15, Icon = tostring(fromHex("726278617373657469643a2f2f3131373130393833333033"))})
 local Player = game.Players.LocalPlayer
 local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
 local RunService = game:GetService("RunService")
 local Settings = {
 	SprintingSpeed = _G.SettingsFection.SprintingSpeed;
@@ -49,29 +50,45 @@ RunService.RenderStepped:Connect(function()
 			WalkSpeed = Settings.SprintingSpeed
 		}):Play()
 	end
-end)
-
-workspace.Camera.ChildAdded:Connect(function(child)
-	if child.Name == "Screech" then
-		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Warning", Text = ("Screech is watching you!"), Duration = 5})
+	if workspace:FindFirstChild("CurrentRooms") then
+		if workspace:FindFirstChild("CurrentRooms"):FindFirstChild("0") then
+			workspace:FindFirstChild("CurrentRooms"):FindFirstChild("0").Assets.Desk_Bell.Base.InteractSound.SoundId = "rbxassetid://6832470734"
+		end
 	end
 end)
-
+workspace.Camera.ChildAdded:Connect(function(child)
+	if child.Name == "Screech" then
+		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Warning (Screech)", Text = ("Psst. Screech is watching you!"), Duration = 5})
+	end
+end)
 workspace.ChildAdded:Connect(function(child)
 	if child.Name == "RushMoving" then
 		if child:WaitForChild("RushNew"):FindFirstChild("BoxHandleAdornment") then
 		else
 			local boxEsp = Instance.new("BoxHandleAdornment", child:WaitForChild("RushNew"))
 			boxEsp.Adornee = child:WaitForChild("RushNew")
-			boxEsp.Color3 = Color3.fromRGB(0, 0, 0)
+			boxEsp.Color3 = Color3.fromRGB(255, 255, 255)
 			boxEsp.Transparency = 0.5
 			boxEsp.AlwaysOnTop = true
 			boxEsp.Size = child:WaitForChild("RushNew").Size
 			boxEsp.Visible = true
 			boxEsp.ZIndex = 5
+			coroutine.resume(coroutine.create(function()
+				while boxEsp do
+					TweenService:Create(boxEsp, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
+						Color3 = Color3.fromRGB(121, 121, 121)
+					}):Play()
+					wait(1)
+					TweenService:Create(boxEsp, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
+						Color3 = Color3.fromRGB(255, 255, 255)
+					}):Play()
+					wait(1)
+				end
+			end))
 		end
-		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Warning", Text = ("Holy Sh*t, Rush is coming."), Duration = 5})
+		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Warning (Rush)", Text = ("Holy Sh*t, Rush is coming."), Duration = 5})
 	elseif child.Name == "SeekMoving" then
+		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Warning (Seek)", Text = ("Man... You gotta run for your life."), Duration = 5})
 		if child:WaitForChild("Figure") then
 			if child:WaitForChild("Figure"):FindFirstChild("BoxHandleAdornment") then
 			else
@@ -83,9 +100,22 @@ workspace.ChildAdded:Connect(function(child)
 				boxEsp.Size = child:WaitForChild("Figure").Size
 				boxEsp.Visible = true
 				boxEsp.ZIndex = 5
+				coroutine.resume(coroutine.create(function()
+					while boxEsp do
+						TweenService:Create(boxEsp, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
+							Color3 = Color3.fromRGB(255, 149, 151)
+						}):Play()
+						wait(1)
+						TweenService:Create(boxEsp, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
+							Color3 = Color3.fromRGB(255, 0, 4)
+						}):Play()
+						wait(1)
+					end
+				end))
 			end
 		end
 	elseif child.Name == "Lookman" then
+		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Warning (LookMan)", Text = ("Bro is shy, just like SCP-096"), Duration = 5})
 		if child:WaitForChild("Core") then
 			if child.RushNew:FindFirstChild("BoxHandleAdornment") then
 			else
@@ -97,27 +127,68 @@ workspace.ChildAdded:Connect(function(child)
 				boxEsp.Size = child:WaitForChild("Core").Size
 				boxEsp.Visible = true
 				boxEsp.ZIndex = 5
+				coroutine.resume(coroutine.create(function()
+					while boxEsp do
+						TweenService:Create(boxEsp, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
+							Color3 = Color3.fromRGB(174, 254, 255)
+						}):Play()
+						wait(1)
+						TweenService:Create(boxEsp, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
+							Color3 = Color3.fromRGB(0, 242, 255)
+						}):Play()
+						wait(1)
+					end
+				end))
+			end
+		end
+	elseif child.Name == "AmbushMoving" then
+		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Warning (Ambush)", Text = ("time to spam some Closet"), Duration = 5})
+	end
+end)
+coroutine.resume(coroutine.create(function()
+	local SignPart = Instance.new("Part", workspace)
+	SignPart.Color = Color3.fromRGB(99, 83, 81)
+	SignPart.CastShadow = true
+	SignPart.Reflectance = 0
+	SignPart.Transparency = 0
+	SignPart.CanCollide = false
+	SignPart.CanQuery = false
+	SignPart.CanTouch = false
+	SignPart.Anchored = true
+	local SurfaceGui = Instance.new("SurfaceGui")
+	local TextLabel = Instance.new("TextLabel")
+	SurfaceGui.Parent = SignPart
+	SurfaceGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	SurfaceGui.Adornee = game.Workspace.Sign
+	SurfaceGui.CanvasSize = Vector2.new(1000, 200)
+	TextLabel.Parent = SurfaceGui
+	TextLabel.BackgroundColor3 = Color3.fromRGB(38, 25, 25)
+	TextLabel.BackgroundTransparency = 1.000
+	TextLabel.Size = UDim2.new(1, 0, 1, 0)
+	TextLabel.Font = Enum.Font.DenkOne
+	TextLabel.Text = "Thank you for using Fection"
+	TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+	TextLabel.TextSize = 84.000
+	TextLabel.TextWrapped = true
+	if workspace.CurrentRooms:FindFirstChild("0") then
+		if workspace.CurrentRooms:FindFirstChild("0").Assets:FindFirstChild("Luggage") then
+			local Luggage = workspace.CurrentRooms:FindFirstChild("0").Assets:FindFirstChild("Luggage"):Clone()
+			Luggage.Parent = workspace
+			Luggage.PrimaryPart.CFrame = CFrame.new(-11.4029207, 0.906315804, 3251.67993, 0.866025388, -0.500000119, -1.36424151e-12, 3.93822507e-13, -2.04636265e-12, 0.999999762, -0.500000119, -0.866025388, -1.57529025e-12)
+			for i,v in pairs(Luggage:GetChildren()) do
+				v.CanCollide = false
+				v.CanQuery = false
+				v.CanTouch = false
+				v.Anchored = true
 			end
 		end
 	end
-end)
-
+end))
 --[[ ---. .--- ]]--[[ -- -- - -- ------- ------- - - - -- .Success Printer. --]] print("Fection Success.".." 1554")
 while true do wait(0.5)
 	for i,v in pairs(workspace.CurrentRooms:GetDescendants()) do
 		if v.Name == "ToUnanchor" then
 			if v.Parent.Name == "Main" then
-				if v:FindFirstChild("BoxHandleAdornment") then
-				else
-					local boxEsp = Instance.new("BoxHandleAdornment", v)
-					boxEsp.Adornee = v.Parent
-					boxEsp.Color3 = Color3.fromRGB(255, 255, 255)
-					boxEsp.Transparency = 0.5
-					boxEsp.AlwaysOnTop = true
-					boxEsp.Size = v.Size
-					boxEsp.Visible = true
-					boxEsp.ZIndex = 5
-				end
 				if v.Parent.Parent.Name == "LeverForGate" then
 					if v:FindFirstChild("BoxHandleAdornment") then
 					else
@@ -129,6 +200,14 @@ while true do wait(0.5)
 						boxEsp.Size = v.Size
 						boxEsp.Visible = true
 						boxEsp.ZIndex = 5
+						local boxEsp1 = Instance.new("BoxHandleAdornment", v)
+						boxEsp1.Adornee = v.Parent
+						boxEsp1.Color3 = Color3.fromRGB(255, 255, 255)
+						boxEsp1.Transparency = 0.5
+						boxEsp1.AlwaysOnTop = true
+						boxEsp1.Size = v.Size
+						boxEsp1.Visible = true
+						boxEsp1.ZIndex = 5
 					end
 				end
 			end
