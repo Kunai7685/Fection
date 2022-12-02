@@ -72,8 +72,14 @@ Player.Chatted:Connect(function(msg)
 		PlayBeep()
 	elseif msg == "!betterlighting" then
 		coroutine.resume(coroutine.create(function()
+			-- Better Lighting By BeemHacks
+
 			local Lighting = game:GetService("Lighting")
+
+			-- Clearing
+
 			game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Better Light v1.0"; Text = "Clearing Lighting"; Duration = 2})
+
 			Lighting:ClearAllChildren()
 			Lighting.Ambient = Color3.fromRGB(70, 70, 70)
 			Lighting.Brightness = 3
@@ -87,7 +93,12 @@ Player.Chatted:Connect(function(msg)
 			Lighting.FogColor = Color3.fromRGB(255, 255, 255)
 			Lighting.FogEnd = 10000000
 			Lighting.FogStart = 15
+
 			wait(0.1)
+
+
+			-- Replacing
+
 			local Atmostphere = Instance.new("Atmosphere")
 			local Sky = Instance.new("Sky")
 			local Bloom = Instance.new("BloomEffect")
@@ -95,6 +106,7 @@ Player.Chatted:Connect(function(msg)
 			local ColorCorrection = Instance.new("ColorCorrectionEffect")
 			local DepthOfField = Instance.new("DepthOfFieldEffect")
 			local SunRays = Instance.new("SunRaysEffect")
+
 			Atmostphere.Parent = Lighting
 			Sky.Parent = Lighting
 			Bloom.Parent = Lighting
@@ -102,12 +114,14 @@ Player.Chatted:Connect(function(msg)
 			ColorCorrection.Parent = Lighting
 			DepthOfField.Parent = Lighting
 			SunRays.Parent = Lighting
+
 			Atmostphere.Density = 0.5
 			Atmostphere.Offset = 0.15
 			Atmostphere.Color = Color3.fromRGB(0, 0, 0)
 			Atmostphere.Decay = Color3.fromRGB(50, 50, 50)
 			Atmostphere.Glare = 2.5
 			Atmostphere.Haze = 5
+
 			Sky.CelestialBodiesShown = true
 			Sky.MoonAngularSize = 11
 			Sky.MoonTextureId = "rbxassetid://6444320592"
@@ -120,20 +134,26 @@ Player.Chatted:Connect(function(msg)
 			Sky.StarCount = 3000
 			Sky.SunAngularSize = 11
 			Sky.SunTextureId = "rbxassetid://6196665106"
+
 			Bloom.Intensity = 0.75
 			Bloom.Size = 56
 			Bloom.Threshold = 3.446
+
 			Blur.Size = 2.9
+
 			ColorCorrection.Brightness = 0
 			ColorCorrection.Contrast = .15
 			ColorCorrection.Saturation = -0.15
 			ColorCorrection.TintColor = Color3.fromRGB(255, 255 ,255)
+
 			DepthOfField.FarIntensity = 0.54
 			DepthOfField.FocusDistance = 14.7
 			DepthOfField.InFocusRadius = 12.5
 			DepthOfField.NearIntensity = 0.485
+
 			SunRays.Intensity = 0.053
 			SunRays.Spread = 0.827
+
 			game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Better Light v1.0"; Text = "All done. Enjoy!"; Duration = 5})
 		end))
 	end;
