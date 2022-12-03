@@ -112,7 +112,7 @@ end
 function espTrigger(part)
 	game:GetService("StarterGui"):SetCore("SendNotification", {Title = "B", Text = part.Name, Duration = 5})
 	for i,v in pairs(ESPData) do
-		print(i.." - "..v)
+		print(i.." - "..v.child.Name)
 	end
 	--if canESP == true then
 	--	if v:IsA("BasePart") then
@@ -154,7 +154,12 @@ function espTrigger(part)
 	--	end
 	--end
 end
-workspace.DescendantAdded:Connect(espTrigger)
+if workspace:FindFirstChild("CurrentRooms") then
+	workspace:FindFirstChild("CurrentRooms").DescendantAdded:Connect(espTrigger)
+else
+	workspace.DescendantAdded:Connect(espTrigger)
+end
+
 Player.Chatted:Connect(function(msg)
 	if msg == "!playagain" then
 		PlayBeep("S1")
@@ -305,7 +310,7 @@ UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
 					if v:IsA("BasePart") then
 					elseif v:IsA("Model") then
 						if v.Name:lower() == string.lower("FigureRagdoll") then
-							table.insert(ESPData, v)
+							ESPData[i] = {child = v}
 							coroutine.resume(coroutine.create(function()
 								for ib,vb in pairs(v:GetChildren()) do RunService.RenderStepped:Wait()
 									if vb:IsA("BasePart") then
@@ -315,7 +320,7 @@ UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
 							end))
 						elseif v.Name:lower() == string.lower("KeyObtain") then
 							if v:FindFirstChild("Hitbox") then
-								table.insert(ESPData, v)
+								ESPData[i] = {child = v}
 								coroutine.resume(coroutine.create(function()
 									for ib,vb in pairs(v:FindFirstChild("Hitbox"):GetChildren()) do RunService.RenderStepped:Wait()
 										if vb:IsA("MeshPart") then
@@ -326,14 +331,14 @@ UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
 							end
 						elseif v.Name:lower() == string.lower("LeverForGate") then
 							if v:FindFirstChild("Main") then
-								table.insert(ESPData, v)
+								ESPData[i] = {child = v}
 								ESPpart(v:FindFirstChild("Main"), Color3.fromRGB(255, 255, 255), Color3.fromRGB(155, 155, 155))
 								ESPpart(v:FindFirstChild("Main"):FindFirstChild("ToUnanchor"), Color3.fromRGB(255, 255, 255), Color3.fromRGB(155, 155, 155))
 								ESPpart(v:FindFirstChild("Main"):FindFirstChild("ToUnanchor"):FindFirstChild("Handle"), Color3.fromRGB(255, 189, 96), Color3.fromRGB(255, 222, 181))
 							end
 						elseif v.Name:lower() == string.lower("LiveHintBook") then
 							if v:FindFirstChild("Base") then
-								table.insert(ESPData, v)
+								ESPData[i] = {child = v}
 								ESPpart(v:FindFirstChild("Cover1"), v:FindFirstChild("Cover1").Color, v:FindFirstChild("Cover1").Color)
 								ESPpart(v:FindFirstChild("Cover2"), v:FindFirstChild("Cover2").Color, v:FindFirstChild("Cover2").Color)
 								ESPpart(v:FindFirstChild("Paper"), v:FindFirstChild("Paper").Color, v:FindFirstChild("Paper").Color)
@@ -346,6 +351,8 @@ UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
 				end
 			else
 				canESP = false
+				ESPData = nil
+				ESPData = {}
 				for i,v in pairs(workspace:GetDescendants()) do
 					if v:IsA("Highlight") then
 						if v.Name:lower() == string.lower("FectionESP") then
