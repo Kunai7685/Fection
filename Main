@@ -142,10 +142,7 @@ function espTrigger()
 						ESPpart(v:FindFirstChild("Cover2"), v:FindFirstChild("Cover2").Color, v:FindFirstChild("Cover2").Color)
 						ESPpart(v:FindFirstChild("Paper"), v:FindFirstChild("Paper").Color, v:FindFirstChild("Paper").Color)
 					end
-				end;if v:IsA("ProximityPrompt") then
-					v.HoldDuration = 0
-					v.MaxActivationDistance = Settings.ProximityPromptMaxActivationDistance
-				end
+				end;
 			end
 		end
 	end
@@ -153,6 +150,12 @@ end
 coroutine.resume(coroutine.create(function()
 	while true do wait(0.5)
 		espTrigger()
+		for i,v in pairs(workspace:GetDescendants()) do
+			if v:IsA("ProximityPrompt") then
+				v.HoldDuration = 0
+				v.MaxActivationDistance = Settings.ProximityPromptMaxActivationDistance
+			end
+		end
 	end
 end))
 Player.Chatted:Connect(function(msg)
