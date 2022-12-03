@@ -153,7 +153,9 @@ function espTrigger(part)
 		end
 	end
 end
-workspace.DescendantAdded:Connect(espTrigger)
+if workspace:FindFirstChild("CurrentRooms") then
+	workspace:FindFirstChild("CurrentRooms").ChildAdded:Connect(espTrigger)
+end
 Player.Chatted:Connect(function(msg)
 	if msg == "!playagain" then
 		PlayBeep("S1")
