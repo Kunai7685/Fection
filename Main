@@ -1,16 +1,29 @@
 if _G.SettingsFection then else return end;if _G.FectionExecuted then warn("You've already executed Fection.")return end _G.FectionExecuted = true
 function fromHex(str)return (str:gsub('..', function (cc)return string.char(tonumber(cc, 16))end))end
-function PlayBeep()
-	local Sound = Instance.new("Sound", workspace);
-	Sound.SoundId = "http://www.roblox.com/asset/?id=8458408918";
-	Sound.Volume = 1;
-	Sound.PlaybackSpeed = 1;
-	Sound.Looped = false;
-	Sound:Play()
-	coroutine.resume(coroutine.create(function()
-		wait(2)
-		Sound:Destroy()
-	end))
+function PlayBeep(lvl)
+	if lvl == "S1" then
+		local Sound = Instance.new("Sound", workspace);
+		Sound.SoundId = "http://www.roblox.com/asset/?id=8458408918";
+		Sound.Volume = 1;
+		Sound.PlaybackSpeed = 1;
+		Sound.Looped = false;
+		Sound:Play()
+		coroutine.resume(coroutine.create(function()
+			wait(2)
+			Sound:Destroy()
+		end))
+	elseif lvl == "S2" then
+		local Sound = Instance.new("Sound", workspace);
+		Sound.SoundId = "http://www.roblox.com/asset/?id=8426701399";
+		Sound.Volume = 1;
+		Sound.PlaybackSpeed = 1;
+		Sound.Looped = false;
+		Sound:Play()
+		coroutine.resume(coroutine.create(function()
+			wait(2)
+			Sound:Destroy()
+		end))
+	end
 end
 function PlaySound(id, volume, playbackspeed, looped)
 	local Sound = Instance.new("Sound", workspace);
@@ -24,8 +37,35 @@ function PlaySound(id, volume, playbackspeed, looped)
 		Sound:Destroy()
 	end))
 end
+function AmbushSound()
+	local Sound = Instance.new("Sound", workspace)
+	Sound.Name = "AmbushSFXAttention"
+	Sound.SoundId = "rbxassetid://11726009506"
+	Sound.PlaybackSpeed = 1
+	Sound.Volume = 1
+	Sound.Looped = false
+	local ChorusSoundEffect = Instance.new("ChorusSoundEffect", Sound)
+	ChorusSoundEffect.Depth = 0
+	ChorusSoundEffect.Enabled = true
+	ChorusSoundEffect.Mix = 0.25
+	ChorusSoundEffect.Priority = 0
+	ChorusSoundEffect.Rate = 2.5
+	local EchoSoundEffect = Instance.new("EchoSoundEffect", Sound)
+	EchoSoundEffect.Delay = 0.15
+	EchoSoundEffect.DryLevel = 1.9
+	EchoSoundEffect.Enabled = true
+	EchoSoundEffect.Feedback = 0.1
+	EchoSoundEffect.Priority = 0
+	EchoSoundEffect.WetLevel = -4.4
+	Sound:Play()
+	coroutine.resume(coroutine.create(function()
+		wait(Sound.TimeLength + 1.5)
+		Sound:Destroy()
+	end))
+end
 game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection"; Text = "Running.", Duration = 15, Icon = tostring(fromHex("726278617373657469643a2f2f3131373130393833333033"))})
 game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection"; Text = "Set your graphics to 1 - Recommended", Duration = 15, Icon = tostring(fromHex("726278617373657469643a2f2f3131373130393833333033"))})
+game:GetService("SoundService").AmbientReverb = Enum.ReverbType.Auditorium
 local Player = game.Players.LocalPlayer
 local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
@@ -39,38 +79,39 @@ SpEnabled = false
 CodeNumsData = {}
 Player.Chatted:Connect(function(msg)
 	if msg == "!playagain" then
+		PlayBeep("S1")
 		game.ReplicatedStorage.Bricks.PlayAgain:FireServer()
-		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection", Text = ("Playing Again."), Duration = 5})
-		PlayBeep()	
+		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection", Text = ("Playing Again."), Duration = 5})	
 	elseif msg == "!lobby" then
+		PlayBeep("S1")	
 		game.ReplicatedStorage.Bricks.Lobby:FireServer()
 		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection", Text = ("Lobby."), Duration = 5})
-		PlayBeep()	
 	elseif msg == "!revive" then
+		PlayBeep("S1")	
 		game.ReplicatedStorage.Bricks.Revive:FireServer()
 		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection", Text = ("Revive."), Duration = 5})
-		PlayBeep()	
 	elseif msg == "!rejoin" then
+		PlayBeep("S1")		
 		local TeleportService = game:GetService("TeleportService")
 		TeleportService:Teleport(game.PlaceId, Player)
-		PlayBeep()
 	elseif msg == "!iy" then
+		PlayBeep("S1")
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
 		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection", Text = ("Infinite Yield Executed."), Duration = 5})
-		PlayBeep()
 	elseif msg == "!beat-up" then
-		PlayBeep()
+		PlayBeep("S1")
 		coroutine.resume(coroutine.create(function()
 			PlaySound(9116795681, 1, 1, false)
 		end))
 	elseif msg:match("!playsound") then
+		PlayBeep("S1")
 		coroutine.resume(coroutine.create(function()
 			local id = string.sub(msg, 11, msg:len())
 			print(id)
 			PlaySound(id, 1, 1, false)
 		end))
-		PlayBeep()
 	elseif msg == "!betterlighting" then
+		PlayBeep("S1")
 		coroutine.resume(coroutine.create(function()
 			-- Better Lighting By BeemHacks
 
@@ -203,13 +244,13 @@ RunService.RenderStepped:Connect(function()
 end)
 workspace.Camera.ChildAdded:Connect(function(child)
 	if child.Name == "Screech" then
+		PlayBeep("S1")
 		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Warning (Screech)", Text = ("Psst. Screech is watching you!"), Duration = 5})
-		PlayBeep()
 	end
 end)
 workspace.ChildAdded:Connect(function(child)
 	if child.Name == "RushMoving" then
-		PlayBeep()
+		PlayBeep("S1")
 		if child:WaitForChild("RushNew"):FindFirstChild("BoxHandleAdornment") then
 		else
 			local boxEsp = Instance.new("BoxHandleAdornment", child:WaitForChild("RushNew"))
@@ -248,7 +289,7 @@ workspace.ChildAdded:Connect(function(child)
 		end
 		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Warning (Rush)", Text = ("Holy Sh*t, Rush is coming."), Duration = 5})
 	elseif child.Name == "SeekMoving" then
-		PlayBeep()
+		PlayBeep("S1")
 		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Warning (Seek)", Text = ("Man... You gotta run for your life."), Duration = 5})
 		if child:WaitForChild("Figure") then
 			if child:WaitForChild("Figure"):FindFirstChild("BoxHandleAdornment") then
@@ -276,7 +317,7 @@ workspace.ChildAdded:Connect(function(child)
 			end
 		end
 	elseif child.Name == "Lookman" then
-		PlayBeep()
+		PlayBeep("S1")
 		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Warning (LookMan)", Text = ("Bro is shy, just like SCP-096"), Duration = 5})
 		if child:WaitForChild("Core") then
 			if child.RushNew:FindFirstChild("BoxHandleAdornment") then
@@ -304,7 +345,7 @@ workspace.ChildAdded:Connect(function(child)
 			end
 		end
 	elseif child.Name == "AmbushMoving" then
-		PlayBeep()
+		PlayBeep("S1")
 		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Warning (Ambush)", Text = ("time to spam some Closet"), Duration = 5})
 	end
 end)
@@ -319,8 +360,9 @@ Player.Character:WaitForChild("Humanoid").Died:Connect(function()
 	end
 end)
 coroutine.resume(coroutine.create(function()
+	PlayBeep()
 	wait(2)
-	PlaySound(9085027122, 1, 1, false)
+	PlaySound(6112625298, 1, 1, false)
 end))
 --[[ ---. .--- ]]--[[ -- -- - -- ------- ------- - - - -- .Success Printer. --]] print("Fection Success.".." 2x") --[[ Hi Fucker, trying to see my Work? ]]
 while true do wait(0.5)
