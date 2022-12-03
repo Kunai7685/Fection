@@ -2,63 +2,67 @@ if _G.SettingsFection then else return end;if _G.FectionExecuted then warn("You'
 function fromHex(str)return (str:gsub('..', function (cc)return string.char(tonumber(cc, 16))end))end
 function PlayBeep(lvl)
 	if lvl == "S1" then
-		local Sound = Instance.new("Sound", workspace);
-		Sound.SoundId = "http://www.roblox.com/asset/?id=8458408918";
-		Sound.Volume = 1;
-		Sound.PlaybackSpeed = 1;
-		Sound.Looped = false;
-		Sound:Play()
 		coroutine.resume(coroutine.create(function()
+			local Sound = Instance.new("Sound", workspace);
+			Sound.SoundId = "http://www.roblox.com/asset/?id=8458408918";
+			Sound.Volume = 1;
+			Sound.PlaybackSpeed = 1;
+			Sound.Looped = false;
+			repeat wait() until Sound.IsLoaded == true
+			Sound:Play()
 			wait(2)
 			Sound:Destroy()
 		end))
 	elseif lvl == "S2" then
-		local Sound = Instance.new("Sound", workspace);
-		Sound.SoundId = "http://www.roblox.com/asset/?id=8426701399";
-		Sound.Volume = 1;
-		Sound.PlaybackSpeed = 1;
-		Sound.Looped = false;
-		Sound:Play()
 		coroutine.resume(coroutine.create(function()
+			local Sound = Instance.new("Sound", workspace);
+			Sound.SoundId = "http://www.roblox.com/asset/?id=8426701399";
+			Sound.Volume = 1;
+			Sound.PlaybackSpeed = 1;
+			Sound.Looped = false;
+			repeat wait() until Sound.IsLoaded == true
+			Sound:Play()
 			wait(2)
 			Sound:Destroy()
 		end))
 	end
-end
+end	
 function PlaySound(id, volume, playbackspeed, looped)
-	local Sound = Instance.new("Sound", workspace);
-	Sound.SoundId = "http://www.roblox.com/asset/?id="..id;
-	Sound.Volume = volume;
-	Sound.PlaybackSpeed = playbackspeed;
-	Sound.Looped = looped;
-	Sound:Play()
 	coroutine.resume(coroutine.create(function()
+		local Sound = Instance.new("Sound", workspace);
+		Sound.SoundId = "http://www.roblox.com/asset/?id="..id;
+		Sound.Volume = volume;
+		Sound.PlaybackSpeed = playbackspeed;
+		Sound.Looped = looped;
+		repeat wait() until Sound.IsLoaded == true
+		Sound:Play()
 		wait(Sound.TimeLength)
 		Sound:Destroy()
 	end))
 end
 function AmbushSound()
-	local Sound = Instance.new("Sound", workspace)
-	Sound.Name = "AmbushSFXAttention"
-	Sound.SoundId = "rbxassetid://11726009506"
-	Sound.PlaybackSpeed = 1
-	Sound.Volume = 1
-	Sound.Looped = false
-	local ChorusSoundEffect = Instance.new("ChorusSoundEffect", Sound)
-	ChorusSoundEffect.Depth = 0
-	ChorusSoundEffect.Enabled = true
-	ChorusSoundEffect.Mix = 0.25
-	ChorusSoundEffect.Priority = 0
-	ChorusSoundEffect.Rate = 2.5
-	local EchoSoundEffect = Instance.new("EchoSoundEffect", Sound)
-	EchoSoundEffect.Delay = 0.15
-	EchoSoundEffect.DryLevel = 1.9
-	EchoSoundEffect.Enabled = true
-	EchoSoundEffect.Feedback = 0.1
-	EchoSoundEffect.Priority = 0
-	EchoSoundEffect.WetLevel = -4.4
-	Sound:Play()
 	coroutine.resume(coroutine.create(function()
+		local Sound = Instance.new("Sound", workspace)
+		Sound.Name = "AmbushSFXAttention"
+		Sound.SoundId = "rbxassetid://11726009506"
+		Sound.PlaybackSpeed = 1
+		Sound.Volume = 1
+		Sound.Looped = false
+		repeat wait() until Sound.IsLoaded == true
+		local ChorusSoundEffect = Instance.new("ChorusSoundEffect", Sound)
+		ChorusSoundEffect.Depth = 0
+		ChorusSoundEffect.Enabled = true
+		ChorusSoundEffect.Mix = 0.25
+		ChorusSoundEffect.Priority = 0
+		ChorusSoundEffect.Rate = 2.5
+		local EchoSoundEffect = Instance.new("EchoSoundEffect", Sound)
+		EchoSoundEffect.Delay = 0.15
+		EchoSoundEffect.DryLevel = 1.9
+		EchoSoundEffect.Enabled = true
+		EchoSoundEffect.Feedback = 0.1
+		EchoSoundEffect.Priority = 0
+		EchoSoundEffect.WetLevel = -4.4
+		Sound:Play()
 		wait(Sound.TimeLength + 1.5)
 		Sound:Destroy()
 	end))
@@ -77,6 +81,87 @@ local Settings = {
 canESP = false
 SpEnabled = false
 CodeNumsData = {}
+local function ESPpart(part, primaryColor, secondaryColor)
+	if part:IsA("BasePart") then
+		if not part:FindFirstChild("FectionESP") then
+			local boxEsp = Instance.new("Highlight", part)
+			boxEsp.Name = "FectionESP"
+			boxEsp.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+			boxEsp.Enabled = true
+			boxEsp.FillColor = primaryColor
+			boxEsp.FillTransparency = 0.45
+			boxEsp.OutlineColor = primaryColor
+			coroutine.resume(coroutine.create(function()
+				while boxEsp do
+					TweenService:Create(boxEsp, TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
+						OutlineColor = secondaryColor;
+						FillTransparency = 0.25
+					}):Play()
+					wait(0.25)
+					TweenService:Create(boxEsp, TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
+						OutlineColor = primaryColor;
+						FillTransparency = 0.45
+					}):Play()
+					wait(0.25)
+				end
+			end))
+		end
+	end
+end
+local function espTrigger()
+	if canESP == true then
+		for i,v in pairs(workspace:GetDescendants()) do
+			if v:IsA("BasePart") then
+			elseif v:IsA("Model") then
+				if v.Name == "FigureRagdoll" then
+					coroutine.resume(coroutine.create(function()
+						for ib,vb in pairs(v:GetChildren()) do
+							if vb:IsA("BasePart") then
+								ESPpart(vb, Color3.fromRGB(255, 124, 16), Color3.fromRGB(255, 79, 44))
+							end
+						end
+					end))
+				elseif v.Name == "KeyObtain" then
+					if v:FindFirstChild("Hitbox") then
+						coroutine.resume(coroutine.create(function()
+							for ib,vb in pairs(v:FindFirstChild("Hitbox"):GetChildren()) do
+								if vb:IsA("MeshPart") then
+									ESPpart(vb, Color3.fromRGB(255, 255, 126), Color3.fromRGB(255, 255, 255))
+								end
+							end 
+						end))
+					end
+				elseif v.Name == "LeverForGate" then
+					if v:FindFirstChild("Main") then
+						ESPpart(v:FindFirstChild("Main"), Color3.fromRGB(255, 255, 255), Color3.fromRGB(155, 155, 155))
+						ESPpart(v:FindFirstChild("Main"):FindFirstChild("ToUnanchor"), Color3.fromRGB(255, 255, 255), Color3.fromRGB(155, 155, 155))
+						ESPpart(v:FindFirstChild("Main"):FindFirstChild("ToUnanchor"):FindFirstChild("Handle"), Color3.fromRGB(255, 189, 96), Color3.fromRGB(255, 222, 181))
+					end
+				elseif v.Name == "LiveHintBook" then
+					if v:FindFirstChild("Base") then
+						ESPpart(v:FindFirstChild("Cover1"), v:FindFirstChild("Cover1").Color, v:FindFirstChild("Cover1").Color)
+						ESPpart(v:FindFirstChild("Cover2"), v:FindFirstChild("Cover2").Color, v:FindFirstChild("Cover2").Color)
+						ESPpart(v:FindFirstChild("Paper"), v:FindFirstChild("Paper").Color, v:FindFirstChild("Paper").Color)
+					end
+				elseif v:IsA("ProximityPrompt") then
+					v.HoldDuration = 0
+					v.MaxActivationDistance = Settings.ProximityPromptMaxActivationDistance
+				end
+			end
+		end
+	else
+		for i,v in pairs(workspace:GetDescendants()) do
+			if v:IsA("Highlight") then
+				if v.Name == "FectionESP" then
+					v:Destroy()
+				end
+			elseif v:IsA("ProximityPrompt") then
+				v.HoldDuration = 0
+				v.MaxActivationDistance = Settings.ProximityPromptMaxActivationDistance
+			end
+		end
+	end
+end
 Player.Chatted:Connect(function(msg)
 	if msg == "!playagain" then
 		PlayBeep("S1")
@@ -223,6 +308,7 @@ UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
 		elseif input.KeyCode == Enum.KeyCode.RightBracket then
 			if canESP == false then
 				canESP = true
+				espTrigger()
 			else
 				canESP = false
 			end
@@ -346,144 +432,22 @@ workspace.ChildAdded:Connect(function(child)
 		end
 	elseif child.Name == "AmbushMoving" then
 		PlayBeep("S1")
+		AmbushSound()
 		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Warning (Ambush)", Text = ("time to spam some Closet"), Duration = 5})
 	end
 end)
-Player.Character:WaitForChild("Humanoid").Died:Connect(function()
-	local randomnum = math.random(1,3)
-	if randomnum == 1 then
-		PlaySound(9074548977, 1, 1, false)
-	elseif randomnum == 2 then
-		PlaySound(2084860044, 1, 1, false)
-	elseif randomnum == 3 then
-		PlaySound(9059013830, 1, 1, false)
-	end
-end)
+
 coroutine.resume(coroutine.create(function()
 	PlayBeep()
 	wait(2)
 	PlaySound(6112625298, 1, 1, false)
 end))
---[[ ---. .--- ]]--[[ -- -- - -- ------- ------- - - - -- .Success Printer. --]] print("Fection Success.".." 2x") --[[ Hi Fucker, trying to see my Work? ]]
-while true do wait(0.5)
-	coroutine.resume(coroutine.create(function()
-		for i,v in pairs(workspace.CurrentRooms:GetDescendants()) do
-			if canESP == true then
-				if v.Name == "ToUnanchor" then
-					if v.Parent.Name == "Main" then
-						if v.Parent.Parent.Name == "LeverForGate" then
-							if not v:FindFirstChild("BoxHandleAdornment") then
-								local boxEsp = Instance.new("BoxHandleAdornment", v)
-								boxEsp.Adornee = v
-								boxEsp.Color3 = Color3.fromRGB(255, 255, 128)
-								boxEsp.Transparency = 0.5
-								boxEsp.AlwaysOnTop = true
-								boxEsp.Size = v.Size
-								boxEsp.Visible = true
-								boxEsp.ZIndex = 5
-								coroutine.resume(coroutine.create(function()
-									while boxEsp do
-										TweenService:Create(boxEsp, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
-											Color3 = Color3.fromRGB(255, 255, 210)
-										}):Play()
-										wait(1)
-										TweenService:Create(boxEsp, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
-											Color3 = Color3.fromRGB(255, 255, 128)
-										}):Play()
-										wait(1)
-									end
-								end))
-							end
-						end
-					end
-				end
-				if v.Name == "FigureRagdoll" then
-					coroutine.resume(coroutine.create(function()
-						for i1,v1 in pairs(v:GetChildren()) do RunService.RenderStepped:Wait()
-							if not v1:FindFirstChild("BoxHandleAdornment") then
-								local bodyESPbro = Instance.new("BoxHandleAdornment", v1)
-								bodyESPbro.Adornee = v1
-								bodyESPbro.Color3 = Color3.fromRGB(189, 131, 92)
-								bodyESPbro.Transparency = 0.5
-								bodyESPbro.AlwaysOnTop = true
-								bodyESPbro.Size = v1.Size
-								bodyESPbro.Visible = true
-								bodyESPbro.ZIndex = 5
-								coroutine.resume(coroutine.create(function()
-									while bodyESPbro do
-										TweenService:Create(bodyESPbro, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
-											Color3 = Color3.fromRGB(189, 162, 143)
-										}):Play()
-										wait(1)
-										TweenService:Create(bodyESPbro, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
-											Color3 = Color3.fromRGB(189, 131, 92)
-										}):Play()
-										wait(1)
-									end
-								end))
-							end
-						end
-					end))
-				end
-				if v.Name == "PromptHitbox" then
-					if v.Parent.Name == "Hitbox" then
-						if v.Parent.Parent.Name == "KeyObtain" then
-							if not v:FindFirstChild("BoxHandleAdornment") then
-								local boxEsp = Instance.new("BoxHandleAdornment", v)
-								boxEsp.Adornee = v
-								boxEsp.Color3 = Color3.fromRGB(255, 255, 255)
-								boxEsp.Transparency = 0.5
-								boxEsp.AlwaysOnTop = true
-								boxEsp.Size = v.Size
-								boxEsp.Visible = true
-								boxEsp.ZIndex = 5
-								coroutine.resume(coroutine.create(function()
-									while boxEsp do
-										TweenService:Create(boxEsp, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
-											Color3 = Color3.fromRGB(255, 255, 143)
-										}):Play()
-										wait(1)
-										TweenService:Create(boxEsp, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
-											Color3 = Color3.fromRGB(255, 255, 255)
-										}):Play()
-										wait(1)
-									end
-								end))
-							end
-						end
-					end
-				end
-				if v.Name == "Base" then
-					if v.Parent.Name == "LiveHintBook" then
-						if not v:FindFirstChild("BoxHandleAdornment") then
-							local boxEsp = Instance.new("BoxHandleAdornment", v)
-							boxEsp.Adornee = v
-							boxEsp.Color3 = v.Color
-							boxEsp.Transparency = 0.5
-							boxEsp.AlwaysOnTop = true
-							boxEsp.Size = v.Size
-							boxEsp.Visible = true
-							boxEsp.ZIndex = 5
-							coroutine.resume(coroutine.create(function()
-								while boxEsp do
-									TweenService:Create(boxEsp, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
-										Color3 = Color3.fromRGB(150, 150, 150)
-									}):Play()
-									wait(1)
-									TweenService:Create(boxEsp, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
-										Color3 = v.Color
-									}):Play()
-									wait(1)
-								end
-							end))
-						end
-					end
-				end
-				if v:IsA("ProximityPrompt") then
-					v.HoldDuration = 0
-					v.MaxActivationDistance = Settings.ProximityPromptMaxActivationDistance
-				end
-			end
+
+for i_,v_ in pairs(workspace:GetDescendants()) do
+	v_.ChildAdded:Connect(function()
+		if canESP == true then
+			espTrigger()
 		end
-	end))
+	end)
 end
+--[[ ---. .--- ]]--[[ -- -- - -- ------- ------- - - - -- .Success Printer. --]] print("Fection Success.".." 2x") --[[ Hi Fucker, trying to see my Work? ]]
