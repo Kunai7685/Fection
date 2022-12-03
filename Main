@@ -115,7 +115,7 @@ local function espTrigger()
 			elseif v:IsA("Model") then
 				if v.Name == "FigureRagdoll" then
 					coroutine.resume(coroutine.create(function()
-						for ib,vb in pairs(v:GetChildren()) do
+						for ib,vb in pairs(v:GetChildren()) do RunService.RenderStepped:Wait()
 							if vb:IsA("BasePart") then
 								ESPpart(vb, Color3.fromRGB(255, 124, 16), Color3.fromRGB(255, 79, 44))
 							end
@@ -124,7 +124,7 @@ local function espTrigger()
 				elseif v.Name == "KeyObtain" then
 					if v:FindFirstChild("Hitbox") then
 						coroutine.resume(coroutine.create(function()
-							for ib,vb in pairs(v:FindFirstChild("Hitbox"):GetChildren()) do
+							for ib,vb in pairs(v:FindFirstChild("Hitbox"):GetChildren()) do RunService.RenderStepped:Wait()
 								if vb:IsA("MeshPart") then
 									ESPpart(vb, Color3.fromRGB(255, 255, 126), Color3.fromRGB(255, 255, 255))
 								end
