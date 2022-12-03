@@ -81,6 +81,7 @@ local Settings = {
 canESP = false
 SpEnabled = false
 CodeNumsData = {}
+ESPData = {}
 local function ESPpart(part, primaryColor, secondaryColor)
 	if part:IsA("BasePart") then
 		if not part:FindFirstChild("FectionESP") then
@@ -108,52 +109,39 @@ local function ESPpart(part, primaryColor, secondaryColor)
 		end
 	end
 end
-local function espTrigger()
+function espTrigger(v)
 	if canESP == true then
-		for i,v in pairs(workspace:GetDescendants()) do
-			if v:IsA("BasePart") then
-			elseif v:IsA("Model") then
-				if v.Name == "FigureRagdoll" then
-					coroutine.resume(coroutine.create(function()
-						for ib,vb in pairs(v:GetChildren()) do RunService.RenderStepped:Wait()
-							if vb:IsA("BasePart") then
-								ESPpart(vb, Color3.fromRGB(255, 124, 16), Color3.fromRGB(255, 79, 44))
-							end
+		if v:IsA("BasePart") then
+		elseif v:IsA("Model") then
+			if v.Name:lower() == string.lower("FigureRagdoll") then
+				coroutine.resume(coroutine.create(function()
+					for ib,vb in pairs(v:GetChildren()) do RunService.RenderStepped:Wait()
+						if vb:IsA("BasePart") then
+							ESPpart(vb, Color3.fromRGB(255, 124, 16), Color3.fromRGB(255, 79, 44))
 						end
+					end
+				end))
+			elseif v.Name:lower() == string.lower("KeyObtain") then
+				if v:FindFirstChild("Hitbox") then
+					coroutine.resume(coroutine.create(function()
+						for ib,vb in pairs(v:FindFirstChild("Hitbox"):GetChildren()) do RunService.RenderStepped:Wait()
+							if vb:IsA("MeshPart") then
+								ESPpart(vb, Color3.fromRGB(255, 255, 126), Color3.fromRGB(255, 255, 255))
+							end
+						end 
 					end))
-				elseif v.Name == "KeyObtain" then
-					if v:FindFirstChild("Hitbox") then
-						coroutine.resume(coroutine.create(function()
-							for ib,vb in pairs(v:FindFirstChild("Hitbox"):GetChildren()) do RunService.RenderStepped:Wait()
-								if vb:IsA("MeshPart") then
-									ESPpart(vb, Color3.fromRGB(255, 255, 126), Color3.fromRGB(255, 255, 255))
-								end
-							end 
-						end))
-					end
-				elseif v.Name == "LeverForGate" then
-					if v:FindFirstChild("Main") then
-						ESPpart(v:FindFirstChild("Main"), Color3.fromRGB(255, 255, 255), Color3.fromRGB(155, 155, 155))
-						ESPpart(v:FindFirstChild("Main"):FindFirstChild("ToUnanchor"), Color3.fromRGB(255, 255, 255), Color3.fromRGB(155, 155, 155))
-						ESPpart(v:FindFirstChild("Main"):FindFirstChild("ToUnanchor"):FindFirstChild("Handle"), Color3.fromRGB(255, 189, 96), Color3.fromRGB(255, 222, 181))
-					end
-				elseif v.Name == "LiveHintBook" then
-					if v:FindFirstChild("Base") then
-						ESPpart(v:FindFirstChild("Cover1"), v:FindFirstChild("Cover1").Color, v:FindFirstChild("Cover1").Color)
-						ESPpart(v:FindFirstChild("Cover2"), v:FindFirstChild("Cover2").Color, v:FindFirstChild("Cover2").Color)
-						ESPpart(v:FindFirstChild("Paper"), v:FindFirstChild("Paper").Color, v:FindFirstChild("Paper").Color)
-					end
-				elseif v:IsA("ProximityPrompt") then
-					v.HoldDuration = 0
-					v.MaxActivationDistance = Settings.ProximityPromptMaxActivationDistance
 				end
-			end
-		end
-	else
-		for i,v in pairs(workspace:GetDescendants()) do
-			if v:IsA("Highlight") then
-				if v.Name == "FectionESP" then
-					v:Destroy()
+			elseif v.Name:lower() == string.lower("LeverForGate") then
+				if v:FindFirstChild("Main") then
+					ESPpart(v:FindFirstChild("Main"), Color3.fromRGB(255, 255, 255), Color3.fromRGB(155, 155, 155))
+					ESPpart(v:FindFirstChild("Main"):FindFirstChild("ToUnanchor"), Color3.fromRGB(255, 255, 255), Color3.fromRGB(155, 155, 155))
+					ESPpart(v:FindFirstChild("Main"):FindFirstChild("ToUnanchor"):FindFirstChild("Handle"), Color3.fromRGB(255, 189, 96), Color3.fromRGB(255, 222, 181))
+				end
+			elseif v.Name:lower() == string.lower("LiveHintBook") then
+				if v:FindFirstChild("Base") then
+					ESPpart(v:FindFirstChild("Cover1"), v:FindFirstChild("Cover1").Color, v:FindFirstChild("Cover1").Color)
+					ESPpart(v:FindFirstChild("Cover2"), v:FindFirstChild("Cover2").Color, v:FindFirstChild("Cover2").Color)
+					ESPpart(v:FindFirstChild("Paper"), v:FindFirstChild("Paper").Color, v:FindFirstChild("Paper").Color)
 				end
 			elseif v:IsA("ProximityPrompt") then
 				v.HoldDuration = 0
@@ -162,6 +150,7 @@ local function espTrigger()
 		end
 	end
 end
+workspace.DescendantAdded:Connect(espTrigger)
 Player.Chatted:Connect(function(msg)
 	if msg == "!playagain" then
 		PlayBeep("S1")
@@ -308,9 +297,61 @@ UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
 		elseif input.KeyCode == Enum.KeyCode.RightBracket then
 			if canESP == false then
 				canESP = true
-				espTrigger()
+				for i,v in pairs(workspace:GetDescendants()) do
+					if v:IsA("BasePart") then
+					elseif v:IsA("Model") then
+						if v.Name:lower() == string.lower("FigureRagdoll") then
+							table.insert(ESPData, v.Name:lower())
+							coroutine.resume(coroutine.create(function()
+								for ib,vb in pairs(v:GetChildren()) do RunService.RenderStepped:Wait()
+									if vb:IsA("BasePart") then
+										ESPpart(vb, Color3.fromRGB(255, 124, 16), Color3.fromRGB(255, 79, 44))
+									end
+								end
+							end))
+						elseif v.Name:lower() == string.lower("KeyObtain") then
+							if v:FindFirstChild("Hitbox") then
+								table.insert(ESPData, v.Name:lower())
+								coroutine.resume(coroutine.create(function()
+									for ib,vb in pairs(v:FindFirstChild("Hitbox"):GetChildren()) do RunService.RenderStepped:Wait()
+										if vb:IsA("MeshPart") then
+											ESPpart(vb, Color3.fromRGB(255, 255, 126), Color3.fromRGB(255, 255, 255))
+										end
+									end 
+								end))
+							end
+						elseif v.Name:lower() == string.lower("LeverForGate") then
+							if v:FindFirstChild("Main") then
+								table.insert(ESPData, v.Name:lower())
+								ESPpart(v:FindFirstChild("Main"), Color3.fromRGB(255, 255, 255), Color3.fromRGB(155, 155, 155))
+								ESPpart(v:FindFirstChild("Main"):FindFirstChild("ToUnanchor"), Color3.fromRGB(255, 255, 255), Color3.fromRGB(155, 155, 155))
+								ESPpart(v:FindFirstChild("Main"):FindFirstChild("ToUnanchor"):FindFirstChild("Handle"), Color3.fromRGB(255, 189, 96), Color3.fromRGB(255, 222, 181))
+							end
+						elseif v.Name:lower() == string.lower("LiveHintBook") then
+							if v:FindFirstChild("Base") then
+								table.insert(ESPData, v.Name:lower())
+								ESPpart(v:FindFirstChild("Cover1"), v:FindFirstChild("Cover1").Color, v:FindFirstChild("Cover1").Color)
+								ESPpart(v:FindFirstChild("Cover2"), v:FindFirstChild("Cover2").Color, v:FindFirstChild("Cover2").Color)
+								ESPpart(v:FindFirstChild("Paper"), v:FindFirstChild("Paper").Color, v:FindFirstChild("Paper").Color)
+							end
+						elseif v:IsA("ProximityPrompt") then
+							v.HoldDuration = 0
+							v.MaxActivationDistance = Settings.ProximityPromptMaxActivationDistance
+						end
+					end
+				end
 			else
 				canESP = false
+				for i,v in pairs(workspace:GetDescendants()) do
+					if v:IsA("Highlight") then
+						if v.Name:lower() == string.lower("FectionESP") then
+							v:Destroy()
+						end
+					elseif v:IsA("ProximityPrompt") then
+						v.HoldDuration = 0
+						v.MaxActivationDistance = Settings.ProximityPromptMaxActivationDistance
+					end
+				end
 			end
 		end
 	end
@@ -442,12 +483,4 @@ coroutine.resume(coroutine.create(function()
 	wait(2)
 	PlaySound(6112625298, 1, 1, false)
 end))
-
-for i_,v_ in pairs(workspace:GetDescendants()) do
-	v_.ChildAdded:Connect(function()
-		if canESP == true then
-			espTrigger()
-		end
-	end)
-end
 --[[ ---. .--- ]]--[[ -- -- - -- ------- ------- - - - -- .Success Printer. --]] print("Fection Success.".." 2x") --[[ Hi Fucker, trying to see my Work? ]]
