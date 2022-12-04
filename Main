@@ -305,7 +305,7 @@ function Notify(title, description, duration)
 		Description_1.TextWrapped = true
 
 		UITextSizeConstraint_1.Parent = Description_1
-		UITextSizeConstraint_1.MaxTextSize = 30
+		UITextSizeConstraint_1.MaxTextSize = 14
 
 		Frame_1.Parent = MainFrame_1
 		Frame_1.BackgroundColor3 = Color3.fromRGB(35,35,35)
@@ -319,7 +319,7 @@ function Notify(title, description, duration)
 		Frame_2.Parent = Frame_1
 		Frame_2.BackgroundColor3 = Color3.fromRGB(255,255,255)
 		Frame_2.BorderColor3 = Color3.fromRGB(27,42,53)
-		Frame_2.Size = UDim2.new(1, 0,1, 0)
+		Frame_2.Size = UDim2.new(0, 0,1, 0)
 
 		UICorner_3.Parent = Frame_2
 		UICorner_3.CornerRadius = UDim.new(500,500)
