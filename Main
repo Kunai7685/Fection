@@ -1,9 +1,151 @@
+-- GUI to Lua 
+-- Version: 0.0.3
+
+-- Instances:
+
+local Fection = Instance.new("ScreenGui")
+local ImageLabel_1 = Instance.new("ImageLabel")
+local MainFrame_1 = Instance.new("Frame")
+local UICorner_1 = Instance.new("UICorner")
+local Title_1 = Instance.new("TextLabel")
+local ScrollingFrame_1 = Instance.new("ScrollingFrame")
+local CommandsButton_1 = Instance.new("TextButton")
+local UICorner_2 = Instance.new("UICorner")
+local UIAspectRatioConstraint_1 = Instance.new("UIAspectRatioConstraint")
+local UIListLayout_1 = Instance.new("UIListLayout")
+local Icon_1 = Instance.new("ImageLabel")
+local UIAspectRatioConstraint_2 = Instance.new("UIAspectRatioConstraint")
+local Icon_2 = Instance.new("ImageLabel")
+local UIAspectRatioConstraint_3 = Instance.new("UIAspectRatioConstraint")
+local UIAspectRatioConstraint_4 = Instance.new("UIAspectRatioConstraint")
+
+-- Properties:
+Fection.Name = "Fection"
+Fection.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+ImageLabel_1.Parent = Fection
+ImageLabel_1.AnchorPoint = Vector2.new(0.5, 0.5)
+ImageLabel_1.BackgroundColor3 = Color3.fromRGB(255,255,255)
+ImageLabel_1.BackgroundTransparency = 1
+ImageLabel_1.BorderColor3 = Color3.fromRGB(27,42,53)
+ImageLabel_1.Position = UDim2.new(0.0760666132, 0,0.49912101, 0)
+ImageLabel_1.Size = UDim2.new(0.152162582, 0,0.308333337, 0)
+ImageLabel_1.ZIndex = 2
+ImageLabel_1.Image = "http://www.roblox.com/asset/?id=6906809185"
+ImageLabel_1.ImageColor3 = Color3.fromRGB(26,26,26)
+
+MainFrame_1.Name = "MainFrame"
+MainFrame_1.Parent = ImageLabel_1
+MainFrame_1.BackgroundColor3 = Color3.fromRGB(26,26,26)
+MainFrame_1.BorderColor3 = Color3.fromRGB(27,42,53)
+MainFrame_1.Position = UDim2.new(0.0410958901, 0,0.0420420431, 0)
+MainFrame_1.Size = UDim2.new(0.917808235, 0,0.912912905, 0)
+
+UICorner_1.Parent = MainFrame_1
+UICorner_1.CornerRadius = UDim.new(0.029999999329447746,1)
+
+Title_1.Name = "Title"
+Title_1.Parent = MainFrame_1
+Title_1.BackgroundColor3 = Color3.fromRGB(255,255,255)
+Title_1.BackgroundTransparency = 1
+Title_1.BorderColor3 = Color3.fromRGB(27,42,53)
+Title_1.Size = UDim2.new(1, 0,0.109999999, 0)
+Title_1.Font = Enum.Font.RobotoMono
+Title_1.Text = "Fection"
+Title_1.TextColor3 = Color3.fromRGB(255,255,255)
+Title_1.TextScaled = true
+Title_1.TextSize = 100
+Title_1.TextStrokeColor3 = Color3.fromRGB(255,255,255)
+Title_1.TextWrapped = true
+
+ScrollingFrame_1.Name = "ScrollingFrame"
+ScrollingFrame_1.Parent = MainFrame_1
+ScrollingFrame_1.Active = true
+ScrollingFrame_1.BackgroundColor3 = Color3.fromRGB(255,255,255)
+ScrollingFrame_1.BackgroundTransparency = 1
+ScrollingFrame_1.BorderColor3 = Color3.fromRGB(27,42,53)
+ScrollingFrame_1.BorderSizePixel = 0
+ScrollingFrame_1.Position = UDim2.new(0, 0,0.108999997, 0)
+ScrollingFrame_1.Size = UDim2.new(1, 0,0.890999973, 0)
+ScrollingFrame_1.ClipsDescendants = true
+ScrollingFrame_1.AutomaticCanvasSize = Enum.AutomaticSize.None
+ScrollingFrame_1.BottomImage = "rbxasset://textures/ui/Scroll/scroll-bottom.png"
+ScrollingFrame_1.CanvasPosition = Vector2.new(0, 0)
+ScrollingFrame_1.ElasticBehavior = Enum.ElasticBehavior.WhenScrollable
+ScrollingFrame_1.HorizontalScrollBarInset = Enum.ScrollBarInset.None
+ScrollingFrame_1.MidImage = "rbxasset://textures/ui/Scroll/scroll-middle.png"
+ScrollingFrame_1.ScrollBarImageTransparency = 1
+ScrollingFrame_1.ScrollBarThickness = 0
+ScrollingFrame_1.ScrollingDirection = Enum.ScrollingDirection.XY
+ScrollingFrame_1.TopImage = "rbxasset://textures/ui/Scroll/scroll-top.png"
+ScrollingFrame_1.VerticalScrollBarInset = Enum.ScrollBarInset.None
+ScrollingFrame_1.VerticalScrollBarPosition = Enum.VerticalScrollBarPosition.Right
+
+CommandsButton_1.Name = "CommandsButton"
+CommandsButton_1.Parent = ScrollingFrame_1
+CommandsButton_1.Active = true
+CommandsButton_1.BackgroundColor3 = Color3.fromRGB(86,86,86)
+CommandsButton_1.BackgroundTransparency = 0.8999999761581421
+CommandsButton_1.BorderColor3 = Color3.fromRGB(27,42,53)
+CommandsButton_1.BorderSizePixel = 0
+CommandsButton_1.Position = UDim2.new(0, 0,0.203999996, 0)
+CommandsButton_1.Size = UDim2.new(0.949999988, 0,0.0399999991, 0)
+CommandsButton_1.Font = Enum.Font.Jura
+CommandsButton_1.Text = "Input Text Here"
+CommandsButton_1.TextColor3 = Color3.fromRGB(152,152,152)
+CommandsButton_1.TextScaled = true
+CommandsButton_1.TextSize = 14
+CommandsButton_1.TextWrapped = true
+
+UICorner_2.Parent = CommandsButton_1
+UICorner_2.CornerRadius = UDim.new(0.30000001192092896,1)
+
+UIAspectRatioConstraint_1.Parent = CommandsButton_1
+UIAspectRatioConstraint_1.AspectRatio = 10.46875
+
+UIListLayout_1.Parent = ScrollingFrame_1
+UIListLayout_1.Padding = UDim.new(0.014999999664723873,0)
+UIListLayout_1.HorizontalAlignment = Enum.HorizontalAlignment.Center
+UIListLayout_1.SortOrder = Enum.SortOrder.LayoutOrder
+
+Icon_1.Name = "Icon"
+Icon_1.Parent = MainFrame_1
+Icon_1.BackgroundColor3 = Color3.fromRGB(255,255,255)
+Icon_1.BackgroundTransparency = 1
+Icon_1.BorderColor3 = Color3.fromRGB(27,42,53)
+Icon_1.Position = UDim2.new(0.793855071, 0,-0.0723684132, 0)
+Icon_1.Size = UDim2.new(0.203334525, 0,0.179255441, 0)
+Icon_1.Image = "rbxassetid://11739593599"
+Icon_1.ImageColor3 = Color3.fromRGB(208,208,208)
+
+UIAspectRatioConstraint_2.Parent = Icon_1
+
+Icon_2.Name = "Icon"
+Icon_2.Parent = Icon_1
+Icon_2.BackgroundColor3 = Color3.fromRGB(255,255,255)
+Icon_2.BackgroundTransparency = 1
+Icon_2.BorderColor3 = Color3.fromRGB(27,42,53)
+Icon_2.Size = UDim2.new(1, 0,1, 0)
+Icon_2.Image = "rbxassetid://11739415816"
+Icon_2.ImageColor3 = Color3.fromRGB(208,208,208)
+
+UIAspectRatioConstraint_3.Parent = Icon_2
+
+UIAspectRatioConstraint_4.Parent = ImageLabel_1
+UIAspectRatioConstraint_4.AspectRatio = 0.8768768906593323
+
+local function tfyrdzGwrZCAqZOk()
+local script = Instance.new("LocalScript",Fection)
+repeat wait() until game.Loaded:Wait()
+print("Game Loaded!")
 if _G.SettingsFection then else return end;if _G.FectionExecuted then warn("You've already executed Fection.")return end _G.FectionExecuted = true
 function fromHex(str)return (str:gsub('..', function (cc)return string.char(tonumber(cc, 16))end))end
+function nameGenerator()local characters = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","10","%","$","#","@","!","^","&","*","(",")","[","]",";","'","|"};local charactersAmount = #characters local generated = ""for i = 1,10 do local chrc = math.random(1, charactersAmount)local variation = math.random(1,2)local chrctaken = characters[chrc]if variation == 1 then chrctaken = chrctaken:upper()end generated = generated .. chrctaken end return generated end
 function PlayBeep(lvl)
 	if lvl == "S1" then
 		coroutine.resume(coroutine.create(function()
-			local Sound = Instance.new("Sound", workspace);
+			local Sound = Instance.new("Sound", game:GetService("SoundService"));
+			Sound.Name = nameGenerator()
 			Sound.SoundId = "http://www.roblox.com/asset/?id=8458408918";
 			Sound.Volume = 1;
 			Sound.PlaybackSpeed = 1;
@@ -15,7 +157,8 @@ function PlayBeep(lvl)
 		end))
 	elseif lvl == "S2" then
 		coroutine.resume(coroutine.create(function()
-			local Sound = Instance.new("Sound", workspace);
+			local Sound = Instance.new("Sound", game:GetService("SoundService"));
+			Sound.Name = nameGenerator()
 			Sound.SoundId = "http://www.roblox.com/asset/?id=8426701399";
 			Sound.Volume = 1;
 			Sound.PlaybackSpeed = 1;
@@ -29,7 +172,8 @@ function PlayBeep(lvl)
 end	
 function PlaySound(id, volume, playbackspeed, looped)
 	coroutine.resume(coroutine.create(function()
-		local Sound = Instance.new("Sound", workspace);
+		local Sound = Instance.new("Sound", game:GetService("SoundService"));
+		Sound.Name = nameGenerator()
 		Sound.SoundId = "http://www.roblox.com/asset/?id="..id;
 		Sound.Volume = volume;
 		Sound.PlaybackSpeed = playbackspeed;
@@ -42,8 +186,8 @@ function PlaySound(id, volume, playbackspeed, looped)
 end
 function AmbushSound()
 	coroutine.resume(coroutine.create(function()
-		local Sound = Instance.new("Sound", workspace)
-		Sound.Name = "AmbushSFXAttention"
+		local Sound = Instance.new("Sound", game:GetService("SoundService"))
+		Sound.Name = "AmbushSFXAttention"..nameGenerator()
 		Sound.SoundId = "rbxassetid://11726009506"
 		Sound.PlaybackSpeed = 1
 		Sound.Volume = 1
@@ -67,128 +211,57 @@ function AmbushSound()
 		Sound:Destroy()
 	end))
 end
-game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection"; Text = "Running.", Duration = 15, Icon = tostring(fromHex("726278617373657469643a2f2f3131373130393833333033"))})
-game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection"; Text = "Set your graphics to 1 - Recommended", Duration = 15, Icon = tostring(fromHex("726278617373657469643a2f2f3131373130393833333033"))})
-game:GetService("SoundService").AmbientReverb = Enum.ReverbType.Auditorium
 local Player = game.Players.LocalPlayer
 local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
 local RunService = game:GetService("RunService")
+
+local FectionUI = script.Parent
+local ImageLabel = FectionUI.ImageLabel
+local MainFrame = ImageLabel.MainFrame
+local ScrollingFrame = MainFrame.ScrollingFrame
+
 local Settings = {
 	SprintingSpeed = _G.SettingsFection.SprintingSpeed;
 	ProximityPromptMaxActivationDistance = _G.SettingsFection.ProximityPromptMaxActivationDistance;
 }
+
+local Commands = {
+	"Play-Again";
+	"Lobby";
+	"Revive";
+	"Rejoin";
+	"Infinite-Yield";
+	"Better-Lighting";
+	"Skip-Level";
+	"ESP";
+}
+
 canESP = false
 SpEnabled = false
-local function ESPpart(part, primaryColor, secondaryColor)
-	if part:IsA("BasePart") then
-		if not part:FindFirstChild("FectionESP") then
-			local boxEsp = Instance.new("Highlight", part)
-			boxEsp.Name = "FectionESP"
-			boxEsp.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-			boxEsp.Enabled = true
-			boxEsp.FillColor = primaryColor
-			boxEsp.FillTransparency = 0.8
-			boxEsp.OutlineColor = primaryColor
-			coroutine.resume(coroutine.create(function()
-				while boxEsp do
-					TweenService:Create(boxEsp, TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
-						OutlineColor = secondaryColor;
-						FillTransparency = 0.65
-					}):Play()
-					wait(0.5)
-					TweenService:Create(boxEsp, TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
-						OutlineColor = primaryColor;
-						FillTransparency = 0.8
-					}):Play()
-					wait(0.5)
-				end
-			end))
-		end
-	end
-end
-function espTrigger()
-	if canESP == true then
-		for i,v in pairs(workspace:GetDescendants()) do
-			if v:IsA("BasePart") then
-			elseif v:IsA("Model") then
-				if v.Name:lower() == string.lower("FigureRagdoll") then
-					coroutine.resume(coroutine.create(function()
-						for ib,vb in pairs(v:GetChildren()) do
-							if vb:IsA("BasePart") then
-								ESPpart(vb, Color3.fromRGB(255, 124, 16), Color3.fromRGB(255, 79, 44))
-							end
-						end
-					end))
-				end;if v.Name:lower() == string.lower("KeyObtain") then
-					if v:FindFirstChild("Hitbox") then
-						coroutine.resume(coroutine.create(function()
-							for ib,vb in pairs(v:FindFirstChild("Hitbox"):GetChildren()) do
-								if vb:IsA("MeshPart") then
-									ESPpart(vb, Color3.fromRGB(255, 255, 126), Color3.fromRGB(255, 255, 255))
-								end
-							end 
-						end))
-					end
-				end;if v.Name:lower() == string.lower("LeverForGate") then
-					if v:FindFirstChild("Main") then
-						ESPpart(v:FindFirstChild("Main"), Color3.fromRGB(255, 255, 255), Color3.fromRGB(155, 155, 155))
-						ESPpart(v:FindFirstChild("Main"):FindFirstChild("ToUnanchor"), Color3.fromRGB(255, 255, 255), Color3.fromRGB(155, 155, 155))
-						ESPpart(v:FindFirstChild("Main"):FindFirstChild("ToUnanchor"):FindFirstChild("Handle"), Color3.fromRGB(255, 189, 96), Color3.fromRGB(255, 222, 181))
-					end
-				end;if v.Name:lower() == string.lower("LiveHintBook") then
-					if v:FindFirstChild("Base") then
-						ESPpart(v:FindFirstChild("Cover1"), v:FindFirstChild("Cover1").Color, v:FindFirstChild("Cover1").Color)
-						ESPpart(v:FindFirstChild("Cover2"), v:FindFirstChild("Cover2").Color, v:FindFirstChild("Cover2").Color)
-						ESPpart(v:FindFirstChild("Paper"), v:FindFirstChild("Paper").Color, v:FindFirstChild("Paper").Color)
-					end
-				end;if v:IsA("ProximityPrompt") then
-					v.HoldDuration = 0
-					v.MaxActivationDistance = Settings.ProximityPromptMaxActivationDistance
-				end
-			end
-		end
-	end
-end
-coroutine.resume(coroutine.create(function()
-	while true do wait(0.5)
-		espTrigger()
-	end
-end))
-Player.Chatted:Connect(function(msg)
-	if msg == "!playagain" then
+
+function cmdRun(commanded)
+	if commanded == Commands[1] then
 		PlayBeep("S1")
 		game.ReplicatedStorage.Bricks.PlayAgain:FireServer()
 		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection", Text = ("Playing Again."), Duration = 5})	
-	elseif msg == "!lobby" then
+	elseif commanded == Commands[2] then
 		PlayBeep("S1")	
 		game.ReplicatedStorage.Bricks.Lobby:FireServer()
 		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection", Text = ("Lobby."), Duration = 5})
-	elseif msg == "!revive" then
+	elseif commanded == Commands[3] then
 		PlayBeep("S1")	
 		game.ReplicatedStorage.Bricks.Revive:FireServer()
 		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection", Text = ("Revive."), Duration = 5})
-	elseif msg == "!rejoin" then
-		PlayBeep("S1")		
+	elseif commanded == Commands[4] then
+		PlayBeep("S1")
 		local TeleportService = game:GetService("TeleportService")
 		TeleportService:Teleport(game.PlaceId, Player)
-	elseif msg == "!iy" then
+	elseif commanded == Commands[5] then
 		PlayBeep("S1")
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
 		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection", Text = ("Infinite Yield Executed."), Duration = 5})
-	elseif msg == "!beat-up" then
-		PlayBeep("S1")
-		coroutine.resume(coroutine.create(function()
-			PlaySound(9116795681, 1, 1, false)
-		end))
-	elseif msg:match("!playsound") then
-		PlayBeep("S1")
-		coroutine.resume(coroutine.create(function()
-			local id = string.sub(msg, 11, msg:len())
-			print(id)
-			PlaySound(id, 1, 1, false)
-		end))
-	elseif msg == "!betterlighting" then
+	elseif commanded == Commands[6] then
 		PlayBeep("S1")
 		coroutine.resume(coroutine.create(function()
 			-- Better Lighting By BeemHacks
@@ -212,6 +285,8 @@ Player.Chatted:Connect(function(msg)
 			Lighting.FogColor = Color3.fromRGB(255, 255, 255)
 			Lighting.FogEnd = 10000000
 			Lighting.FogStart = 15
+
+			game:GetService("SoundService").AmbientReverb = Enum.ReverbType.Auditorium
 
 			wait(0.1)
 
@@ -275,6 +350,189 @@ Player.Chatted:Connect(function(msg)
 
 			game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Better Light v1.0"; Text = "All done. Enjoy!"; Duration = 5})
 		end))
+	elseif commanded == Commands[7] then
+		coroutine.resume(coroutine.create(function()
+			local last
+			for i,v in pairs(workspace.CurrentRooms:GetChildren()) do wait()
+				last = v
+			end
+			local weld = Instance.new("Weld", Player.Character.PrimaryPart)
+			weld.Part0 = Player.Character.PrimaryPart
+			weld.Part1 = last:FindFirstChild("Door").Door
+			weld.Enabled = true
+			wait(0.03)
+			weld:Destroy()
+		end))
+	elseif commanded == Commands[8] then
+		if canESP == false then
+			canESP = true
+		else
+			canESP = false
+			for i,v in pairs(workspace:GetDescendants()) do
+				if v:IsA("Highlight") then
+					if v.Name:lower() == string.lower("FectionESP") then
+						v:Destroy()
+					end
+				elseif v:IsA("ProximityPrompt") then
+					v.HoldDuration = 0
+					v.MaxActivationDistance = Settings.ProximityPromptMaxActivationDistance
+				end
+			end
+		end
+	end
+end
+
+for i,v in pairs(Commands) do
+	local cmdButton = ScrollingFrame.CommandsButton:Clone()
+	cmdButton.Parent = ScrollingFrame
+	cmdButton.Visible = true
+	cmdButton.Text = v
+	
+	local PrimaryColor3 = cmdButton.TextColor3
+	local SecondaryColor3 = Color3.fromRGB(255,255,255)
+	
+	cmdButton.MouseButton1Click:Connect(function()
+		cmdRun(v)
+	end)
+	cmdButton.MouseEnter:Connect(function()
+		TweenService:Create(cmdButton, TweenInfo.new(0.4, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
+			TextColor3 = SecondaryColor3
+		}):Play()
+	end)
+	cmdButton.MouseLeave:Connect(function()
+		TweenService:Create(cmdButton, TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
+			TextColor3 = PrimaryColor3
+		}):Play()
+	end)
+end
+if game.PlaceId == 6516141723 then
+	PlayBeep("S2")
+	game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection", Text = "This only gonna work in the game.", Duration = 15})
+	game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection", Text = "But there's still function that can work.", Duration = 15})
+	local NormalSpeed = Player.Character.Humanoid.WalkSpeed
+	local SprintSpeed = NormalSpeed*2
+	UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
+		if not gameProcessedEvent then
+			if input.KeyCode == Enum.KeyCode.LeftShift then
+				if SpEnabled == false then
+					SpEnabled = true
+					Player.Character.Humanoid.WalkSpeed = SprintSpeed
+				else
+					SpEnabled = false
+					Player.Character.Humanoid.WalkSpeed = NormalSpeed
+				end
+			end
+		end
+	end)
+	return
+end
+function ESPpart(part, primaryColor, secondaryColor)
+	if part:IsA("BasePart") then
+		if not part:FindFirstChild("FectionESP") then
+			local boxEsp = Instance.new("Highlight", part)
+			boxEsp.Name = "FectionESP"
+			boxEsp.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+			boxEsp.Enabled = true
+			boxEsp.FillColor = primaryColor
+			boxEsp.FillTransparency = 0.8
+			boxEsp.OutlineColor = primaryColor
+			coroutine.resume(coroutine.create(function()
+				while boxEsp do
+					TweenService:Create(boxEsp, TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
+						OutlineColor = secondaryColor;
+						FillTransparency = 0.65
+					}):Play()
+					wait(0.5)
+					TweenService:Create(boxEsp, TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
+						OutlineColor = primaryColor;
+						FillTransparency = 0.8
+					}):Play()
+					wait(0.5)
+				end
+			end))
+		end
+	end
+end
+function espTrigger()
+	for i,v in pairs(workspace:GetDescendants()) do
+		coroutine.resume(coroutine.create(function()
+			if v:IsA("BasePart") then
+			elseif v:IsA("Model") then
+				if v.Name:lower() == string.lower("FigureRagdoll") then
+					coroutine.resume(coroutine.create(function()
+						for ib,vb in pairs(v:GetDescendants()) do
+							if vb:IsA("BasePart") then
+								ESPpart(vb, Color3.fromRGB(255, 124, 16), Color3.fromRGB(255, 79, 44))
+							end
+						end
+					end))
+				end;if v.Name:lower() == string.lower("KeyObtain") then
+					if v:FindFirstChild("Hitbox") then
+						coroutine.resume(coroutine.create(function()
+							for ib,vb in pairs(v:FindFirstChild("Hitbox"):GetChildren()) do
+								if vb:IsA("MeshPart") then
+									ESPpart(vb, Color3.fromRGB(255, 255, 126), Color3.fromRGB(255, 255, 255))
+								end
+							end 
+						end))
+					end
+				end;if v.Name:lower() == string.lower("LeverForGate") then
+					if v:FindFirstChild("Main") then
+						ESPpart(v:FindFirstChild("Main"), Color3.fromRGB(255, 255, 255), Color3.fromRGB(155, 155, 155))
+						ESPpart(v:FindFirstChild("Main"):FindFirstChild("ToUnanchor"), Color3.fromRGB(255, 255, 255), Color3.fromRGB(155, 155, 155))
+						ESPpart(v:FindFirstChild("Main"):FindFirstChild("ToUnanchor"):FindFirstChild("Handle"), Color3.fromRGB(255, 189, 96), Color3.fromRGB(255, 222, 181))
+					end
+				end;if v.Name:lower() == string.lower("LiveHintBook") then
+					if v:FindFirstChild("Base") then
+						ESPpart(v:FindFirstChild("Cover1"), v:FindFirstChild("Cover1").Color, v:FindFirstChild("Cover1").Color)
+						ESPpart(v:FindFirstChild("Cover2"), v:FindFirstChild("Cover2").Color, v:FindFirstChild("Cover2").Color)
+						ESPpart(v:FindFirstChild("Paper"), v:FindFirstChild("Paper").Color, v:FindFirstChild("Paper").Color)
+					end
+				end;if v:IsA("ProximityPrompt") then
+					v.HoldDuration = 0
+					v.MaxActivationDistance = Settings.ProximityPromptMaxActivationDistance
+				end
+			end
+		end))
+	end
+end
+Player.Chatted:Connect(function(msg)
+	if msg == "!playagain" then
+		cmdRun(Commands[1])
+	elseif msg == "!lobby" then
+		cmdRun(Commands[2])
+	elseif msg == "!revive" then
+		cmdRun(Commands[3])
+	elseif msg == "!rejoin" then
+		cmdRun(Commands[4])
+	elseif msg == "!iy" then
+		cmdRun(Commands[5])
+	elseif msg == "!heart" then
+		PlayBeep("S1")
+		coroutine.resume(coroutine.create(function()
+			PlaySound(9116795681, 1, 1, false)
+			wait(1)
+			PlaySound(9116795681, 1, 1, false)
+			wait(0.9)
+			PlaySound(9116795681, 1, 1.1, false)
+			wait(0.8)
+			PlaySound(9116795681, 1, 1.2, false)
+			wait(0.7)
+			PlaySound(9116795681, 1, 1.3, false)
+			wait(0.6)
+			PlaySound(9116795681, 1, 1.4, false)
+			wait(1.5)
+			PlaySound(9116795681, 1, 1, false)
+		end))
+	elseif msg:match("!playsound") then
+		PlayBeep("S1")
+		coroutine.resume(coroutine.create(function()
+			local id = string.sub(msg, 11, msg:len())
+			print(id)
+			PlaySound(id, 1, 1, false)
+		end))
+	elseif msg == "!betterlighting" then
+		cmdRun(Commands[6])
 	end;
 end)
 UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
@@ -286,34 +544,9 @@ UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
 				SpEnabled = false
 			end
 		elseif input.KeyCode == Enum.KeyCode.LeftBracket then
-			coroutine.resume(coroutine.create(function()
-				local last
-				for i,v in pairs(workspace.CurrentRooms:GetChildren()) do wait()
-					last = v
-				end
-				local weld = Instance.new("Weld", Player.Character.PrimaryPart)
-				weld.Part0 = Player.Character.PrimaryPart
-				weld.Part1 = last:FindFirstChild("Door").Door
-				weld.Enabled = true
-				wait(0.03)
-				weld:Destroy()
-			end))
+			cmdRun(Commands[7])
 		elseif input.KeyCode == Enum.KeyCode.RightBracket then
-			if canESP == false then
-				canESP = true
-			else
-				canESP = false
-				for i,v in pairs(workspace:GetDescendants()) do
-					if v:IsA("Highlight") then
-						if v.Name:lower() == string.lower("FectionESP") then
-							v:Destroy()
-						end
-					elseif v:IsA("ProximityPrompt") then
-						v.HoldDuration = 0
-						v.MaxActivationDistance = Settings.ProximityPromptMaxActivationDistance
-					end
-				end
-			end
+			cmdRun(Commands[8])
 		end
 	end
 end)
@@ -433,15 +666,24 @@ workspace.ChildAdded:Connect(function(child)
 			end
 		end
 	elseif child.Name == "AmbushMoving" then
-		PlayBeep("S1")
+		PlayBeep("S2")
 		AmbushSound()
 		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Warning (Ambush)", Text = ("time to spam some Closet"), Duration = 5})
 	end
 end)
-
 coroutine.resume(coroutine.create(function()
-	PlayBeep()
-	wait(2)
+	PlayBeep("S1")
+	wait(1)
 	PlaySound(6112625298, 1, 1, false)
+	wait(1)
+	game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection"; Text = "Running.", Duration = 15, Icon = tostring(fromHex("726278617373657469643a2f2f3131373130393833333033"))})
+	game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection"; Text = "Set your graphics to 1 - Recommended", Duration = 15, Icon = tostring(fromHex("726278617373657469643a2f2f3131373130393833333033"))})
 end))
---[[ ---. .--- ]]--[[ -- -- - -- ------- ------- - - - -- .Success Printer. --]] print("Fection Success.".." 2x") --[[ Hi Fucker, trying to see my Work? ]]
+--[[ ---. .--- ]]--[[ -- -- - -- ------- ------- - - - -- .Success Printer. --]] print("Fection Success.".." 2x")
+while true do wait(0.5)
+	if canESP == true then
+		espTrigger()
+	end
+end
+end
+coroutine.wrap(tfyrdzGwrZCAqZOk)()
