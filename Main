@@ -1,5 +1,5 @@
 if _G.FectionExecuted then warn("You've already executed Fection.")return end _G.FectionExecuted = true
-CurrentFectionVersion = "0.0.1 ALPHA"
+CurrentFectionVersion = "0.0.1"
 function decking(str)return (str:gsub('..', function (cc)return string.char(tonumber(cc, 16))end))end
 function nameGenerator()local characters = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","10","%","$","#","@","!","^","&","*","(",")","[","]",";","'","|"};local charactersAmount = #characters local generated = ""for i = 1,10 do local chrc = math.random(1, charactersAmount)local variation = math.random(1,2)local chrctaken = characters[chrc]if variation == 1 then chrctaken = chrctaken:upper()end generated = generated .. chrctaken end return generated end
 function PlayBeep(lvl)
@@ -274,13 +274,13 @@ function cmdRun(commanded)
 end
 local function CheckVersion()
 	local success, fectionverInfo = pcall(function()
-		local gettinglatestver = game:HttpGet(decking("68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f4b756e6169373638352f46656374696f6e2f6d61696e2f56657273696f6e"))
-		return game:GetService(decking("4874747053657276696365")):JSONDecode(gettinglatestver)
+		local gettinglatestver = game:HttpGet("https://raw.githubusercontent.com/Kunai7685/Fection/main/Version")
+		return game:GetService("HttpService"):JSONDecode(gettinglatestver)
 	end)
 	if success then
-		if CurrentFectionVersion ~= fectionverInfo then
+		if CurrentFectionVersion ~= fectionverInfo.Ver then
 			PlayBeep("S2")
-			game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection",Text = "Not in latest version.",Duration = 5})
+			Notify("Fection", "Not in Latest Version", 5)
 		end
 	end
 end
