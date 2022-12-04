@@ -1,7 +1,0 @@
--- Settings [[ STILL KINDA BROKEN ]]
-_G.SettingsFection = {
-    SprintingSpeed = 50;
-    ProximityPromptMaxActivationDistance = 15;
-}	
--- Function
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Kunai7685/Fection/main/Run"))()
