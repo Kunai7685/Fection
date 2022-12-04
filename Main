@@ -1,5 +1,3 @@
--- Settings
--- Function
 if _G.FectionExecuted then warn("You've already executed Fection.")return end _G.FectionExecuted = true
 CurrentFectionVersion = "0.0.1 ALPHA"
 function decking(str)return (str:gsub('..', function (cc)return string.char(tonumber(cc, 16))end))end
@@ -158,6 +156,7 @@ CommandsButton.TextColor3 = Color3.fromRGB(152, 152, 152)
 CommandsButton.TextScaled = true
 CommandsButton.TextSize = 14.000
 CommandsButton.TextWrapped = true
+CommandsButton.Visible = false
 
 UICorner_2.CornerRadius = UDim.new(0.300000012, 1)
 UICorner_2.Parent = CommandsButton
