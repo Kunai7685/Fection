@@ -253,7 +253,7 @@ function cmdRun(commanded)
 		local teleportOptions = Instance.new("TeleportOptions")
 		local teleportData = {
 			FectionData = {
-				ladstring = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kunai7685/Fection/main/MainRJnd"))();
+				http = game:HttpGet("https://raw.githubusercontent.com/Kunai7685/Fection/main/Main");
 				ver = CurrentFectionVersion;
 			};
 		}
