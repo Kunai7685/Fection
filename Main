@@ -329,7 +329,6 @@ function Notify(title, description, duration)
 		
 		NotificationImageLabel.BackgroundTransparency = 1
 		NotificationImageLabel.ImageTransparency = 1
-		NotificationImageLabel.Size = UDim2.new(0, 0, 0, 0)
 		for i,v in pairs(NotificationImageLabel:GetDescendants()) do
 			if v:IsA("Frame") then
 				NotificationData[i] = {
@@ -361,7 +360,6 @@ function Notify(title, description, duration)
 		game:GetService("TweenService"):Create(NotificationImageLabel, TweenInfo.new(0.7, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
 			BackgroundTransparency = 1;
 			ImageTransparency = 0;
-			Size = UDim2.new(10.2298336, 0,0.687427521, 0)
 		}):Play()
 		for i1,v1 in pairs(NotificationData) do wait(0.05)
 			local v = v1.Child
@@ -390,7 +388,6 @@ function Notify(title, description, duration)
 		game:GetService("TweenService"):Create(NotificationImageLabel, TweenInfo.new(0.7, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
 			BackgroundTransparency = 1;
 			ImageTransparency = 1;
-			Size = UDim2.new(0,0,0,0)
 		}):Play()
 		for i,v in pairs(NotificationImageLabel:GetDescendants()) do wait(0.05)
 			if v:IsA("Frame") then
@@ -529,17 +526,17 @@ for i,v in pairs(Commands) do
 	local SecondaryColor3 = Color3.fromRGB(255,255,255)
 
 	cmdButton.MouseButton1Click:Connect(function()
-		PlaySound(10066931761, 1, 1, false)
+		PlaySound(10066931761, 0.65, 1, false)
 		cmdRun(v)
 	end)
 	cmdButton.MouseEnter:Connect(function()
-		PlaySound(10066936758, 1, 1, false)
+		PlaySound(10066936758, 0.6, 1, false)
 		TweenService:Create(cmdButton, TweenInfo.new(0.4, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
 			TextColor3 = SecondaryColor3
 		}):Play()
 	end)
 	cmdButton.MouseLeave:Connect(function()
-		PlaySound(10066936758, 1, 1, false)
+		PlaySound(10066936758, 0.6, 1, false)
 		TweenService:Create(cmdButton, TweenInfo.new(0.25, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
 			TextColor3 = PrimaryColor3
 		}):Play()
