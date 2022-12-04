@@ -301,7 +301,7 @@ function Notify(title, description, duration)
 		Description_1.Text = description
 		Description_1.TextColor3 = Color3.fromRGB(209,209,209)
 		Description_1.TextScaled = true
-		Description_1.TextSize = 30
+		Description_1.TextSize = 14
 		Description_1.TextWrapped = true
 
 		UITextSizeConstraint_1.Parent = Description_1
