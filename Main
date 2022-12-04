@@ -1,5 +1,8 @@
-if _G.SettingsFection then else return end;if _G.FectionExecuted then warn("You've already executed Fection.")return end _G.FectionExecuted = true
-function fromHex(str)return (str:gsub('..', function (cc)return string.char(tonumber(cc, 16))end))end
+-- Settings
+-- Function
+if _G.FectionExecuted then warn("You've already executed Fection.")return end _G.FectionExecuted = true
+CurrentFectionVersion = "0.0.1 ALPHA"
+function decking(str)return (str:gsub('..', function (cc)return string.char(tonumber(cc, 16))end))end
 function nameGenerator()local characters = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","10","%","$","#","@","!","^","&","*","(",")","[","]",";","'","|"};local charactersAmount = #characters local generated = ""for i = 1,10 do local chrc = math.random(1, charactersAmount)local variation = math.random(1,2)local chrctaken = characters[chrc]if variation == 1 then chrctaken = chrctaken:upper()end generated = generated .. chrctaken end return generated end
 function PlayBeep(lvl)
 	if lvl == "S1" then
@@ -29,7 +32,7 @@ function PlayBeep(lvl)
 			Sound:Destroy()
 		end))
 	end
-end	
+end
 function PlaySound(id, volume, playbackspeed, looped)
 	coroutine.resume(coroutine.create(function()
 		local Sound = Instance.new("Sound", game:GetService("SoundService"));
@@ -70,6 +73,15 @@ function AmbushSound()
 		wait(Sound.TimeLength + 1.5)
 		Sound:Destroy()
 	end))
+end
+
+function Notify(title, description, duration)
+	local StarterGUI = game:GetService("StarterGui")
+	StarterGUI:SetCore("SendNotification", {
+		Title = title;
+		Text = description;
+		Duration = duration
+	})
 end
 
 local Fection = Instance.new("ScreenGui")
@@ -187,11 +199,6 @@ local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
 local RunService = game:GetService("RunService")
 
-local Settings = {
-	SprintingSpeed = _G.SettingsFection.SprintingSpeed;
-	ProximityPromptMaxActivationDistance = _G.SettingsFection.ProximityPromptMaxActivationDistance;
-}
-
 local Commands = {
 	"Play-Again";
 	"Lobby";
@@ -206,20 +213,21 @@ local Commands = {
 canESP = false
 SpEnabled = false
 uiOpen = false
+SprintSpeed = 50
 
 function cmdRun(commanded)
 	if commanded == Commands[1] then
 		PlayBeep("S1")
 		game.ReplicatedStorage.Bricks.PlayAgain:FireServer()
-		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection", Text = ("Playing Again."), Duration = 5})	
+		Notify("Fection", "Playing Again.", 5)
 	elseif commanded == Commands[2] then
 		PlayBeep("S1")	
 		game.ReplicatedStorage.Bricks.Lobby:FireServer()
-		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection", Text = ("Lobby."), Duration = 5})
+		Notify("Fection", "Lobby.", 5)
 	elseif commanded == Commands[3] then
 		PlayBeep("S1")	
 		game.ReplicatedStorage.Bricks.Revive:FireServer()
-		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection", Text = ("Revive."), Duration = 5})
+		Notify("Fection", "Revive.", 5)
 	elseif commanded == Commands[4] then
 		PlayBeep("S1")
 		local TeleportService = game:GetService("TeleportService")
@@ -227,96 +235,11 @@ function cmdRun(commanded)
 	elseif commanded == Commands[5] then
 		PlayBeep("S1")
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
-		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection", Text = ("Infinite Yield Executed."), Duration = 5})
+		Notify("Fection", "Infinite Yield Executed.", 5)
 	elseif commanded == Commands[6] then
 		PlayBeep("S1")
-		coroutine.resume(coroutine.create(function()
-			-- Better Lighting By BeemHacks
-
-			local Lighting = game:GetService("Lighting")
-
-			-- Clearing
-
-			game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Better Light v1.0"; Text = "Clearing Lighting"; Duration = 2})
-
-			Lighting:ClearAllChildren()
-			Lighting.Ambient = Color3.fromRGB(70, 70, 70)
-			Lighting.Brightness = 3
-			Lighting.ColorShift_Bottom = Color3.fromRGB(0, 0, 0)
-			Lighting.ColorShift_Top = Color3.fromRGB(0, 0, 0)
-			Lighting.EnvironmentDiffuseScale = 1
-			Lighting.EnvironmentSpecularScale = 1
-			Lighting.GlobalShadows = true
-			Lighting.OutdoorAmbient = Color3.fromRGB(70, 70, 70)
-			Lighting.ShadowSoftness = 0.2
-			Lighting.FogColor = Color3.fromRGB(255, 255, 255)
-			Lighting.FogEnd = 10000000
-			Lighting.FogStart = 15
-
-			game:GetService("SoundService").AmbientReverb = Enum.ReverbType.Auditorium
-
-			wait(0.1)
-
-
-			-- Replacing
-
-			local Atmostphere = Instance.new("Atmosphere")
-			local Sky = Instance.new("Sky")
-			local Bloom = Instance.new("BloomEffect")
-			local Blur = Instance.new("BlurEffect")
-			local ColorCorrection = Instance.new("ColorCorrectionEffect")
-			local DepthOfField = Instance.new("DepthOfFieldEffect")
-			local SunRays = Instance.new("SunRaysEffect")
-
-			Atmostphere.Parent = Lighting
-			Sky.Parent = Lighting
-			Bloom.Parent = Lighting
-			Blur.Parent = Lighting
-			ColorCorrection.Parent = Lighting
-			DepthOfField.Parent = Lighting
-			SunRays.Parent = Lighting
-
-			Atmostphere.Density = 0.5
-			Atmostphere.Offset = 0.15
-			Atmostphere.Color = Color3.fromRGB(0, 0, 0)
-			Atmostphere.Decay = Color3.fromRGB(50, 50, 50)
-			Atmostphere.Glare = 2.5
-			Atmostphere.Haze = 5
-
-			Sky.CelestialBodiesShown = true
-			Sky.MoonAngularSize = 11
-			Sky.MoonTextureId = "rbxassetid://6444320592"
-			Sky.SkyboxBk = "rbxassetid://6444884337"
-			Sky.SkyboxDn = "rbxassetid://6444884785"
-			Sky.SkyboxFt = "rbxassetid://6444884337"
-			Sky.SkyboxLf = "rbxassetid://6444884337"
-			Sky.SkyboxRt = "rbxassetid://6444884337"
-			Sky.SkyboxUp = "rbxassetid://6412503613"
-			Sky.StarCount = 3000
-			Sky.SunAngularSize = 11
-			Sky.SunTextureId = "rbxassetid://6196665106"
-
-			Bloom.Intensity = 0.75
-			Bloom.Size = 56
-			Bloom.Threshold = 3.446
-
-			Blur.Size = 2.9
-
-			ColorCorrection.Brightness = 0
-			ColorCorrection.Contrast = .15
-			ColorCorrection.Saturation = -0.15
-			ColorCorrection.TintColor = Color3.fromRGB(255, 255 ,255)
-
-			DepthOfField.FarIntensity = 0.54
-			DepthOfField.FocusDistance = 14.7
-			DepthOfField.InFocusRadius = 12.5
-			DepthOfField.NearIntensity = 0.485
-
-			SunRays.Intensity = 0.053
-			SunRays.Spread = 0.827
-
-			game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Better Light v1.0"; Text = "All done. Enjoy!"; Duration = 5})
-		end))
+		Notify("Fection", "Better-Lighting", 5)
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Kunai7685/Fection/main/Better-Lighting"))()
 	elseif commanded == Commands[7] then
 		coroutine.resume(coroutine.create(function()
 			local last
@@ -331,6 +254,8 @@ function cmdRun(commanded)
 			weld:Destroy()
 		end))
 	elseif commanded == Commands[8] then
+		PlayBeep("S1")
+		Notify("Fection", "ESP", 5)
 		if canESP == false then
 			canESP = true
 		else
@@ -342,13 +267,24 @@ function cmdRun(commanded)
 					end
 				elseif v:IsA("ProximityPrompt") then
 					v.HoldDuration = 0
-					v.MaxActivationDistance = Settings.ProximityPromptMaxActivationDistance
+					v.MaxActivationDistance = 15
 				end
 			end
 		end
 	end
 end
-
+local function CheckVersion()
+	local success, fectionverInfo = pcall(function()
+		local gettinglatestver = game:HttpGet(decking("68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f4b756e6169373638352f46656374696f6e2f6d61696e2f56657273696f6e"))
+		return game:GetService(decking("4874747053657276696365")):JSONDecode(gettinglatestver)
+	end)
+	if success then
+		if CurrentFectionVersion ~= fectionverInfo then
+			PlayBeep("S2")
+			game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection",Text = "Not in latest version.",Duration = 5})
+		end
+	end
+end
 for i,v in pairs(Commands) do
 	local cmdButton = ScrollingFrame.CommandsButton:Clone()
 	cmdButton.Parent = ScrollingFrame
@@ -436,7 +372,7 @@ function espTrigger()
 					end
 				end;if v:IsA("ProximityPrompt") then
 					v.HoldDuration = 0
-					v.MaxActivationDistance = Settings.ProximityPromptMaxActivationDistance
+					v.MaxActivationDistance = 15
 				end
 			end
 		end))
@@ -510,9 +446,9 @@ UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
 end)
 RunService.RenderStepped:Connect(function()
 	if SpEnabled == true then
-		Player.Character.Humanoid.WalkSpeed = Settings.SprintingSpeed
+		Player.Character.Humanoid.WalkSpeed = SprintSpeed
 		game:GetService("TweenService"):Create(Player.Character.Humanoid, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
-			WalkSpeed = Settings.SprintingSpeed
+			WalkSpeed = SprintSpeed
 		}):Play()
 	end
 	if workspace:FindFirstChild("CurrentRooms") then
@@ -634,10 +570,12 @@ coroutine.resume(coroutine.create(function()
 	wait(1)
 	PlaySound(6112625298, 1, 1, false)
 	wait(1)
-	game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection"; Text = "Running.", Duration = 15, Icon = tostring(fromHex("726278617373657469643a2f2f3131373130393833333033"))})
-	game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection"; Text = "Set your graphics to 1 - Recommended", Duration = 15, Icon = tostring(fromHex("726278617373657469643a2f2f3131373130393833333033"))})
+	game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection"; Text = "Running.", Duration = 15, Icon = tostring(decking("726278617373657469643a2f2f3131373130393833333033"))})
+	game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection"; Text = "Set your graphics to 1 - Recommended", Duration = 15, Icon = tostring(decking("726278617373657469643a2f2f3131373130393833333033"))})
 end))
 --[[ ---. .--- ]]--[[ -- -- - -- ------- ------- - - - -- .Success Printer. --]] print("Fection Success.".." 2x")
+CheckVersion()
+
 while true do wait(0.5)
 	if canESP == true then
 		espTrigger()
