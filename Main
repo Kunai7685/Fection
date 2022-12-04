@@ -252,7 +252,7 @@ function cmdRun(commanded)
 		local TeleportService = game:GetService("TeleportService")
 		local teleportOptions = Instance.new("TeleportOptions")
 		local teleportData = {
-			scriptValue = [[loadstring(game:HttpGet("https://raw.githubusercontent.com/Kunai7685/Fection/main/Main"))()]]
+			scriptValue = tostring([[loadstring(game:HttpGet("https://raw.githubusercontent.com/Kunai7685/Fection/main/Main"))()]])
 		}
 		TeleportService:Teleport(game.PlaceId, Player, teleportData, Outside)
 	elseif commanded == Commands[5] then
