@@ -252,10 +252,8 @@ function cmdRun(commanded)
 		local TeleportService = game:GetService("TeleportService")
 		local teleportOptions = Instance.new("TeleportOptions")
 		local teleportData = {
-			FectionData = {
-				http = game:HttpGet("https://raw.githubusercontent.com/Kunai7685/Fection/main/Main");
-				ver = CurrentFectionVersion;
-			};
+			http = "https://raw.githubusercontent.com/Kunai7685/Fection/main/Main";
+			ver = CurrentFectionVersion;
 		}
 		TeleportService:Teleport(game.PlaceId, Player, teleportData, Outside)
 	elseif commanded == Commands[5] then
