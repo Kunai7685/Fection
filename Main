@@ -117,7 +117,7 @@ UIAspectRatioConstraint_4.AspectRatio = 0.877
 
 -- Scripts:
 
-local function CLMNE_fake_script() -- Fection.Main 
+local function MNPUCQ_fake_script() -- Fection.Main 
 	local script = Instance.new('LocalScript', Fection)
 
 	repeat wait() until game.Loaded:Wait()
@@ -389,27 +389,6 @@ local function CLMNE_fake_script() -- Fection.Main
 			}):Play()
 		end)
 	end
-	if game.PlaceId == 6516141723 then
-		PlayBeep("S2")
-		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection", Text = "This only gonna work in the game.", Duration = 15})
-		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Fection", Text = "But there's still function that can work.", Duration = 15})
-		local NormalSpeed = Player.Character.Humanoid.WalkSpeed
-		local SprintSpeed = NormalSpeed*2
-		UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
-			if not gameProcessedEvent then
-				if input.KeyCode == Enum.KeyCode.LeftShift then
-					if SpEnabled == false then
-						SpEnabled = true
-						Player.Character.Humanoid.WalkSpeed = SprintSpeed
-					else
-						SpEnabled = false
-						Player.Character.Humanoid.WalkSpeed = NormalSpeed
-					end
-				end
-			end
-		end)
-		return
-	end
 	function ESPpart(part, primaryColor, secondaryColor)
 		if part:IsA("BasePart") then
 			if not part:FindFirstChild("FectionESP") then
@@ -670,4 +649,4 @@ local function CLMNE_fake_script() -- Fection.Main
 		end
 	end
 end
-coroutine.wrap(CLMNE_fake_script)()
+coroutine.wrap(MNPUCQ_fake_script)()
