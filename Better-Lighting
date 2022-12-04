@@ -1,5 +1,4 @@
-local Lighting = game:GetService("Lighting")
-			game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Better Light v1.0"; Text = "Clearing Lighting"; Duration = 2})
+			local Lighting = game:GetService("Lighting")
 			Lighting:ClearAllChildren()
 			Lighting.Ambient = Color3.fromRGB(70, 70, 70)
 			Lighting.Brightness = 3
