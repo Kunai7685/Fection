@@ -101,6 +101,8 @@ local UIAspectRatioConstraint_4 = Instance.new("UIAspectRatioConstraint")
 Fection.Name = "Fection"
 Fection.Parent = game.CoreGui
 Fection.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+Fection.DisplayOrder = 999999999
+Fection.ResetOnSpawn = false
 
 ImageLabel.Parent = Fection
 ImageLabel.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -229,8 +231,26 @@ function cmdRun(commanded)
 		Notify("Fection", "Revive.", 5)
 	elseif commanded == Commands[4] then
 		PlayBeep("S1")
+		local Outside = Instance.new("ScreenGui")
+		local TextLabel = Instance.new("TextLabel")
+		Outside.Name = "Outside"
+		Outside.Parent = game.CoreGui
+		Outside.Enabled = true
+		Outside.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+		Outside.DisplayOrder = 999999999
+		Outside.ResetOnSpawn = false
+		TextLabel.Parent = Outside
+		TextLabel.BackgroundColor3 = Color3.fromRGB(38, 25, 25)
+		TextLabel.Position = UDim2.new(-0.5, 0, -0.5, 0)
+		TextLabel.Size = UDim2.new(2, 0, 2, 0)
+		TextLabel.Font = Enum.Font.Oswald
+		TextLabel.Text = "Rejoining..."
+		TextLabel.TextColor3 = Color3.fromRGB(207, 199, 176)
+		TextLabel.TextScaled = true
+		TextLabel.TextSize = 14.000
+		TextLabel.TextWrapped = true
 		local TeleportService = game:GetService("TeleportService")
-		TeleportService:Teleport(game.PlaceId, Player)
+		TeleportService:Teleport(game.PlaceId, Player, TeleportService:GetLocalPlayerTeleportData(), Outside)
 	elseif commanded == Commands[5] then
 		PlayBeep("S1")
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
@@ -289,10 +309,10 @@ for i,v in pairs(Commands) do
 	cmdButton.Parent = ScrollingFrame
 	cmdButton.Visible = true
 	cmdButton.Text = v
-	
+
 	local PrimaryColor3 = cmdButton.TextColor3
 	local SecondaryColor3 = Color3.fromRGB(255,255,255)
-	
+
 	cmdButton.MouseButton1Click:Connect(function()
 		cmdRun(v)
 	end)
@@ -369,9 +389,6 @@ function espTrigger()
 						ESPpart(v:FindFirstChild("Cover2"), v:FindFirstChild("Cover2").Color, v:FindFirstChild("Cover2").Color)
 						ESPpart(v:FindFirstChild("Paper"), v:FindFirstChild("Paper").Color, v:FindFirstChild("Paper").Color)
 					end
-				end;if v:IsA("ProximityPrompt") then
-					v.HoldDuration = 0
-					v.MaxActivationDistance = 15
 				end
 			end
 		end))
@@ -579,4 +596,12 @@ while true do wait(0.5)
 	if canESP == true then
 		espTrigger()
 	end
+	coroutine.resume(coroutine.create(function()
+		for i,v in pairs(workspace:GetDescendants()) do
+			if v:IsA("ProximityPrompt") then
+				v.HoldDuration = 0
+				v.MaxActivationDistance = 15
+			end
+		end
+	end))
 end
