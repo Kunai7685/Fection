@@ -250,12 +250,7 @@ function cmdRun(commanded)
 		TextLabel.TextSize = 14.000
 		TextLabel.TextWrapped = true
 		local TeleportService = game:GetService("TeleportService")
-		local teleportOptions = Instance.new("TeleportOptions")
-		local teleportData = {
-			http = "https://raw.githubusercontent.com/Kunai7685/Fection/main/Main";
-			ver = CurrentFectionVersion;
-		}
-		TeleportService:Teleport(game.PlaceId, Player, teleportData, Outside)
+		TeleportService:Teleport(game.PlaceId, Player, nil, Outside)
 	elseif commanded == Commands[5] then
 		PlayBeep("S1")
 		loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
