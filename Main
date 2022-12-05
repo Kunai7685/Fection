@@ -929,14 +929,12 @@ UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
 			cmdRun(Commands[7])
 		elseif input.KeyCode == Enum.KeyCode.RightBracket then
 			cmdRun(Commands[8])
-		elseif input.KeyCode == OpenCloseEnumKey then
-			
 		end
 	end
 end)
 Player:GetMouse().KeyDown:Connect(function(k)
 	k = k:lower()
-	if k == OpenCloseEnumKey then
+	if k == OpenCloseEnumKey:lower() then
 		if HomeFrameOpened == false then
 			HomeFrameOpened = true
 			coroutine.resume(coroutine.create(function()
