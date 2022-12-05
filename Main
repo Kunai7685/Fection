@@ -647,6 +647,8 @@ OpenCloseEnumKey = "K"
 HomeFrameOpened = false
 SettingsFrameOpened = false
 
+CommandsButton.Visible = false
+
 function cmdRun(commanded)
 	if commanded == Commands[1] then
 		PlayBeep("S1")
