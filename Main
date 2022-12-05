@@ -122,7 +122,7 @@ local UIAspectRatioConstraint_8 = Instance.new("UIAspectRatioConstraint")
 --Properties:
 
 Fection.Name = "Fection"
-Fection.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+Fection.Parent = game.CoreGui
 Fection.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 Fection.DisplayOrder = 999999999
 Fection.ResetOnSpawn = false
