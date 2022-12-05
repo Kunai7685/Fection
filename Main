@@ -1,4 +1,4 @@
-if _G.FectionExecuted then warn("You've already executed Fection.")return end _G.FectionExecuted = true
+if _G.FectionExecuted then Notify("Fection", "You already have executed Fection.", 5) return end _G.FectionExecuted = true
 CurrentFectionVersion = "0.0.1"
 function decking(str)return (str:gsub('..', function (cc)return string.char(tonumber(cc, 16))end))end
 function nameGenerator()local characters = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","10","%","$","#","@","!","^","&","*","(",")","[","]",";","'","|"};local charactersAmount = #characters local generated = ""for i = 1,10 do local chrc = math.random(1, charactersAmount)local variation = math.random(1,2)local chrctaken = characters[chrc]if variation == 1 then chrctaken = chrctaken:upper()end generated = generated .. chrctaken end return generated end
@@ -73,8 +73,10 @@ function AmbushSound()
 	end))
 end
 
+-- GUI
+
 local Fection = Instance.new("ScreenGui")
-local ImageLabel = Instance.new("ImageLabel")
+local HomeFrame = Instance.new("ImageLabel")
 local MainFrame = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
 local Title = Instance.new("TextLabel")
@@ -87,26 +89,50 @@ local Icon = Instance.new("ImageLabel")
 local UIAspectRatioConstraint_2 = Instance.new("UIAspectRatioConstraint")
 local Icon_2 = Instance.new("ImageLabel")
 local UIAspectRatioConstraint_3 = Instance.new("UIAspectRatioConstraint")
+local SettingsButton = Instance.new("ImageButton")
 local UIAspectRatioConstraint_4 = Instance.new("UIAspectRatioConstraint")
+local SettingsFrame = Instance.new("ImageLabel")
+local MainFrame_2 = Instance.new("Frame")
+local UICorner_3 = Instance.new("UICorner")
+local ScrollingFrame_2 = Instance.new("ScrollingFrame")
+local UIListLayout_2 = Instance.new("UIListLayout")
+local SuperSpeedChanger = Instance.new("TextLabel")
+local TextBox = Instance.new("TextBox")
+local UIAspectRatioConstraint_5 = Instance.new("UIAspectRatioConstraint")
+local UIPadding = Instance.new("UIPadding")
+local OpenCloseKeyChanger = Instance.new("TextLabel")
+local TextBox_2 = Instance.new("TextBox")
+local UIAspectRatioConstraint_6 = Instance.new("UIAspectRatioConstraint")
+local Title_2 = Instance.new("TextLabel")
+local UIAspectRatioConstraint_7 = Instance.new("UIAspectRatioConstraint")
+local ProfileFrame = Instance.new("ImageLabel")
+local MainFrame_3 = Instance.new("Frame")
+local UICorner_4 = Instance.new("UICorner")
+local ProfileImageFrame = Instance.new("ImageLabel")
+local UICorner_5 = Instance.new("UICorner")
+local DisplayNameTextLabel = Instance.new("TextLabel")
+local UsernameTextLabel = Instance.new("TextLabel")
+local UserIdTextLabel = Instance.new("TextLabel")
+local UIAspectRatioConstraint_8 = Instance.new("UIAspectRatioConstraint")
 
 Fection.Name = "Fection"
-Fection.Parent = game.CoreGui
+Fection.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 Fection.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 Fection.DisplayOrder = 999999999
 Fection.ResetOnSpawn = false
 
-ImageLabel.Parent = Fection
-ImageLabel.AnchorPoint = Vector2.new(0.5, 0.5)
-ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ImageLabel.BackgroundTransparency = 1.000
-ImageLabel.Position = UDim2.new(0.0760666132, 0, 0.49912101, 0)
-ImageLabel.Size = UDim2.new(0.152162582, 0, 0.308333337, 0)
-ImageLabel.ZIndex = 2
-ImageLabel.Image = "http://www.roblox.com/asset/?id=6906809185"
-ImageLabel.ImageColor3 = Color3.fromRGB(26, 26, 26)
+HomeFrame.Name = "HomeFrame"
+HomeFrame.Parent = Fection
+HomeFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+HomeFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+HomeFrame.BackgroundTransparency = 1.000
+HomeFrame.Position = UDim2.new(-0.1, 0, 0.49912101, 0)
+HomeFrame.Size = UDim2.new(0.152162582, 0, 0.308333337, 0)
+HomeFrame.Image = "http://www.roblox.com/asset/?id=6906809185"
+HomeFrame.ImageColor3 = Color3.fromRGB(26, 26, 26)
 
 MainFrame.Name = "MainFrame"
-MainFrame.Parent = ImageLabel
+MainFrame.Parent = HomeFrame
 MainFrame.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
 MainFrame.Position = UDim2.new(0.0410958901, 0, 0.0420420431, 0)
 MainFrame.Size = UDim2.new(0.917808235, 0, 0.912912905, 0)
@@ -149,7 +175,6 @@ CommandsButton.TextColor3 = Color3.fromRGB(152, 152, 152)
 CommandsButton.TextScaled = true
 CommandsButton.TextSize = 14.000
 CommandsButton.TextWrapped = true
-CommandsButton.Visible = false
 
 UICorner_2.CornerRadius = UDim.new(0.300000012, 1)
 UICorner_2.Parent = CommandsButton
@@ -169,7 +194,7 @@ Icon.BackgroundTransparency = 1.000
 Icon.Position = UDim2.new(0.793855071, 0, -0.0723684132, 0)
 Icon.Size = UDim2.new(0.203334525, 0, 0.179255441, 0)
 Icon.Image = "rbxassetid://11739593599"
-Icon.ImageColor3 = Color3.fromRGB(208, 208, 208)
+Icon.ImageColor3 = Color3.fromRGB(245, 245, 245)
 
 UIAspectRatioConstraint_2.Parent = Icon
 
@@ -179,12 +204,211 @@ Icon_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Icon_2.BackgroundTransparency = 1.000
 Icon_2.Size = UDim2.new(1, 0, 1, 0)
 Icon_2.Image = "rbxassetid://11739415816"
-Icon_2.ImageColor3 = Color3.fromRGB(208, 208, 208)
+Icon_2.ImageColor3 = Color3.fromRGB(245, 245, 245)
 
 UIAspectRatioConstraint_3.Parent = Icon_2
 
-UIAspectRatioConstraint_4.Parent = ImageLabel
+SettingsButton.Name = "SettingsButton"
+SettingsButton.Parent = MainFrame
+SettingsButton.BackgroundTransparency = 1.000
+SettingsButton.Position = UDim2.new(0.0373134315, 0, 0.0131579041, 0)
+SettingsButton.Size = UDim2.new(0.0932835788, 0, 0.0822368413, 0)
+SettingsButton.ZIndex = 2
+SettingsButton.Image = "rbxassetid://3926307971"
+SettingsButton.ImageRectOffset = Vector2.new(324, 124)
+SettingsButton.ImageRectSize = Vector2.new(36, 36)
+
+UIAspectRatioConstraint_4.Parent = HomeFrame
 UIAspectRatioConstraint_4.AspectRatio = 0.877
+
+SettingsFrame.Name = "SettingsFrame"
+SettingsFrame.Parent = Fection
+SettingsFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+SettingsFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+SettingsFrame.BackgroundTransparency = 1.000
+SettingsFrame.Position = UDim2.new(0.232837453, 0, 1.2, 0)
+SettingsFrame.Size = UDim2.new(0.152162582, 0, 0.308333337, 0)
+SettingsFrame.Image = "http://www.roblox.com/asset/?id=6906809185"
+SettingsFrame.ImageColor3 = Color3.fromRGB(26, 26, 26)
+
+MainFrame_2.Name = "MainFrame"
+MainFrame_2.Parent = SettingsFrame
+MainFrame_2.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+MainFrame_2.Position = UDim2.new(0.0410958901, 0, 0.0420420431, 0)
+MainFrame_2.Size = UDim2.new(0.917808235, 0, 0.912912905, 0)
+
+UICorner_3.CornerRadius = UDim.new(0.0299999993, 1)
+UICorner_3.Parent = MainFrame_2
+
+ScrollingFrame_2.Parent = MainFrame_2
+ScrollingFrame_2.Active = true
+ScrollingFrame_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ScrollingFrame_2.BackgroundTransparency = 1.000
+ScrollingFrame_2.BorderSizePixel = 0
+ScrollingFrame_2.Position = UDim2.new(0, 0, 0.108999997, 0)
+ScrollingFrame_2.Size = UDim2.new(1, 0, 0.890999973, 0)
+ScrollingFrame_2.ScrollBarThickness = 0
+
+UIListLayout_2.Parent = ScrollingFrame_2
+UIListLayout_2.HorizontalAlignment = Enum.HorizontalAlignment.Center
+UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
+UIListLayout_2.Padding = UDim.new(0.0599999987, 0)
+
+SuperSpeedChanger.Name = "SuperSpeedChanger"
+SuperSpeedChanger.Parent = ScrollingFrame_2
+SuperSpeedChanger.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+SuperSpeedChanger.BackgroundTransparency = 1.000
+SuperSpeedChanger.Position = UDim2.new(0, 0, 0.109875202, 0)
+SuperSpeedChanger.Size = UDim2.new(1, 0, 0.0916874707, 0)
+SuperSpeedChanger.Font = Enum.Font.RobotoMono
+SuperSpeedChanger.Text = "Super Speed:"
+SuperSpeedChanger.TextColor3 = Color3.fromRGB(255, 255, 255)
+SuperSpeedChanger.TextScaled = true
+SuperSpeedChanger.TextSize = 100.000
+SuperSpeedChanger.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+SuperSpeedChanger.TextWrapped = true
+
+TextBox.Parent = SuperSpeedChanger
+TextBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextBox.BackgroundTransparency = 0.900
+TextBox.Position = UDim2.new(0, 0, 1, 0)
+TextBox.Size = UDim2.new(1, 0, 1, 0)
+TextBox.Font = Enum.Font.RobotoMono
+TextBox.PlaceholderColor3 = Color3.fromRGB(113, 113, 113)
+TextBox.PlaceholderText = "Input a Super Speed"
+TextBox.Text = ""
+TextBox.TextColor3 = Color3.fromRGB(198, 198, 198)
+TextBox.TextScaled = true
+TextBox.TextSize = 14.000
+TextBox.TextWrapped = true
+
+UIAspectRatioConstraint_5.Parent = SuperSpeedChanger
+UIAspectRatioConstraint_5.AspectRatio = 9.615
+
+UIPadding.Parent = ScrollingFrame_2
+UIPadding.PaddingTop = UDim.new(0.00999999978, 0)
+
+OpenCloseKeyChanger.Name = "OpenCloseKeyChanger"
+OpenCloseKeyChanger.Parent = ScrollingFrame_2
+OpenCloseKeyChanger.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+OpenCloseKeyChanger.BackgroundTransparency = 1.000
+OpenCloseKeyChanger.Position = UDim2.new(0, 0, 0.109875202, 0)
+OpenCloseKeyChanger.Size = UDim2.new(1, 0, 0.0916874707, 0)
+OpenCloseKeyChanger.Font = Enum.Font.RobotoMono
+OpenCloseKeyChanger.Text = "Open/Close Key:"
+OpenCloseKeyChanger.TextColor3 = Color3.fromRGB(255, 255, 255)
+OpenCloseKeyChanger.TextScaled = true
+OpenCloseKeyChanger.TextSize = 100.000
+OpenCloseKeyChanger.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+OpenCloseKeyChanger.TextWrapped = true
+
+TextBox_2.Parent = OpenCloseKeyChanger
+TextBox_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextBox_2.BackgroundTransparency = 0.900
+TextBox_2.Position = UDim2.new(0, 0, 1, 0)
+TextBox_2.Size = UDim2.new(1, 0, 1, 0)
+TextBox_2.Font = Enum.Font.RobotoMono
+TextBox_2.PlaceholderColor3 = Color3.fromRGB(113, 113, 113)
+TextBox_2.PlaceholderText = "Key"
+TextBox_2.Text = ""
+TextBox_2.TextColor3 = Color3.fromRGB(198, 198, 198)
+TextBox_2.TextScaled = true
+TextBox_2.TextSize = 14.000
+TextBox_2.TextWrapped = true
+
+UIAspectRatioConstraint_6.Parent = OpenCloseKeyChanger
+UIAspectRatioConstraint_6.AspectRatio = 9.615
+
+Title_2.Name = "Title"
+Title_2.Parent = MainFrame_2
+Title_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Title_2.BackgroundTransparency = 1.000
+Title_2.Size = UDim2.new(1, 0, 0.110000007, 0)
+Title_2.Font = Enum.Font.RobotoMono
+Title_2.Text = "Settings"
+Title_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title_2.TextScaled = true
+Title_2.TextSize = 100.000
+Title_2.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+Title_2.TextWrapped = true
+
+UIAspectRatioConstraint_7.Parent = SettingsFrame
+UIAspectRatioConstraint_7.AspectRatio = 0.877
+
+ProfileFrame.Name = "ProfileFrame"
+ProfileFrame.Parent = Fection
+ProfileFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+ProfileFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ProfileFrame.BackgroundTransparency = 1.000
+ProfileFrame.Position = UDim2.new(-0.1, 0, 0.748297095, 0)
+ProfileFrame.Size = UDim2.new(0.152162582, 0, 0.191462666, 0)
+ProfileFrame.Image = "http://www.roblox.com/asset/?id=6906809185"
+ProfileFrame.ImageColor3 = Color3.fromRGB(26, 26, 26)
+
+MainFrame_3.Name = "MainFrame"
+MainFrame_3.Parent = ProfileFrame
+MainFrame_3.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+MainFrame_3.Position = UDim2.new(0.0410958901, 0, 0.0420420431, 0)
+MainFrame_3.Size = UDim2.new(0.917808235, 0, 0.912912905, 0)
+
+UICorner_4.CornerRadius = UDim.new(0.0299999993, 1)
+UICorner_4.Parent = MainFrame_3
+
+ProfileImageFrame.Name = "ProfileImageFrame"
+ProfileImageFrame.Parent = MainFrame_3
+ProfileImageFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ProfileImageFrame.BackgroundTransparency = 0.970
+ProfileImageFrame.Position = UDim2.new(0.0500000007, 0, 0.161245406, 0)
+ProfileImageFrame.Size = UDim2.new(0.372940004, 0, 0.529740036, 0)
+ProfileImageFrame.Image = "rbxassetid://6996103201"
+
+UICorner_5.CornerRadius = UDim.new(0.0399999991, 1)
+UICorner_5.Parent = ProfileImageFrame
+
+DisplayNameTextLabel.Name = "DisplayNameTextLabel"
+DisplayNameTextLabel.Parent = MainFrame_3
+DisplayNameTextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+DisplayNameTextLabel.BackgroundTransparency = 1.000
+DisplayNameTextLabel.Position = UDim2.new(0.422940046, 0, 0.289112508, 0)
+DisplayNameTextLabel.Size = UDim2.new(0.570598245, 0, 0.121840209, 0)
+DisplayNameTextLabel.Font = Enum.Font.RobotoMono
+DisplayNameTextLabel.Text = "Roblox"
+DisplayNameTextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+DisplayNameTextLabel.TextScaled = true
+DisplayNameTextLabel.TextSize = 14.000
+DisplayNameTextLabel.TextWrapped = true
+
+UsernameTextLabel.Name = "UsernameTextLabel"
+UsernameTextLabel.Parent = MainFrame_3
+UsernameTextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+UsernameTextLabel.BackgroundTransparency = 1.000
+UsernameTextLabel.Position = UDim2.new(0.422940046, 0, 0.448034465, 0)
+UsernameTextLabel.Size = UDim2.new(0.570598245, 0, 0.111245409, 0)
+UsernameTextLabel.Font = Enum.Font.RobotoMono
+UsernameTextLabel.Text = "Roblox"
+UsernameTextLabel.TextColor3 = Color3.fromRGB(199, 199, 199)
+UsernameTextLabel.TextScaled = true
+UsernameTextLabel.TextSize = 14.000
+UsernameTextLabel.TextWrapped = true
+
+UserIdTextLabel.Name = "UserIdTextLabel"
+UserIdTextLabel.Parent = MainFrame_3
+UserIdTextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+UserIdTextLabel.BackgroundTransparency = 1.000
+UserIdTextLabel.Position = UDim2.new(0.0500000045, 0, 0.718201876, 0)
+UserIdTextLabel.Size = UDim2.new(0.92116189, 0, 0.111245409, 0)
+UserIdTextLabel.Font = Enum.Font.RobotoMono
+UserIdTextLabel.Text = "#1"
+UserIdTextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+UserIdTextLabel.TextScaled = true
+UserIdTextLabel.TextSize = 14.000
+UserIdTextLabel.TextWrapped = true
+UserIdTextLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+UIAspectRatioConstraint_8.Parent = ProfileFrame
+UIAspectRatioConstraint_8.AspectRatio = 1.413
+
+-- Notification UI
 
 local FectionNotification = Instance.new("ScreenGui")
 local NotificationList_1 = Instance.new("Frame")
@@ -425,8 +649,11 @@ local Commands = {
 
 canESP = false
 SpEnabled = false
-uiOpen = false
 SprintSpeed = 50
+OpenCloseEnumKey = "K"
+
+HomeFrameOpened = false
+SettingsFrameOpened = false
 
 function cmdRun(commanded)
 	if commanded == Commands[1] then
@@ -542,6 +769,45 @@ for i,v in pairs(Commands) do
 		}):Play()
 	end)
 end
+SettingsButton.MouseButton1Click:Connect(function()
+	PlaySound(10066931761, 0.65, 1, false)
+	if HomeFrameOpened == true then
+		if SettingsFrameOpened == false then
+			SettingsFrameOpened = true
+			TweenService:Create(SettingsFrame, TweenInfo.new(0.45, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
+				Position = UDim2.new(0.233, 0,0.498, 0)
+			}):Play()
+		else
+			SettingsFrameOpened = false
+			TweenService:Create(SettingsFrame, TweenInfo.new(0.45, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
+				Position = UDim2.new(0.233, 0,1.2, 0)
+			}):Play()
+		end
+	end
+end)
+SettingsButton.MouseEnter:Connect(function()
+	PlaySound(10066936758, 0.6, 1, false)
+	TweenService:Create(SettingsButton, TweenInfo.new(0.45, Enum.EasingStyle.Back, Enum.EasingDirection.Out, 0, false, 0), {
+		Rotation = 10
+	}):Play()
+end)
+SettingsButton.MouseLeave:Connect(function()
+	PlaySound(10066936758, 0.6, 1, false)
+	TweenService:Create(SettingsButton, TweenInfo.new(0.45, Enum.EasingStyle.Back, Enum.EasingDirection.Out, 0, false, 0), {
+		Rotation = 0
+	}):Play()
+end)
+SuperSpeedChanger.TextBox:GetPropertyChangedSignal("Text"):Connect(function()
+	SprintSpeed = tonumber(SuperSpeedChanger.TextBox.Text)
+end)
+OpenCloseKeyChanger.TextBox:GetPropertyChangedSignal("Text"):Connect(function()
+	local newKey = tostring(string.upper(string.sub(OpenCloseKeyChanger.TextBox.Text, 1, 2)))
+	PlayBeep("S1")
+	Notify("Settings", "Open/Close Key Changed to "..newKey)
+	OpenCloseEnumKey = newKey
+end)
+SuperSpeedChanger.TextBox.Text = SprintSpeed
+OpenCloseKeyChanger.TextBox.Text = OpenCloseEnumKey
 function ESPpart(part, primaryColor, secondaryColor)
 	if part:IsA("BasePart") then
 		if not part:FindFirstChild("FectionESP") then
@@ -660,32 +926,55 @@ UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
 			cmdRun(Commands[7])
 		elseif input.KeyCode == Enum.KeyCode.RightBracket then
 			cmdRun(Commands[8])
-		elseif input.KeyCode == Enum.KeyCode.K then
-			if uiOpen == false then
-				uiOpen = true
-				game:GetService("TweenService"):Create(ImageLabel, TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
-					Position = UDim2.new(-0.1, 0,0.499, 0)
-				}):Play()
-			else
-				uiOpen = false
-				game:GetService("TweenService"):Create(ImageLabel, TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
+		elseif input.KeyCode == OpenCloseEnumKey then
+			
+		end
+	end
+end)
+Player:GetMouse().KeyDown:Connect(function(k)
+	k = k:lower()
+	if k == OpenCloseEnumKey then
+		if HomeFrameOpened == false then
+			HomeFrameOpened = true
+			coroutine.resume(coroutine.create(function()
+				if SettingsFrameOpened == true then
+					TweenService:Create(SettingsFrame, TweenInfo.new(0.45, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
+						Position = UDim2.new(0.233, 0,0.498, 0)
+					}):Play()
+				end
+				TweenService:Create(HomeFrame, TweenInfo.new(0.45, Enum.EasingStyle.Back, Enum.EasingDirection.Out, 0, false, 0), {
 					Position = UDim2.new(0.076, 0,0.499, 0)
 				}):Play()
-			end
+				wait(0.05)
+				TweenService:Create(ProfileFrame, TweenInfo.new(0.45, Enum.EasingStyle.Back, Enum.EasingDirection.Out, 0, false, 0), {
+					Position = UDim2.new(0.076, 0,0.748, 0)
+				}):Play()
+			end))
+		else
+			HomeFrameOpened = false
+			coroutine.resume(coroutine.create(function()
+				if SettingsFrameOpened == true then
+					TweenService:Create(SettingsFrame, TweenInfo.new(0.45, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
+						Position = UDim2.new(0.233, 0,1.2, 0)
+					}):Play()
+				end
+				TweenService:Create(HomeFrame, TweenInfo.new(0.45, Enum.EasingStyle.Back, Enum.EasingDirection.Out, 0, false, 0), {
+					Position = UDim2.new(-0.1, 0,0.499, 0)
+				}):Play()
+				wait(0.05)
+				TweenService:Create(ProfileFrame, TweenInfo.new(0.45, Enum.EasingStyle.Back, Enum.EasingDirection.Out, 0, false, 0), {
+					Position = UDim2.new(-0.1, 0,0.748, 0)
+				}):Play()
+			end))
 		end
 	end
 end)
 RunService.RenderStepped:Connect(function()
 	if SpEnabled == true then
 		Player.Character.Humanoid.WalkSpeed = SprintSpeed
-		game:GetService("TweenService"):Create(Player.Character.Humanoid, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
+		game:GetService("TweenService"):Create(Player.Character.Humanoid, TweenInfo.new(0.1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
 			WalkSpeed = SprintSpeed
 		}):Play()
-	end
-	if workspace:FindFirstChild("CurrentRooms") then
-		if workspace:FindFirstChild("CurrentRooms"):FindFirstChild("0") then
-			workspace:FindFirstChild("CurrentRooms"):FindFirstChild("0").Assets.Desk_Bell.Base.InteractSound.SoundId = "rbxassetid://6832470734"
-		end
 	end
 end)
 workspace.Camera.ChildAdded:Connect(function(child)
@@ -722,7 +1011,7 @@ workspace.ChildAdded:Connect(function(child)
 		end
 		local randomNum = math.random(1,3)
 		if randomNum == 2 then
-			game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Warning (Rus-)", Text = ("Holy boi, Rus- wait a minute why it sounded different?"), Duration = 5})
+			game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Warning (Rus-)", Text = ("Rush Incoming... Wait no.."), Duration = 5})
 			local RushNew = child:WaitForChild("RushNew")
 			local PlaySound = RushNew.PlaySound
 			RushNew.Footsteps.Playing = false
@@ -733,10 +1022,10 @@ workspace.ChildAdded:Connect(function(child)
 			RushNew.Attachment.BlackTrail.Color = Color3.fromRGB(255,255,255)
 			RushNew.Attachment.BlackTrail.Texture = "rbxassetid://4511014399"
 		end
-		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Warning (Rush)", Text = ("Holy Sh*t, Rush is coming."), Duration = 5})
+		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Warning (Rush)", Text = ("Rush Incoming."), Duration = 5})
 	elseif child.Name == "SeekMoving" then
 		PlayBeep("S1")
-		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Warning (Seek)", Text = ("Man... You gotta run for your life."), Duration = 5})
+		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Warning (Seek)", Text = ("Get Ready."), Duration = 5})
 		if child:WaitForChild("Figure") then
 			if child:WaitForChild("Figure"):FindFirstChild("BoxHandleAdornment") then
 			else
@@ -764,7 +1053,7 @@ workspace.ChildAdded:Connect(function(child)
 		end
 	elseif child.Name == "Lookman" then
 		PlayBeep("S1")
-		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Warning (LookMan)", Text = ("Bro is shy, just like SCP-096"), Duration = 5})
+		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Warning (LookMan)", Text = ("Don't look at him!"), Duration = 5})
 		if child:WaitForChild("Core") then
 			if child.RushNew:FindFirstChild("BoxHandleAdornment") then
 			else
@@ -793,7 +1082,7 @@ workspace.ChildAdded:Connect(function(child)
 	elseif child.Name == "AmbushMoving" then
 		PlayBeep("S2")
 		AmbushSound()
-		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Warning (Ambush)", Text = ("time to spam some Closet"), Duration = 5})
+		game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Warning (Ambush)", Text = ("This one is tricky.. Good luck!"), Duration = 5})
 	end
 end)
 coroutine.resume(coroutine.create(function()
@@ -803,8 +1092,9 @@ coroutine.resume(coroutine.create(function()
 	wait(1)
 	Notify("Fection", "Running.", 15)
 	Notify("Fection", "Set your graphics to 1 - Recommended", 15)
+	Notify("Fection", ("Press "..OpenCloseEnumKey.." to Open Fection."), 15)
 end))
---[[ ---. .--- ]]--[[ -- -- - -- ------- ------- - - - -- .Success Printer. --]] print("Fection Success.".." 2x")
+--[[ ---. .--- ]]--[[ -- -- - -- ------- ------- - - - -- .Success Printer. --]] print("Fection Success.".."ui update")
 CheckVersion()
 
 while true do wait(0.5)
