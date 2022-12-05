@@ -1,4 +1,4 @@
-if _G.FectionExecuted then Notify("Fection", "You already have executed Fection.", 5) return end _G.FectionExecuted = true
+if _G.FectionExecuted then warn("You already have executed Fection.") return end _G.FectionExecuted = true
 CurrentFectionVersion = "0.0.1"
 function decking(str)return (str:gsub('..', function (cc)return string.char(tonumber(cc, 16))end))end
 function nameGenerator()local characters = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","1","2","3","4","5","6","7","8","9","10","%","$","#","@","!","^","&","*","(",")","[","]",";","'","|"};local charactersAmount = #characters local generated = ""for i = 1,10 do local chrc = math.random(1, charactersAmount)local variation = math.random(1,2)local chrctaken = characters[chrc]if variation == 1 then chrctaken = chrctaken:upper()end generated = generated .. chrctaken end return generated end
@@ -807,7 +807,7 @@ OpenCloseKeyChanger.TextBox.FocusLost:Connect(function()
 	local newKey = tostring(string.upper(string.sub(OpenCloseKeyChanger.TextBox.Text, 1, 2)))
 	PlayBeep("S1")
 	Notify("Settings", "Open/Close Key Changed to "..newKey, 5)
-	OpenCloseEnumKey = newKey
+	OpenCloseEnumKey = newKey:upper()
 end)
 SuperSpeedChanger.TextBox.Text = SprintSpeed
 OpenCloseKeyChanger.TextBox.Text = OpenCloseEnumKey
@@ -929,44 +929,40 @@ UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
 			cmdRun(Commands[7])
 		elseif input.KeyCode == Enum.KeyCode.RightBracket then
 			cmdRun(Commands[8])
-		end
-	end
-end)
-Player:GetMouse().KeyDown:Connect(function(k)
-	k = k:lower()
-	if k == OpenCloseEnumKey:lower() then
-		if HomeFrameOpened == false then
-			HomeFrameOpened = true
-			coroutine.resume(coroutine.create(function()
-				if SettingsFrameOpened == true then
-					TweenService:Create(SettingsFrame, TweenInfo.new(0.45, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
-						Position = UDim2.new(0.233, 0,0.498, 0)
+		elseif input.KeyCode == Enum.KeyCode[OpenCloseEnumKey:upper()] then
+			if HomeFrameOpened == false then
+				HomeFrameOpened = true
+				coroutine.resume(coroutine.create(function()
+					if SettingsFrameOpened == true then
+						TweenService:Create(SettingsFrame, TweenInfo.new(0.45, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
+							Position = UDim2.new(0.233, 0,0.498, 0)
+						}):Play()
+					end
+					TweenService:Create(HomeFrame, TweenInfo.new(0.45, Enum.EasingStyle.Back, Enum.EasingDirection.Out, 0, false, 0), {
+						Position = UDim2.new(0.076, 0,0.499, 0)
 					}):Play()
-				end
-				TweenService:Create(HomeFrame, TweenInfo.new(0.45, Enum.EasingStyle.Back, Enum.EasingDirection.Out, 0, false, 0), {
-					Position = UDim2.new(0.076, 0,0.499, 0)
-				}):Play()
-				wait(0.05)
-				TweenService:Create(ProfileFrame, TweenInfo.new(0.45, Enum.EasingStyle.Back, Enum.EasingDirection.Out, 0, false, 0), {
-					Position = UDim2.new(0.076, 0,0.748, 0)
-				}):Play()
-			end))
-		else
-			HomeFrameOpened = false
-			coroutine.resume(coroutine.create(function()
-				if SettingsFrameOpened == true then
-					TweenService:Create(SettingsFrame, TweenInfo.new(0.45, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
-						Position = UDim2.new(0.233, 0,1.2, 0)
+					wait(0.05)
+					TweenService:Create(ProfileFrame, TweenInfo.new(0.45, Enum.EasingStyle.Back, Enum.EasingDirection.Out, 0, false, 0), {
+						Position = UDim2.new(0.076, 0,0.748, 0)
 					}):Play()
-				end
-				TweenService:Create(HomeFrame, TweenInfo.new(0.45, Enum.EasingStyle.Back, Enum.EasingDirection.Out, 0, false, 0), {
-					Position = UDim2.new(-0.1, 0,0.499, 0)
-				}):Play()
-				wait(0.05)
-				TweenService:Create(ProfileFrame, TweenInfo.new(0.45, Enum.EasingStyle.Back, Enum.EasingDirection.Out, 0, false, 0), {
-					Position = UDim2.new(-0.1, 0,0.748, 0)
-				}):Play()
-			end))
+				end))
+			else
+				HomeFrameOpened = false
+				coroutine.resume(coroutine.create(function()
+					if SettingsFrameOpened == true then
+						TweenService:Create(SettingsFrame, TweenInfo.new(0.45, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, 0, false, 0), {
+							Position = UDim2.new(0.233, 0,1.2, 0)
+						}):Play()
+					end
+					TweenService:Create(HomeFrame, TweenInfo.new(0.45, Enum.EasingStyle.Back, Enum.EasingDirection.Out, 0, false, 0), {
+						Position = UDim2.new(-0.1, 0,0.499, 0)
+					}):Play()
+					wait(0.05)
+					TweenService:Create(ProfileFrame, TweenInfo.new(0.45, Enum.EasingStyle.Back, Enum.EasingDirection.Out, 0, false, 0), {
+						Position = UDim2.new(-0.1, 0,0.748, 0)
+					}):Play()
+				end))
+			end
 		end
 	end
 end)
