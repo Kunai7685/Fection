@@ -75,6 +75,11 @@ end
 
 -- GUI
 
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
 local Fection = Instance.new("ScreenGui")
 local HomeFrame = Instance.new("ImageLabel")
 local MainFrame = Instance.new("Frame")
@@ -112,8 +117,9 @@ local ProfileImageFrame = Instance.new("ImageLabel")
 local UICorner_5 = Instance.new("UICorner")
 local DisplayNameTextLabel = Instance.new("TextLabel")
 local UsernameTextLabel = Instance.new("TextLabel")
-local UserIdTextLabel = Instance.new("TextLabel")
 local UIAspectRatioConstraint_8 = Instance.new("UIAspectRatioConstraint")
+
+--Properties:
 
 Fection.Name = "Fection"
 Fection.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
@@ -358,8 +364,8 @@ ProfileImageFrame.Name = "ProfileImageFrame"
 ProfileImageFrame.Parent = MainFrame_3
 ProfileImageFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 ProfileImageFrame.BackgroundTransparency = 0.970
-ProfileImageFrame.Position = UDim2.new(0.0500000007, 0, 0.161245406, 0)
-ProfileImageFrame.Size = UDim2.new(0.372940004, 0, 0.529740036, 0)
+ProfileImageFrame.Position = UDim2.new(0.262686551, 0, 0.0499998815, 0)
+ProfileImageFrame.Size = UDim2.new(0.47057566, 0, 0.668425679, 0)
 ProfileImageFrame.Image = "rbxassetid://6996103201"
 
 UICorner_5.CornerRadius = UDim.new(0.0399999991, 1)
@@ -369,8 +375,8 @@ DisplayNameTextLabel.Name = "DisplayNameTextLabel"
 DisplayNameTextLabel.Parent = MainFrame_3
 DisplayNameTextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 DisplayNameTextLabel.BackgroundTransparency = 1.000
-DisplayNameTextLabel.Position = UDim2.new(0.422940046, 0, 0.289112508, 0)
-DisplayNameTextLabel.Size = UDim2.new(0.570598245, 0, 0.121840209, 0)
+DisplayNameTextLabel.Position = UDim2.new(2.27743115e-07, 0, 0.718425691, 0)
+DisplayNameTextLabel.Size = UDim2.new(1, 0, 0.121840209, 0)
 DisplayNameTextLabel.Font = Enum.Font.RobotoMono
 DisplayNameTextLabel.Text = "Roblox"
 DisplayNameTextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -382,28 +388,14 @@ UsernameTextLabel.Name = "UsernameTextLabel"
 UsernameTextLabel.Parent = MainFrame_3
 UsernameTextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 UsernameTextLabel.BackgroundTransparency = 1.000
-UsernameTextLabel.Position = UDim2.new(0.422940046, 0, 0.448034465, 0)
-UsernameTextLabel.Size = UDim2.new(0.570598245, 0, 0.111245409, 0)
+UsernameTextLabel.Position = UDim2.new(2.27743115e-07, 0, 0.840246201, 0)
+UsernameTextLabel.Size = UDim2.new(1, 0, 0.111245409, 0)
 UsernameTextLabel.Font = Enum.Font.RobotoMono
 UsernameTextLabel.Text = "Roblox"
 UsernameTextLabel.TextColor3 = Color3.fromRGB(199, 199, 199)
 UsernameTextLabel.TextScaled = true
 UsernameTextLabel.TextSize = 14.000
 UsernameTextLabel.TextWrapped = true
-
-UserIdTextLabel.Name = "UserIdTextLabel"
-UserIdTextLabel.Parent = MainFrame_3
-UserIdTextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-UserIdTextLabel.BackgroundTransparency = 1.000
-UserIdTextLabel.Position = UDim2.new(0.0500000045, 0, 0.718201876, 0)
-UserIdTextLabel.Size = UDim2.new(0.92116189, 0, 0.111245409, 0)
-UserIdTextLabel.Font = Enum.Font.RobotoMono
-UserIdTextLabel.Text = "#1"
-UserIdTextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-UserIdTextLabel.TextScaled = true
-UserIdTextLabel.TextSize = 14.000
-UserIdTextLabel.TextWrapped = true
-UserIdTextLabel.TextXAlignment = Enum.TextXAlignment.Left
 
 UIAspectRatioConstraint_8.Parent = ProfileFrame
 UIAspectRatioConstraint_8.AspectRatio = 1.413
@@ -743,6 +735,15 @@ local function CheckVersion()
 		end
 	end
 end
+coroutine.resume(coroutine.create(function()
+	local UserId = Player.UserId
+	local ThumType = Enum.ThumbnailType.HeadShot
+	local ThumSize = Enum.ThumbnailSize.Size420x420
+	local Content = game.Players:GetUserThumbnailAsync(UserId, ThumType, ThumSize)
+	ProfileImageFrame.Image = Content
+	DisplayNameTextLabel.Text = Player.DisplayName
+	UsernameTextLabel.Text = Player.Name
+end))
 for i,v in pairs(Commands) do
 	local cmdButton = ScrollingFrame.CommandsButton:Clone()
 	cmdButton.Parent = ScrollingFrame
